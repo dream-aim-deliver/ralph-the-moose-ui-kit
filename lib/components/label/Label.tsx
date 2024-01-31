@@ -13,8 +13,9 @@ export const Label = ({ variant, label }: LabelProps) => {
     "relative",
     "text-sm",
     "leading-[14px]",
-    "font-label-small",
-    variant === "small" ? "text-text-secondary" : "text-text-primary",
+    "font-varela",
+    variant === "small" ? "text-sm" : "",
+    variant === "medium" ? "text-base" : "",
     "text-text-primary",
     "text-left",
   ]);
