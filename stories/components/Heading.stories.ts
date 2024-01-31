@@ -25,13 +25,13 @@ type Story = StoryObj<typeof meta>;
 export const H4: Story = {
   args: {
     variant: HeadingVariant.H4,
-    title: "Heading 4",
+    title: "heading / h4",
   },
 };
 
 export const H5: Story = {
   args: {
     variant: HeadingVariant.H5,
-    title: "Heading 5",
+    title: "heading / h5",
   },
 };
