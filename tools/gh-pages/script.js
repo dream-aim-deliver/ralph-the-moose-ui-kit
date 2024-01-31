@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const url = window.location.href;
     const pathItems = url.split('/');
     const lastItem = pathItems[pathItems.length - 1];
-    repoNameElement.textContent = lastItem || "Component Library";
+    repoNameElement.textContent = lastItem || "Ralph the Moose UI kit";
   });
   
   function redirectTo(path) {
