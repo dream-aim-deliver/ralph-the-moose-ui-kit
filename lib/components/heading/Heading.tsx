@@ -1,5 +1,3 @@
-import { twMerge } from "tailwind-merge";
-
 /**
  * Enum for heading variants.
  * @enum {string}
@@ -28,7 +26,7 @@ export interface HeadingProps {
  * @property {HeadingVariant} variant - The variant of the heading.
  */
 export const Heading = ({ title, variant }: HeadingProps) => {
-  const classes = twMerge([
+  const classes = [
     "w-[324.33px]",
     "relative",
     "tracking-[-0.04em]",
@@ -40,7 +38,13 @@ export const Heading = ({ title, variant }: HeadingProps) => {
     variant === HeadingVariant.H5 ? "text-xl" : "",
     "text-text-primary",
     "text-left",
-  ]);
+  ]
+    .filter(Boolean)
+    .join(" ");
 
-  return <label className={classes}>{title}</label>;
+  return (
+    <label role="heading" className={classes}>
+      {title}
+    </label>
+  );
 };
