@@ -36,6 +36,7 @@ export const Link = ({ variant, label }: LinkProps) => {
     variant === "medium" ? "text-base" : "",
     "text-text-primary",
     "text-left",
+    "font-bold",
     "hover:scale-110",
   ]);
   return <div className={classes}>{label}</div>;
