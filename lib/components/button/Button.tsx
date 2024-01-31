@@ -30,7 +30,7 @@ export interface ButtonProps {
 }
 
 /**
- * Primary UI component for user interaction
+ * This is an example button component
  */
 export const Button = ({
   primary = false,
