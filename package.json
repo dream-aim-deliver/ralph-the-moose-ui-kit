@@ -1,8 +1,8 @@
 {
-  "name": "@maany_shr/dad-ui-components-starter-template",
-  "version": "1.0.0-beta",
+  "name": "@maany_shr/ralph-the-moose-ui-kit",
+  "version": "1.0.0-alpha",
   "author": "Mayank Sharma <imptodefeat@gmail.com>",
-  "homepage": "https://dream-aim-deliver.github.io/dad-ui-components-starter-template",
+  "homepage": "https://dream-aim-deliver.github.io/ralph-the-moose-ui-kit",
   "private": false,
   "type": "module",
   "main": "dist/index.js",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dream-aim-deliver/dad-ui-components-starter-template"
+    "url": "https://github.com/dream-aim-deliver/ralph-the-moose-ui-kit"
   },
   "sideEffects": [
     "**/*.css"
