@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 
 export const primary = twMerge(
-  `text-3xl bg-primary text-white`,
+  `text-3xl bg-base-colors/brand-400 text-white`,
   `hover:bg-blue-700`,
 );
 
