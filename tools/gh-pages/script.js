@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   repoNameElement.textContent = lastItem || "Ralph the Moose UI kit";
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function redirectTo(path) {
   const home = window.location.href;
   window.location.href = home + path;
