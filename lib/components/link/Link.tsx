@@ -22,15 +22,21 @@ export interface LinkProps {
  */
 export const Link = ({ variant, label }: LinkProps) => {
   const classes = twMerge([
+    "cursor-pointer",
     "relative",
     "text-base",
     "tracking-[-0.04em]",
     "leading-[16px]",
     "font-gluten",
+    "transform",
+    "transition-all",
+    "duration-200",
+    "ease-in-out",
     variant === "small" ? "text-xs" : "",
     variant === "medium" ? "text-base" : "",
     "text-text-primary",
     "text-left",
+    "hover:scale-110",
   ]);
   return <div className={classes}>{label}</div>;
 };
