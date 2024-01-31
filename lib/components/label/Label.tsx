@@ -1,12 +1,24 @@
 import { twMerge } from "tailwind-merge";
 
+/**
+ * ViewModel for label component.
+ * @typedef {Object} LabelProps
+ */
 export interface LabelProps {
+  /**
+   * The variant of the label. Accepts "small" or "medium".
+   */
   variant: "small" | "medium";
+  /**
+   * The text of the label.
+   */
   label: string;
 }
 
 /**
- * This ia a label component
+ * Label component.
+ * This is a label component that can be used to display text with different styles based on the variant.
+ * @param {LabelProps} props - The properties of the label.
  */
 export const Label = ({ variant, label }: LabelProps) => {
   const classes = twMerge([
