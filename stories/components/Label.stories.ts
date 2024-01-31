@@ -1,50 +1,32 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "@/components/button";
+import { Label } from "@/components/label";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "Components/Label",
-  component: Button,
+  component: Label,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    backgroundColor: { control: "color" },
+    variant: { control: "inline-radio", options: ["small", "medium"] },
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Label>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
-  args: {
-    primary: true,
-    label: "Button",
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    label: "Button",
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: "large",
-    label: "Button",
-  },
-};
-
 export const Small: Story = {
   args: {
-    size: "small",
-    label: "Button",
+    variant: "small",
+    label: "label / small",
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    variant: "medium",
+    label: "label / medium",
   },
 };

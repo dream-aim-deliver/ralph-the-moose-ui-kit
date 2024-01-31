@@ -1,1 +1,1 @@
-export { Label as Button, type LabelProps as ButtonProps } from "./Label";
+export { Label, type LabelProps } from "./Label";
