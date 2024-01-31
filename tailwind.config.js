@@ -4,7 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#FFA500",
+        "base-colors/neutral": {
+          "50": "#FBF7F3",
+          "100": "#F6E6DC",
+          "200": "#E3CABA",
+          "400": "#D1AC98",
+          "500": "#8E5A45",
+          "900": "#3D1F14",
+        },
+        "base-colors/brand": {
+          "400": "#04B76D",
+          "600": "#009F55",
+          "700": "#008E3B"
+        },
       }
     },
   },
