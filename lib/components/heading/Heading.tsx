@@ -12,11 +12,19 @@ export interface HeadingProps {
 }
 
 export const Heading = ({ title, variant }: HeadingProps) => {
-  const mode = variant;
-  const classes = twMerge("text-2xl");
-  return (
-    <h1 className={classes}>
-      {title} {mode}
-    </h1>
-  );
+  const classes = twMerge([
+    "w-[324.33px]",
+    "relative",
+    "tracking-[-0.04em]",
+    "leading-[24px]",
+    "font-bold",
+    "font-gluten",
+    "inline-block",
+    variant === HeadingVariant.H4 ? "text-xxl" : "",
+    variant === HeadingVariant.H5 ? "text-xl" : "",
+    "text-text-primary",
+    "text-left",
+  ]);
+
+  return <label className={classes}>{title}</label>;
 };

@@ -3,6 +3,13 @@ export default {
   content: ["./index.html", "./lib/**/*.{js,ts,jsx,tsx}", "./app/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        gluten: "Gluten",
+      },
+      fontSize: {
+        "xxl": "1.5rem",
+        "xl": "1.2rem",
+      },
       colors: {
         "base-colors/neutral": {
           "50": "#FBF7F3",
@@ -16,6 +23,9 @@ export default {
           "400": "#04B76D",
           "600": "#009F55",
           "700": "#008E3B"
+        },
+        "text": { 
+          "primary": "#3D1F16"
         },
       }
     },
