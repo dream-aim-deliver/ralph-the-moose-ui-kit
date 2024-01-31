@@ -9,11 +9,9 @@ export default {
     extend: {
       fontFamily: {
         gluten: "Gluten",
+        varela: "Varela Round",
       },
-      fontSize: {
-        xxl: "1.5rem",
-        xl: "1.2rem",
-      },
+      // Font Size Reference: https://tailwindcss.com/docs/font-size
       colors: {
         "base-colors/neutral": {
           50: "#FBF7F3",
