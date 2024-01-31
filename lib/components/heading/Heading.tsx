@@ -33,6 +33,7 @@ export const Heading = ({ title, variant }: HeadingProps) => {
     "leading-[24px]",
     "font-bold",
     "font-gluten",
+    "font-bold",
     "inline-block",
     variant === HeadingVariant.H4 ? "text-2xl" : "",
     variant === HeadingVariant.H5 ? "text-xl" : "",
