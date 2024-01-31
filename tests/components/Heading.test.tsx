@@ -14,9 +14,9 @@ describe("<Heading/>", () => {
     expect(screen.getByRole("heading")).toHaveTextContent("Heading Test");
   });
 
-  it("HeadingVariant.H4 should render the heading with text-xxl class", () => {
+  it("HeadingVariant.H4 should render the heading with text-2xl class", () => {
     render(<Heading title="Heading" variant={HeadingVariant.H4} />);
-    expect(screen.getByRole("heading")).toHaveClass("text-xxl");
+    expect(screen.getByRole("heading")).toHaveClass("text-2xl");
   });
 
   it("HeadingVariant.H5 should render the heading with text-xl class", () => {
