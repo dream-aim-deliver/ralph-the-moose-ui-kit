@@ -1,0 +1,87 @@
+{
+  "name": "@maany_shr/dad-ui-components-starter-template",
+  "version": "1.0.0-beta",
+  "author": "Mayank Sharma <imptodefeat@gmail.com>",
+  "homepage": "https://dream-aim-deliver.github.io/dad-ui-components-starter-template",
+  "private": false,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dream-aim-deliver/dad-ui-components-starter-template"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    "./css": "./dist/style.css"
+  },
+  "scripts": {
+    "app": "vite",
+    "build": "tsc --p ./tsconfig-build.json && vite build",
+    "build-docs": "typedoc --out docs lib/index.ts",
+    "build-storybook": "storybook build",
+    "clean": "rimraf dist docs coverage storybook-static",
+    "dev": "storybook dev -p 6006",
+    "format": "prettier --write \"app/**/*.{ts,tsx}\" \"lib/**/*.{ts,tsx}\" \"stories/**/*.{ts,tsx}\"",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "start": "vite --host --open",
+    "test": "vitest --run --coverage",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.10",
+    "@storybook/addon-interactions": "^7.6.10",
+    "@storybook/addon-links": "^7.6.10",
+    "@storybook/addon-onboarding": "^1.0.11",
+    "@storybook/blocks": "^7.6.10",
+    "@storybook/react": "^7.6.10",
+    "@storybook/react-vite": "^7.6.10",
+    "@storybook/test": "^7.6.10",
+    "@testing-library/jest-dom": "^6.3.0",
+    "@testing-library/react": "^14.1.2",
+    "@types/node": "^20.11.10",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "@vitest/coverage-v8": "^1.2.2",
+    "@vitest/ui": "^1.2.2",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-storybook": "^0.6.15",
+    "glob": "^10.3.10",
+    "jsdom": "^24.0.0",
+    "postcss": "^8.4.33",
+    "prettier": "^3.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.10",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss": "^3.4.1",
+    "typedoc": "^0.25.7",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vite-plugin-dts": "^3.7.2",
+    "vite-plugin-lib-inject-css": "^1.3.0",
+    "vitest": "^1.2.2"
+  }
+}

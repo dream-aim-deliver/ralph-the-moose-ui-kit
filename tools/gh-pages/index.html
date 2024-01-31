@@ -1,0 +1,32 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Welcome to MY_REPO</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome to <span id="repoName"></span></h1>
+  </header>
+
+  <section class="card-container">
+    <div class="card" onclick="redirectTo('/storybook')">
+      <img src="https://www.svgrepo.com/show/354397/storybook-icon.svg" alt="Storybook Icon">
+      <p>Storybook</p>
+    </div>
+    <div class="card" onclick="redirectTo('/docs')">
+      <img src="https://user-images.githubusercontent.com/21266147/101224549-386fb400-368f-11eb-8390-6db2ecd1fe61.png" alt="Docs Icon">
+      <p>Docs</p>
+    </div>
+    <div class="card" onclick="redirectTo('/coverage')">
+      <img src="https://seeklogo.com/images/V/vitest-logo-9ADDA575A5-seeklogo.com.png" alt="Coverage Icon">
+      <p>Coverage</p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

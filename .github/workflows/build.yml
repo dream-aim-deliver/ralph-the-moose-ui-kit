@@ -1,0 +1,26 @@
+name: Build Component Library and Docs
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install 🔧
+        run: |
+          npm install
+
+      - name: Build Library 🔧
+        run: |
+          npm run build
+      
+      - name: Build Docs 🔧
+        run: |
+          npm run build-docs
+  
