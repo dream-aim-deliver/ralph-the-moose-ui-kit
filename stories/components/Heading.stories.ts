@@ -4,7 +4,7 @@ import { Heading, HeadingVariant } from "@/components/heading";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Compoents/Heading",
+  title: "Components/Heading",
   component: Heading,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
@@ -29,6 +29,6 @@ export const H4: Story = {
 export const H5: Story = {
   args: {
     variant: HeadingVariant.H5,
-    title: "Heading 4",
+    title: "Heading 5",
   },
 };
