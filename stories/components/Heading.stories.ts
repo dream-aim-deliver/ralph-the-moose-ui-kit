@@ -12,7 +12,10 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    variant: { control: "radio", options: HeadingVariant },
+    variant: {
+      control: "radio",
+      options: [HeadingVariant.H4, HeadingVariant.H5],
+    },
   },
 } satisfies Meta<typeof Heading>;
 
