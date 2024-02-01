@@ -25,7 +25,7 @@ This guide will help you understand the best practices for developing a componen
 # Client Components or Server Components ?
 You need to decide whether you want to develop client side components or server side components. Remember if you use [React Hooks](https://react.dev/reference/react/hooks) or custom hooks from other libraries, you will not be able to use them in server side components.
 
-Please refer the following guide from [Next.js](https://nextjs.org/docs/app/building-your-application/rendering#nesting-server-components-inside-client-components) , especially the [Composing Patters](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns) setion for more information on how to decide between client side and server side components.
+Please refer the following guide from [Next.js](https://nextjs.org/docs/app/building-your-application/rendering#nesting-server-components-inside-client-components) , especially the [Composing Patterns](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns) setion for more information on how to decide between client side and server side components.
 
 
 # React DOM Rendering and Re-Rendering 
