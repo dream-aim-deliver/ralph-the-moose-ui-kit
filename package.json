@@ -34,7 +34,8 @@
     "start": "vite --host --open",
     "test": "vitest --run --coverage",
     "test:watch": "vitest --watch",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "uninstall": "rimraf node_modules package-lock.json"
   },
   "peerDependencies": {
     "react": "^18.2.0",
