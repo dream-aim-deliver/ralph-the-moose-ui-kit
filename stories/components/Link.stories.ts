@@ -11,6 +11,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     variant: { control: "inline-radio", options: ["small", "medium"] },
+    onClick: { action: "clicked" },
   },
 } satisfies Meta<typeof Link>;
 
