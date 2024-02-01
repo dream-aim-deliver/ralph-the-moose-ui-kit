@@ -35,7 +35,10 @@ describe("<Link/>", () => {
 
   it("should check onClick is called", () => {
     const onClick = vi.spyOn(mocks, "onClickCallback");
-    render(<Link variant="medium" label="Link Text" onClick={onClick} />);
+    render(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      <Link variant="medium" label="Link Text" onClick={onClick as any} />,
+    );
     const linkComponent = screen.getByText("Link Text");
     fireEvent.click(linkComponent);
     expect(onClick).toHaveBeenCalledTimes(1);
