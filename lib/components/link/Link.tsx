@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
  * ViewModel for link component.
  * @typedef {Object} LinkProps
  */
-export interface LinkProps {
+export interface LinkProps<> {
   /**
    * The variant of the link. Accepts "small" or "medium".
    */
@@ -13,6 +13,11 @@ export interface LinkProps {
    * The text of the link.
    */
   label: string;
+  /**
+   * The onClick callback.
+   * @returns {unknown} - The return value of the callback, defaults to unknown.
+   */
+  onClick?: () => unknown;
 }
 
 /**
@@ -20,7 +25,7 @@ export interface LinkProps {
  * This is a link component that can be used to display text links.
  * @param {LinkProps} props - The properties of the link.
  */
-export const Link = ({ variant, label }: LinkProps) => {
+export const Link = ({ variant, label, onClick }: LinkProps) => {
   const classes = twMerge([
     "cursor-pointer",
     "relative",
@@ -39,5 +44,10 @@ export const Link = ({ variant, label }: LinkProps) => {
     "font-bold",
     "hover:scale-110",
   ]);
-  return <div className={classes}>{label}</div>;
+
+  return (
+    <div role="link" className={classes} onClick={onClick}>
+      {label}
+    </div>
+  );
 };
