@@ -2,22 +2,13 @@ import { twMerge } from "tailwind-merge";
 import { primaryStyles, secondaryStyles } from "./Button.styles";
 
 /**
- * Enum representing the variants of a button.
- */
-// eslint-disable-next-line react-refresh/only-export-components
-export enum ButtonVariant {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-}
-
-/**
  * Props for the button component or the ButtonViewModel
  */
 export interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
    */
-  variant: ButtonVariant;
+  variant: "primary" | "secondary";
   /**
    * Button contents
    */
@@ -36,17 +27,17 @@ export interface ButtonProps {
  * This is the button component
  */
 export const Button = ({
-  variant = ButtonVariant.PRIMARY,
+  variant = "primary",
   label,
   disabled = false,
   ...props
 }: ButtonProps) => {
   let containerClasses = "";
   let buttonClasses = "";
-  if (variant === ButtonVariant.PRIMARY) {
+  if (variant === "primary") {
     containerClasses = twMerge(primaryStyles);
   }
-  if (variant === ButtonVariant.SECONDARY) {
+  if (variant === "secondary") {
     containerClasses = twMerge(secondaryStyles);
     // Add padding to secondary buttons
     buttonClasses = twMerge(buttonClasses, "px-12");
