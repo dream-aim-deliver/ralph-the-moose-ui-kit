@@ -6,7 +6,6 @@ const buttonTextStyles = [
   "text-white",
   "text-left",
   "relative tracking-[-0.04em] leading-[16px]",
-  "box-border",
 ];
 
 export const primaryStyles = twMerge(
@@ -35,7 +34,7 @@ export const primaryStyles = twMerge(
 
 export const secondaryStyles = twMerge(
   "w-full relative",
-  "rounded-[54px] box-border h-10",
+  "rounded-[54px] box-border h-12",
   "flex flex-row items-center justify-between",
   "pt-2.5 px-4 pb-2",
   "border-t-[1px] border-solid border-r-[1px] border-b-[3px] border-l-[1px]",
