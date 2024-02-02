@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { IconExternalLinkSmall } from "@/components/icons";
 
 const meta = {
-  title: "Components/Icons/ExternalLinkSmall",
+  title: "Icons/ExternalLinkSmall",
   component: IconExternalLinkSmall,
   parameters: {
     layout: "centered",

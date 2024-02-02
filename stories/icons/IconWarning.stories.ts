@@ -4,7 +4,7 @@ import { IconWarning } from "@/components/icons"; // Make sure the path is corre
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Components/Icons/Warning",
+  title: "Icons/Warning",
   component: IconWarning,
   parameters: {
     // Optional parameter to center the component in the Canvas. More information: https://storybook.js.org/docs/configure/story-layout

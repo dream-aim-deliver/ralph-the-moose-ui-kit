@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { IconCaretUp } from "@/components/icons";
 
 const meta = {
-  title: "Components/Icons/CaretUp",
+  title: "Icons/CaretUp",
   component: IconCaretUp,
   parameters: {
     layout: "centered",

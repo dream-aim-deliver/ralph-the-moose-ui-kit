@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { IconForm } from "@/components/icons";
 
 const meta = {
-  title: "Components/Icons/Form",
+  title: "Icons/Form",
   component: IconForm,
   parameters: {
     layout: "centered",

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { IconTooltip } from "@/components/icons";
 
 const meta = {
-  title: "Components/Icons/Tooltip",
+  title: "Icons/Tooltip",
   component: IconTooltip,
   parameters: {
     layout: "centered",
