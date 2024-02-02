@@ -1,8 +1,52 @@
 import { twMerge } from "tailwind-merge";
+const buttonTextStyles = [
+  "text-base",
+  "font-gluten",
+  "font-bold",
+  "text-white",
+  "text-left",
+  "relative tracking-[-0.04em] leading-[16px]",
+  "box-border",
+];
 
-export const primary = twMerge(
-  `text-3xl bg-base-colors/brand-400 text-white`,
-  `hover:bg-blue-700`,
+export const primaryStyles = twMerge(
+  "w-full",
+  "relative",
+  "rounded-[54px]",
+  "bg-base-colors/brand-600",
+  "flex",
+  "flex-row",
+  "items-center",
+  "justify-center",
+  "h-12",
+  "box-border",
+  "pt-2.5",
+  "px-4",
+  "pb-2",
+  buttonTextStyles,
+  "hover:bg-base-colors/brand-400",
+  "active:bg-base-colors/brand-700",
+  "aria-pressed:bg-base-colors/brand-700",
+  "aria-[disabled=true]:opacity-50",
+  "aria-[disabled=true]:text-opacity-50",
+  "aria-[disabled=true]:cursor-not-allowed",
+  "aria-[disabled=true]:pointer-events-none",
 );
 
-export const secondary = twMerge(`bg-gray-500 text-white`, `hover:bg-gray-700`);
+export const secondaryStyles = twMerge(
+  "w-full relative",
+  "rounded-[54px] box-border h-10",
+  "flex flex-row items-center justify-between",
+  "pt-2.5 px-4 pb-2",
+  "border-t-[1px] border-solid border-r-[1px] border-b-[3px] border-l-[1px]",
+  "border-base-colors/brand-600",
+  buttonTextStyles,
+  "text-base-colors/brand-600",
+  "hover:border-base-colors/brand-400",
+  "hover:text-base-colors/brand-400",
+  "active:border-base-colors/brand-700",
+  "active:text-base-colors/brand-700",
+  "aria-disabled:text-opacity-40",
+  "aria-disabled:border-opacity-40",
+  "aria-disabled:pointer-events-none",
+);
