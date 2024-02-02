@@ -1,15 +1,15 @@
-import icon from "@/assets/icons/close.svg";
+import icon from "@/assets/icons/warning.svg";
 import { Icon } from "./Icon";
 
 /**
- * IconClose
- * @usage <IconClose />
+ * IconWarning
+ * @usage <IconWarning />
  */
-export const IconClose = () => {
+export const IconWarning = () => {
   return (
     <Icon
       src={icon}
-      alt="close"
+      alt="warning"
       className="w-full relative h-6 overflow-hidden"
     />
   );

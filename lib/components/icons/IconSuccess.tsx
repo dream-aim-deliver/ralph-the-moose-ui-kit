@@ -1,15 +1,15 @@
-import icon from "@/assets/icons/close.svg";
+import icon from "@/assets/icons/success.svg";
 import { Icon } from "./Icon";
 
 /**
- * IconClose
- * @usage <IconClose />
+ * IconSuccess
+ * @usage <IconSuccess />
  */
-export const IconClose = () => {
+export const IconSuccess = () => {
   return (
     <Icon
       src={icon}
-      alt="close"
+      alt="success"
       className="w-full relative h-6 overflow-hidden"
     />
   );
