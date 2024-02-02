@@ -6,11 +6,5 @@ import { Icon } from "./Icon";
  * @usage <IconSuccess />
  */
 export const IconSuccess = () => {
-  return (
-    <Icon
-      src={icon}
-      alt="success"
-      className="w-full relative h-6 overflow-hidden"
-    />
-  );
+  return <Icon src={icon} alt="success" className="w-10 h-10" />;
 };
