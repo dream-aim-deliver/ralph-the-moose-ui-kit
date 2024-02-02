@@ -7,10 +7,6 @@ import { Icon } from "./Icon";
  */
 export const IconWarning = () => {
   return (
-    <Icon
-      src={icon}
-      alt="warning"
-      className="w-full relative h-6 overflow-hidden"
-    />
+    <Icon src={icon} alt="warning" className="h-10 w-10 overflow-hidden" />
   );
 };

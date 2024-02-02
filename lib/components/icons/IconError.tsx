@@ -1,5 +1,4 @@
 import icon from "@/assets/icons/error.svg";
-import { Icon } from "./Icon";
 
 /**
  * IconError
@@ -9,11 +8,5 @@ import { Icon } from "./Icon";
  * @status Complete
  */
 export const IconError = () => {
-  return (
-    <Icon
-      src={icon}
-      alt="error.svg"
-      className="w-full relative h-6 overflow-hidden"
-    />
-  );
+  return <img src={icon} alt="error.svg" className="h-10 w-10" />;
 };
