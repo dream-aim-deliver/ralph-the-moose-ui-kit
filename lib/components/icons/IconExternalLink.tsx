@@ -1,5 +1,11 @@
 import icon from "@/assets/icons/external-link.svg";
 import { Icon } from "./Icon";
+
+/**
+ * IconExternalLink
+ * @description External link icon
+ * @usage <IconExternalLink />
+ */
 export const IconExternalLink = () => {
   return (
     <Icon

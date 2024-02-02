@@ -1,15 +1,15 @@
-import icon from "@/assets/icons/close.svg";
+import icon from "@/assets/icons/tooltip.svg";
 import { Icon } from "./Icon";
 
 /**
- * IconClose
- * @usage <IconClose />
+ * IconTooltip
+ * @usage <IconTooltip />
  */
-export const IconClose = () => {
+export const IconTooltip = () => {
   return (
     <Icon
       src={icon}
-      alt="close"
+      alt="tooltip.svg"
       className="w-full relative h-6 overflow-hidden"
     />
   );
