@@ -7,13 +7,11 @@ export interface RalphLogoProps {
 
 export const RalphLogo = ({ variant }: RalphLogoProps) => {
   const ralphIcon = (
-    <div className="w-full relative flex justify-center items-center">
-      <img
-        className={twMerge("max-w-full overflow-hidden object-contain")}
-        alt="ralph"
-        src={logo}
-      />
-    </div>
+    <img
+      className={twMerge("max-w-full overflow-hidden object-contain")}
+      alt="ralph"
+      src={logo}
+    />
   );
   const ralphText = (
     <div
@@ -57,9 +55,9 @@ export const RalphLogo = ({ variant }: RalphLogoProps) => {
   return (
     <div
       className={twMerge(
-        "flex w-full relative object-contain",
-        variant === "full-vertical" && "flex-col",
-        variant === "full-horizontal" && "flex-row",
+        "h-full w-full relative object-contain",
+        variant === "full-vertical" && "flex flex-col",
+        variant === "full-horizontal" && "flex flex-row",
       )}
     >
       <div className="items-center">{ralphIcon}</div>
