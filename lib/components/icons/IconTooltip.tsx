@@ -6,11 +6,5 @@ import { Icon } from "./Icon";
  * @usage <IconTooltip />
  */
 export const IconTooltip = () => {
-  return (
-    <Icon
-      src={icon}
-      alt="tooltip.svg"
-      className="w-full relative h-6 overflow-hidden"
-    />
-  );
+  return <Icon src={icon} alt="tooltip.svg" size={4} />;
 };
