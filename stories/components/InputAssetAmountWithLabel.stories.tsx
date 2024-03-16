@@ -1,33 +1,38 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { InputAssetAmount } from "@/components/input-asset-amount";
+import { InputAssetAmountWithLabel } from "@/components/input-asset-amount-with-label";
 import { RalphLogo } from "@/components/ralph-logo";
 
 const meta = {
-  title: "Components/InputAssetAmount",
-  component: InputAssetAmount,
+  title: "Components/InputAssetAmountWithLabel",
+  component: InputAssetAmountWithLabel,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof InputAssetAmount>;
+} satisfies Meta<typeof InputAssetAmountWithLabel>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
+
 const ralphIcon = <RalphLogo variant="icon" />;
 export const Ralph: Story = {
   args: {
+    label: "Amount to bridge",
+    maxAmount: 100,
+    errorMessage: "You ain't got enough tokens!",
     icon: ralphIcon,
     amount: 100,
     tokenShortName: "PR",
   },
 };
-
 export const BurgerToken: Story = {
   args: {
+    maxAmount: 100,
     icon: "🍔",
     amount: 100,
-    tokenShortName: "BR",
+    tokenShortName: "PR",
   },
 };
