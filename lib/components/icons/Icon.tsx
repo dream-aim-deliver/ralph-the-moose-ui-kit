@@ -16,6 +16,10 @@ export interface IconProps {
    * Additional classes to be added to the icon.
    */
   className?: string;
+  /**
+   * The height and width of the icon in Tailwind CSS.
+   */
+  size?: number;
 }
 
 /**
@@ -25,11 +29,12 @@ export interface IconProps {
  * @param {IconProps} props - The props for the component.
  * @private
  */
-export const Icon = ({ src, alt, className }: IconProps) => {
+export const Icon = ({ src, alt, className, size }: IconProps) => {
+  const finalSize = size ? `h-${size} w-${size}` : "h-6";
   const classes = twMerge([
     "w-full",
     "relative",
-    "h-6",
+    finalSize,
     "overflow-hidden",
     className,
   ]);
