@@ -21,7 +21,7 @@ export const InputAssetAmount = ({
         "border-t-[1px] border-solid border-base-colors/neutral-200 border-r-[1px] border-b-[4px] border-l-[1px]",
       )}
     >
-      <div className="w-full relative h-6">{icon}</div>
+      <div className="w-6 relative h-6 object-cover">{icon}</div>
       <div className="flex-1 relative tracking-[0.02em] leading-[16px] min-w-[14rem]">
         {amount}
       </div>

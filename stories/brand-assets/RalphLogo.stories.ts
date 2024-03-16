@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { RalphLogo, type RalphLogoProps } from "@/components/ralph-logo";
+import { RalphLogo } from "@/components/ralph-logo";
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "Brand Assets/Ralph Logo",
