@@ -28,6 +28,7 @@ export default {
         },
         text: {
           primary: "#3D1F16",
+          error: "#b42245",
         },
       },
     },
