@@ -9,6 +9,10 @@ export interface IconProps {
    */
   src: string;
   /**
+   * The fill color for the icon.
+   */
+  fill?: string;
+  /**
    * The alt text for the icon.
    */
   alt: string;
