@@ -1,6 +1,7 @@
 import React from "react";
 import { InputAssetAmount, InputAssetAmountProps } from "../input-asset-amount";
 import { twMerge } from "tailwind-merge";
+import { IconError } from "..";
 
 /**
  * Props for the InputAssetAmountWithLabel component.
@@ -49,7 +50,7 @@ export const InputAssetAmountWithLabel: React.FC<
         <div className="flex-1 relative leading-[14px] text-base-colors/neutral-200">
           {labelFinal}
         </div>
-        <div className="h-4 flex flex-row items-center justify-start text-right text-xs text-base-colors/brand-600 font-gluten">
+        <div className="h-4 flex flex-row items-center justify-center text-right text-xs text-base-colors/brand-600 font-gluten">
           <b className="relative tracking-[-0.04em] leading-[12px]">
             Max: {maxAmountString}
           </b>
@@ -58,13 +59,13 @@ export const InputAssetAmountWithLabel: React.FC<
       <InputAssetAmount {...props} />
       <div
         className={twMerge(
-          "w-[250px] overflow-hidden flex-row items-center justify-start gap-[4px] text-xs text-text-error font-varela",
-          errorMessage ? "flex" : "hidden",
+          "w-[250px] overflow-hidden w items-center  gap-[4px] text-xs text-text-error font-varela",
+          errorMessage ? "flex justify-left pl-4" : "hidden",
         )}
       >
-        <img className="w-4 relative h-4" alt="" src="error.svg" />
         {errorMessage && (
-          <div className="flex-1 relative tracking-[0.02em] leading-[12px] font-medium">
+          <div className="flex gap-1 flex-row relative tracking-[0.02em] leading-[12px] font-medium">
+            <IconError size={3} />
             {errorMessage}
           </div>
         )}
