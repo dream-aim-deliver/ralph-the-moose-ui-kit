@@ -10,7 +10,7 @@ export const IconCaretDown = () => {
     <Icon
       src={icon}
       alt="care-down"
-      className="w-full relative h-6 overflow-hidden"
+      className="w-full relative h-6 overflow-hidden fill-yellow-500"
     />
   );
 };
