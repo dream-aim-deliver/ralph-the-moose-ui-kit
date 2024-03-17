@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { IconButton } from "@/components/icon-button";
-import { IconClose } from "../../lib";
+import { IconButtonClose as IconButton } from "@/components/icon-button";
 
 const meta = {
-  title: "Components/IconButton",
+  title: "IconButton/Close",
   component: IconButton,
   parameters: {
     layout: "centered",
@@ -25,11 +24,8 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const iconClose = <IconClose />;
-
 export const CloseSmallDefault: Story = {
   args: {
-    icon: iconClose,
     size: 4,
   },
 };
