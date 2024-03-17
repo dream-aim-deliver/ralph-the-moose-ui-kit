@@ -7,7 +7,7 @@ import icon from "@/assets/icons/error.svg";
  * @usage <IconError />
  * @status Complete
  */
-export const IconError = ({ size = 10 }: { size?: number }) => {
+export const IconError = ({ size = 40 }: { size?: number }) => {
   const finalSize = size ? `h-${size} w-${size}` : "h-6";
   return <img src={icon} alt="error.svg" className={finalSize} />;
 };

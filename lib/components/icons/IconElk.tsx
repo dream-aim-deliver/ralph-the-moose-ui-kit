@@ -1,16 +1,16 @@
 import icon from "@/assets/icons/elk.svg";
-import { Icon } from "./Icon";
 
 /**
  * IconElk
  * @usage <IconElk />
  */
-export const IconElk = () => {
+export const IconElk = ({ size }: { size: number }) => {
+  const finalSize = size ? `h-${size} w-${size}` : "h-6 w-6";
   return (
-    <Icon
+    <img
       src={icon}
       alt="elk.svg"
-      className="w-full relative h-6 overflow-hidden"
+      className={`w-full relative ${finalSize} overflow-hidden`}
     />
   );
 };

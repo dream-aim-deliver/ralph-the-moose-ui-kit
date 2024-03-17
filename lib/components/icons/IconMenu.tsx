@@ -1,4 +1,3 @@
-import { Icon } from "@/components/icons/Icon";
 import menuIcon from "@/assets/icons/menu.svg";
 
 /**
