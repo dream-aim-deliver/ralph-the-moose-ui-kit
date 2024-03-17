@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { IconCaretDown, IconCaretUp, IconNetworkBase } from "..";
+import { IconCaretDown, IconCaretUp, IconNetworkBase } from "../..";
 export interface DropdownProps {
   items: React.ReactNode[];
   trigger: React.ReactNode;

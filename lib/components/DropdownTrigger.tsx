@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { IconCaretDown, IconCaretUp } from "..";
+import { IconCaretDown, IconCaretUp } from ".";
 
 export interface DropdownTriggerProps {
   title: string;
@@ -98,7 +98,6 @@ export const DropdownTrigger = ({
   return (
     <div className={twMerge()}>
       {variant == "small" ? smallTrigger : largeTrigger}
-      Hello
     </div>
   );
 };
