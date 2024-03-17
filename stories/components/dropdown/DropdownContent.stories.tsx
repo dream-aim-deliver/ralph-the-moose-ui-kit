@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { DropdownContent } from "@/components/dropdown/DropdownContent";
+import { DropdownContent } from "@/components/DropdownContent";
 // import { IconNetworkBase } from "../../../lib";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Components/Drop Down/DropdownContent",
+  title: "Components/Dropdown/DropdownContent",
   component: DropdownContent,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
