@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
  * ViewModel for link component.
  * @typedef {Object} LinkProps
  */
-export interface LinkProps<> {
+export interface LinkProps {
   /**
    * The variant of the link. Accepts "small" or "medium".
    */

@@ -8,7 +8,7 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
         parameters: {
-          actions: { argTypesRegex: '^on.*' },
+          // actions: { argTypesRegex: '^on.*' },
         },
       },
     },
