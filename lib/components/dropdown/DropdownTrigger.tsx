@@ -7,7 +7,6 @@ export interface DropdownTriggerProps {
   expanded: boolean;
   selectedOption?: string;
   defaultColor?: string;
-  onExpandedColor?: string;
   onHoverColor?: string;
   icon: React.ReactNode;
 }
