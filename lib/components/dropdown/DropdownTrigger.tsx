@@ -19,7 +19,6 @@ export const DropdownTrigger = ({
   icon,
   selectedOption,
   defaultColor = "base-colors/brand-600",
-  onExpandedColor = "base-colors/brand-700",
   onHoverColor = "base-colors/brand-400",
 }: DropdownTriggerProps) => {
   const smallTrigger = (
@@ -99,7 +98,8 @@ export const DropdownTrigger = ({
   );
   return (
     <div className={twMerge()}>
-      {variant == "small" ? smallTrigger : largeTrigger}
+      {/* {variant == "small" ? smallTrigger : largeTrigger} */}
+      Hello
     </div>
   );
 };
