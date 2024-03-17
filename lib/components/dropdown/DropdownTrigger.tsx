@@ -35,7 +35,9 @@ export const DropdownTrigger = ({
         "transition-all",
       ].join(" ")}
     >
-      <div className="flex flex-row items-center justify-start">
+      <div
+        className={`flex flex-row items-center justify-start hover:text-${onHoverColor}`}
+      >
         <div className="w-[25px] relative h-[25px] overflow-hidden shrink-0">
           {icon}
         </div>
