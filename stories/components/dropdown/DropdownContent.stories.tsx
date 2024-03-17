@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { DropdownContent } from "@/components/DropdownContent";
+import { DropdownContent } from "@/components/dropdown";
 // import { IconNetworkBase } from "../../../lib";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
@@ -35,7 +35,6 @@ const sampleItems = [<div>Item 1</div>, <div>Item 2</div>];
 export const Small: Story = {
   args: {
     children: sampleItems,
-    selectedItem: "Item 1",
     // title: "Network",
     // expanded: false,
     // variant: "small",
