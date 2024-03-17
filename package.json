@@ -24,7 +24,7 @@
   "scripts": {
     "app": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
-    "build-docs": "typedoc --out docs lib/index.ts",
+    "build-docs": "npx typedoc --entryPoints lib/components --tsconfig tsconfig-typedoc.json",
     "build-storybook": "storybook build",
     "clean": "rimraf dist docs coverage storybook-static",
     "dev": "storybook dev -p 6006",

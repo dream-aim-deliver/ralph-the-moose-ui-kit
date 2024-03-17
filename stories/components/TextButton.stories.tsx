@@ -34,6 +34,7 @@ export const Small: Story = {
   args: {
     text: "default",
     size: "small",
+    onClick: () => {},
   },
 };
 
@@ -41,6 +42,7 @@ export const Medium: Story = {
   args: {
     text: "default",
     size: "medium",
+    onClick: () => {},
   },
 };
 
@@ -49,5 +51,6 @@ export const Disabled: Story = {
     text: "default",
     size: "small",
     disabled: true,
+    onClick: () => {},
   },
 };
