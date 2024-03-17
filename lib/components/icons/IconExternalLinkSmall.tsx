@@ -3,7 +3,11 @@ import { IconProps, generateClassesForIcon } from "./Icon";
 /**
  * @usage <IconExternalLinkSmall />
  */
-export const IconExternalLinkSmall = (props: IconProps) => {
+export const IconExternalLinkSmall = ({ fill }: { fill: string }) => {
+  const props: IconProps = {
+    fill,
+    size: 12,
+  };
   return (
     <svg
       className={generateClassesForIcon(props)}

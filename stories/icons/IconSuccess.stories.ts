@@ -11,10 +11,20 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    size: {
+      control: "number",
+      description: "The height and width of the svg icon.",
+    },
+  },
 } as Meta<typeof IconSuccess>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    size: 12,
+  },
+};
