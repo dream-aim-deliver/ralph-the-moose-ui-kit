@@ -98,7 +98,7 @@ export const DropdownTrigger = ({
   );
   return (
     <div className={twMerge()}>
-      {/* {variant == "small" ? smallTrigger : largeTrigger} */}
+      {variant == "small" ? smallTrigger : largeTrigger}
       Hello
     </div>
   );
