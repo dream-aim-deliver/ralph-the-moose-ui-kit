@@ -9,10 +9,20 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    fill: {
+      control: "text",
+      description: "The tailwind fill color for the icon.",
+    },
+  },
 } as Meta<typeof IconExternalLinkSmall>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    fill: "base-colors/neutral-900",
+  },
+};

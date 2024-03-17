@@ -20,10 +20,6 @@ const meta = {
       control: "number",
       description: "The height and width of the svg icon.",
     },
-    disabled: {
-      control: "boolean",
-      description: "The disabled state of the button.",
-    },
   },
 } as Meta<typeof IconClose>;
 
@@ -33,6 +29,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    fill: "yellow",
+    fill: "base-colors/neutral-900",
+    size: 12,
   },
 };
