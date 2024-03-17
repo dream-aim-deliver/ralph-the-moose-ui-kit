@@ -1,5 +1,4 @@
-import { twMerge } from "tailwind-merge";
-import { IconCaretDown, IconCaretUp } from ".";
+import { IconCaretDown, IconCaretUp } from "@/components/icons";
 
 export interface DropdownTriggerProps {
   title: string;
@@ -22,7 +21,7 @@ export const DropdownTrigger = ({
 }: DropdownTriggerProps) => {
   const smallTrigger = (
     <div
-      className={twMerge(
+      className={[
         "relative rounded-[54px]",
         "box-border",
         "w-full h-10",
@@ -34,7 +33,7 @@ export const DropdownTrigger = ({
         `hover:border-${onHoverColor}`,
         `hover:text-${onHoverColor}`,
         "transition-all",
-      )}
+      ].join(" ")}
     >
       <div className="flex flex-row items-center justify-start">
         <div className="w-[25px] relative h-[25px] overflow-hidden shrink-0">
@@ -46,7 +45,7 @@ export const DropdownTrigger = ({
 
   const largeTrigger = (
     <div
-      className={twMerge(
+      className={[
         "relative",
         "w-full",
         "flex",
@@ -59,11 +58,11 @@ export const DropdownTrigger = ({
 
         `border-${defaultColor}`,
         `hover:border-${onHoverColor}`,
-      )}
+      ].join(" ")}
     >
-      <div className={twMerge("relative leading-[14px]")}>{title}</div>
+      <div className={"relative leading-[14px]"}>{title}</div>
       <div
-        className={twMerge(
+        className={[
           "w-full relative rounded-[54px]",
           "box-border",
           "h-10",
@@ -78,7 +77,7 @@ export const DropdownTrigger = ({
           "border-l-[1px]",
           `hover:text-${onHoverColor}`,
           "transition-all",
-        )}
+        ].join(" ")}
       >
         <div className="flex-1 flex flex-row items-center justify-start gap-[8px]">
           <div className="w-[25px] relative h-[25px] overflow-hidden shrink-0">
@@ -95,9 +94,5 @@ export const DropdownTrigger = ({
       </div>
     </div>
   );
-  return (
-    <div className={twMerge()}>
-      {variant == "small" ? smallTrigger : largeTrigger}
-    </div>
-  );
+  return <div>{variant == "small" ? smallTrigger : largeTrigger}</div>;
 };

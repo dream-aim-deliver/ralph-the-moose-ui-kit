@@ -1,4 +1,5 @@
 export * from "./button";
+export * from "./dropdown";
 export * from "./heading";
 export * from "./icons";
 export * from "./icon-button";
