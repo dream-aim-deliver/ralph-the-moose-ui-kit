@@ -17,6 +17,7 @@ export interface DropdownTriggerProps {
 export const DropdownTriggerExpanded = ({
   title,
   icon,
+  expanded,
   selectedItemTitle = "Base",
   defaultColor = "base-colors/brand-600",
   onExpandedColor = "base-colors/brand-700",
@@ -62,7 +63,8 @@ export const DropdownTriggerExpanded = ({
           )}
         >
           <div className="ml-2">
-            <IconCaretUp size={4} />
+            {expanded && <IconCaretUp size={4} />}
+
           </div>
         </div>
       </div>
