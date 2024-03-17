@@ -21,8 +21,6 @@ const meta = {
     },
     selectedOption: { control: "text", defaultValue: "Base" },
     expanded: { control: "boolean", defaultValue: false },
-    // onClick: { action: "clicked" },
-    // disabled: { control: "boolean" },
   },
 } satisfies Meta<typeof DropdownTrigger>;
 
