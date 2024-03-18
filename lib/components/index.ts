@@ -1,3 +1,4 @@
+export * from "./balance-card";
 export * from "./button";
 export * from "./dropdown";
 export * from "./heading";
@@ -6,6 +7,7 @@ export * from "./icon-button";
 export * from "./input-asset-amount";
 export * from "./input-asset-amount-with-label";
 export * from "./label";
+export * from "./layouts";
 export * from "./link";
 export * from "./modal";
 export * from "./paragraph";
