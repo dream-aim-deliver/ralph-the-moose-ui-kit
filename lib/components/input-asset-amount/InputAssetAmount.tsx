@@ -1,16 +1,52 @@
+import { Signal, signal } from "@preact/signals-react";
+import { useSignals } from "@preact/signals-react/runtime";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 export interface InputAssetAmountProps {
   icon: React.ReactNode;
-  amount: number;
+  // amount: Signal<number>;
   tokenShortName: string;
 }
+const amount = signal(0);
 
+/**
+ * A component that allows the user to input an amount of an asset.
+ */
 export const InputAssetAmount = ({
   icon,
-  amount,
+  // amount,
   tokenShortName,
 }: InputAssetAmountProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [inputAmount, setInputAmount] = useState("0");
+  useSignals()  
+  /**
+   *
+   * @param value The new value for the Amount signal
+   * @returns undefined, but updates the amount signal if there were no errors during input validation
+   */
+  const updateAmountSignal = (value: string) => {
+    // if inputAmount is NaN or null or undefined, do nothing
+    if (isNaN(parseInt(value, 10))) {
+      amount.value = 0;
+    }
+    // if value is not a number, do nothing
+    if (value === "" || isNaN(parseInt(value, 10))) {
+      return;
+    }
+    try {
+      amount.value = parseInt(value, 10);
+      console.log(
+        `[DEBUG:: InputAssetAmountComponent]: amount.value: ${amount.value}`,
+      );
+    } catch (e) {
+      console.log(
+        `[ERROR:: InputAssetAmountComponent]: Error parsing ${value} to number`,
+      );
+      return;
+    }
+  };
   return (
     <div
       className={twMerge(
@@ -22,12 +58,25 @@ export const InputAssetAmount = ({
       )}
     >
       <div className="w-6 relative h-6 object-cover">{icon}</div>
-      <div className="flex-1 relative tracking-[0.02em] leading-[16px] min-w-[14rem]">
-        {amount}
-      </div>
+      <input
+        type="number"
+        className={[
+          "flex-1 relative tracking-[0.02em] leading-[16px] min-w-[14rem] border-none",
+          "bg-white text-left appearance-none",
+          "focus:outline-none",
+          "focus:ring-0",
+          "text-right",
+        ].join(" ")}
+        onChange={(e) => {
+          setInputAmount(e.target.value);
+          updateAmountSignal(e.target.value);
+        }}
+      />
       <div className="relative leading-[16px]">
         {tokenShortName.toUpperCase()}
       </div>
     </div>
   );
 };
+
+InputAssetAmount.amountSignal = amount;
