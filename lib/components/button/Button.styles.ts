@@ -5,7 +5,7 @@ const buttonTextStyles = [
   "font-bold",
   "text-white",
   "text-left",
-  "relative tracking-[-0.04em] leading-[16px]",
+  "relative tracking-[0.03em] leading-[16px]",
 ];
 
 export const primaryStyles = twMerge(
