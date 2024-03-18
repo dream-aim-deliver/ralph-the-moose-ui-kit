@@ -1,4 +1,4 @@
-import { Modal } from "..";
+import { Label, Modal } from "..";
 import ralphConnectWallet from "@/assets/ralph-connect-wallet.svg";
 /**
  * Represents the props for the WalletCard component.
@@ -77,12 +77,10 @@ WalletCard.Connected = ({
     <div className="self-stretch flex flex-row items-center justify-between gap-[16px]">
       {/** Wallet Addres div, pinned to the left of the parent */}
       <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
-        <div className="self-stretch relative leading-[14px] text-base-colors/neutral-500 font-varela">
+        <div className="self-stretch text-sm relative leading-[14px] text-base-colors/neutral-500 font-varela">
           Wallet
         </div>
-        <div className="text-left  relative text-base leading-[16px] text-text-primary">
-          {address}
-        </div>
+        <Label variant="small" label={address} />
       </div>
       {/** Disconnect div, pinned to the right of parent */}
       <div className="">{disconnectButton}</div>
