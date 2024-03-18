@@ -51,7 +51,7 @@ export const Tooltip = ({ title, content }: TooltipProps) => {
         data-tip={content}
       >
         <div className="flex flex-row items-center justify-start gap-[2px]">
-          <IconTooltip />
+          <IconTooltip size={4} />
         </div>
       </div>
     </div>

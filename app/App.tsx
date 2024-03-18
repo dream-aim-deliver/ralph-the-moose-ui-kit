@@ -2,13 +2,20 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { DropdownTrigger, IconNetworkBase } from "../lib";
+import { BalanceCard, DropdownTrigger, IconNetworkBase } from "../lib";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+      <BalanceCard
+        inscriptionBalance={1000}
+        wrappedAmount={1000}
+        tokenShortName="PR"
+        onWrap={() => {}}
+        onUnwrap={() => {}}
+      />
       <DropdownTrigger
         title="Dropdown Trigger"
         variant="small"
