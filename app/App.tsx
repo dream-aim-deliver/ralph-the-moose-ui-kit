@@ -17,7 +17,7 @@ import { signal } from "@preact/signals-react";
 
 function App() {
   const [count, setCount] = useState(0);
-  const amount = signal(100);
+  const amount = signal(0);
   const connectButton = <Button variant="primary" label="Connect Wallet" />;
   const disconnectButton = (
     <TextButton text="Disconnect" size="medium" onClick={() => {}}></TextButton>

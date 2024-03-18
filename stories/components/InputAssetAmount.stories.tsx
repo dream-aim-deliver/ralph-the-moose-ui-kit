@@ -15,8 +15,6 @@ const meta = {
   argTypes: {},
 } satisfies Meta<typeof InputAssetAmount>;
 
-// const amountSignal = useSignal(100);
-
 export default meta;
 type Story = StoryObj<typeof meta>;
 const ralphIcon = <RalphLogo variant="icon" />;
