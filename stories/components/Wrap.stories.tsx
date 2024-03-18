@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { WrapModal as Component } from "@/components/wrap-modal";
 import { RalphLogo } from "@/components/ralph-logo";
+import { Signal } from "@preact/signals-react";
 
 const meta = {
   title: "Components/ModalContent/Wrap",
@@ -33,7 +34,7 @@ type Story = StoryObj<typeof meta>;
 export const WrapModal: Story = {
   args: {
     tokenShortName: "PR",
-    amount: 80000,
+    amount: 80000 as unknown as Signal<number>,
     fee: 2,
     maxAmount: 100000,
     icon: <RalphLogo variant="icon" />,

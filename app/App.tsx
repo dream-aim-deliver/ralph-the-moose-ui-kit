@@ -7,18 +7,35 @@ import {
   Button,
   DropdownTrigger,
   IconNetworkBase,
+  InputAssetAmount,
   TextButton,
   WalletCard,
+  WrapModal,
 } from "../lib";
+import { RalphLogo } from "@/components/ralph-logo";
+import { signal } from "@preact/signals-react";
 
 function App() {
   const [count, setCount] = useState(0);
+  const amount = signal(100);
   const connectButton = <Button variant="primary" label="Connect Wallet" />;
   const disconnectButton = (
     <TextButton text="Disconnect" size="medium" onClick={() => {}}></TextButton>
   );
   return (
     <>
+      <WrapModal
+        tokenShortName="PR"
+        amount={amount}
+        fee={2}
+        maxAmount={100000}
+        icon={<RalphLogo variant="icon" />}
+      />
+      <InputAssetAmount
+        amount={amount}
+        icon={<RalphLogo variant="icon" />}
+        tokenShortName="PR"
+      />
       <WalletCard
         status="disconnected"
         address="0x1234...5678"
