@@ -45,12 +45,12 @@ export const InputAssetAmountWithLabel: React.FC<
   const maxAmountFinal = maxAmount ? maxAmount : 0;
   const maxAmountString = `${maxAmountFinal} ${props.tokenShortName}`;
   return (
-    <div className="w-full relative flex flex-col items-start justify-start text-left text-sm text-base-colors/neutral-500 font-varela">
+    <div className="w-full relative flex flex-col items-start justify-start text-left text-base text-base-colors/neutral-500 font-varela">
       <div className="self-stretch flex flex-row items-center justify-between">
-        <div className="flex-1 relative leading-[14px] text-base-colors/neutral-200">
+        <div className="flex-1 relative leading-[14px] text-base-colors/neutral-500">
           {labelFinal}
         </div>
-        <div className="h-4 flex flex-row items-center justify-center text-right text-xs text-base-colors/brand-600 font-gluten">
+        <div className="h-4 flex flex-row items-center justify-center text-right text-base text-base-colors/brand-600 font-gluten">
           <b className="relative tracking-[-0.04em] leading-[12px]">
             Max: {maxAmountString}
           </b>
