@@ -7,6 +7,7 @@ export * from "./input-asset-amount";
 export * from "./input-asset-amount-with-label";
 export * from "./label";
 export * from "./link";
+export * from "./modal";
 export * from "./paragraph";
 export * from "./text-button";
 export * from "./tooltip";
