@@ -35,7 +35,8 @@
     "test": "vitest --run --coverage",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
-    "uninstall": "rimraf node_modules package-lock.json"
+    "uninstall": "rimraf node_modules package-lock.json",
+    "build-tailwind": "tailwindcss -i lib/tailwind/theme.css -o lib/tailwind/tailwind.css"
   },
   "peerDependencies": {
     "react": "^18.2.0",
