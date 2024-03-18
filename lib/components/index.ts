@@ -11,3 +11,4 @@ export * from "./modal";
 export * from "./paragraph";
 export * from "./text-button";
 export * from "./tooltip";
+export * from "./wallet-card";
