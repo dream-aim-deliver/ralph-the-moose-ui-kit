@@ -1,5 +1,5 @@
 import { Signal, signal } from "@preact/signals-react";
-import { useSignals } from "@preact/signals-react";
+import { useSignals } from "@preact/signals-react/runtime";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
