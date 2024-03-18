@@ -1,26 +1,24 @@
-import { Signal, signal } from "@preact/signals-react";
+import { Signal } from "@preact/signals-react";
 import { useSignals } from "@preact/signals-react/runtime";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 export interface InputAssetAmountProps {
   icon: React.ReactNode;
-  // amount: Signal<number>;
+  amount: Signal<number>;
   tokenShortName: string;
 }
-const amount = signal(0);
-
 /**
  * A component that allows the user to input an amount of an asset.
  */
 export const InputAssetAmount = ({
   icon,
-  // amount,
+  amount,
   tokenShortName,
 }: InputAssetAmountProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [inputAmount, setInputAmount] = useState("0");
   useSignals();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [inputAmount, setInputAmount] = useState(`${amount.value}`);
   /**
    *
    * @param value The new value for the Amount signal
@@ -47,6 +45,7 @@ export const InputAssetAmount = ({
       return;
     }
   };
+
   return (
     <div
       className={twMerge(
@@ -60,6 +59,8 @@ export const InputAssetAmount = ({
       <div className="w-6 relative h-6 object-cover">{icon}</div>
       <input
         type="number"
+        defaultValue={amount.value}
+        placeholder="Enter a Value"
         className={[
           "flex-1 relative tracking-[0.02em] leading-[16px] min-w-[14rem] border-none",
           "bg-white text-left appearance-none",
@@ -78,5 +79,3 @@ export const InputAssetAmount = ({
     </div>
   );
 };
-
-InputAssetAmount.amountSignal = amount;
