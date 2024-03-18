@@ -9,6 +9,7 @@ import {
   IconNetworkBase,
   InputAssetAmount,
   TextButton,
+  UnwrapModal,
   WalletCard,
   WrapModal,
 } from "../lib";
@@ -18,12 +19,20 @@ import { signal } from "@preact/signals-react";
 function App() {
   const [count, setCount] = useState(0);
   const amount = signal(0);
+  const amountToUnwrap = signal(0);
   const connectButton = <Button variant="primary" label="Connect Wallet" />;
   const disconnectButton = (
     <TextButton text="Disconnect" size="medium" onClick={() => {}}></TextButton>
   );
   return (
     <>
+      <UnwrapModal
+        amountToUnwrap={amountToUnwrap}
+        wrappedAmount={100000}
+        fee={2}
+        tokenShortName="PR"
+        icon={<RalphLogo variant="icon" />}
+      />
       <WrapModal
         tokenShortName="PR"
         amount={amount}
