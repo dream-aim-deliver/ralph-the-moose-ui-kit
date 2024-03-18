@@ -1,5 +1,5 @@
 import { Signal, signal } from "@preact/signals-react";
-import { useSignals } from "@preact/signals-react/runtime";
+import { useSignals } from "@preact/signals-react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -20,7 +20,7 @@ export const InputAssetAmount = ({
 }: InputAssetAmountProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [inputAmount, setInputAmount] = useState("0");
-  useSignals()  
+  useSignals();
   /**
    *
    * @param value The new value for the Amount signal
