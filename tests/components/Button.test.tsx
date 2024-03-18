@@ -32,15 +32,18 @@ describe("<Button/>", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it("ensures button is disabled if disabled prop is set", () => {
-    render(<Button variant="secondary" label="Secondary" disabled />);
-    const buttonComponent = screen.getByText("Secondary");
-    expect(buttonComponent).toBeDisabled();
-  });
-
-  it("ensures button is not disabled if disabled prop is not set", () => {
-    render(<Button variant="secondary" label="Secondary" />);
-    const buttonComponent = screen.getByText("Secondary");
-    expect(buttonComponent).not.toBeDisabled();
+  it("ensures onClick is not called when disabled", () => {
+    const onClick = vi.spyOn(mocks, "onClickCallback");
+    render(
+      <Button
+        variant="primary"
+        label="Primary"
+        onClick={onClick as unknown as () => void}
+        disabled
+      />,
+    );
+    const buttonComponent = screen.getByText("Primary");
+    fireEvent.click(buttonComponent);
+    expect(onClick).toHaveBeenCalledTimes(0);
   });
 });

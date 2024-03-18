@@ -2,13 +2,29 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { BalanceCard, DropdownTrigger, IconNetworkBase } from "../lib";
+import {
+  BalanceCard,
+  Button,
+  DropdownTrigger,
+  IconNetworkBase,
+  TextButton,
+  WalletCard,
+} from "../lib";
 
 function App() {
   const [count, setCount] = useState(0);
-
+  const connectButton = <Button variant="primary" label="Connect Wallet" />;
+  const disconnectButton = (
+    <TextButton text="Disconnect" size="medium" onClick={() => {}}></TextButton>
+  );
   return (
     <>
+      <WalletCard
+        status="disconnected"
+        address="0x1234...5678"
+        connectButton={connectButton}
+        disconnectButton={disconnectButton}
+      />
       <BalanceCard
         inscriptionBalance={1000}
         wrappedAmount={1000}
