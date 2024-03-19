@@ -41,9 +41,9 @@ export const BalanceCardPrimaryVariant = ({
 }: BalanceCardPrimaryVariantProps) => {
   return (
     <Modal>
-      <div className="flex flex-col items-start justify-center gap-4">
+      <div className="w-full flex flex-col items-start justify-center gap-4">
         <Heading title="Balance" variant={HeadingVariant.H4} />
-        <div className="flex flex-row items-center justify-between gap-4">
+        <div className="w-full flex flex-row items-center justify-between gap-4">
           <InscriptionBalance
             inscriptionBalance={inscriptionBalance}
             tokenShortName={tokenShortName}
