@@ -1,17 +1,6 @@
 import { useSignals } from "@preact/signals-react/runtime";
-import {
-  Button,
-  Heading,
-  HeadingVariant,
-  IconError,
-  IconHourglass,
-  IconSuccess,
-  Label,
-  Link,
-  Modal,
-} from "..";
+import { Button, Heading, HeadingVariant, Label, Modal } from "..";
 import { formatNumber } from "../../utils/tokenUtils";
-import { LightFrame } from "../layouts/LightFrame";
 import { Signal } from "@preact/signals-react";
 
 export interface MintCardProps {
@@ -68,104 +57,5 @@ export const MintCard = (props: MintCardProps) => {
         />
       </div>
     </Modal>
-  );
-};
-
-export interface MintingEnabledFrameProps {
-  eligibleAmount: number;
-  expectedReturn: number;
-  fee: number;
-  feeCurrency: string;
-  tokenShortName: string;
-}
-export const MintEnabledStatusFrame = (props: MintingEnabledFrameProps) => {
-  const formatedEligibleAmount = formatNumber(props.eligibleAmount);
-  const formattedExpectedReturn = formatNumber(props.expectedReturn);
-  return (
-    <LightFrame className="w-full items-center gap-4 text-left text-base font-varela text-base-colors/neutral-500">
-      <IconSuccess size={12} />
-      <div className="w-full font-gluten font-bold relative text-lg tracking-[-0.04em] leading-[18px] inline-block font-heading-h5 text-text-primary text-center overflow-auto whitespace-normal">
-        {`You're eligible to mint ${formatedEligibleAmount} ${props.tokenShortName}`}
-      </div>
-      <div className="w-full flex flex-row items-center justify-between">
-        <label>You'll receive</label>
-        <Label
-          label={`${formattedExpectedReturn} ${props.tokenShortName}`}
-          variant="medium"
-        />
-      </div>
-      <div className="w-full flex flex-row items-center justify-between">
-        <label>Minting Fee</label>
-        <Label label={`${props.fee} ${props.feeCurrency}`} variant="medium" />
-      </div>
-    </LightFrame>
-  );
-};
-
-export interface IsMintingStatusFrameProps {
-  isMintingAmount: number;
-  tokenShortName: string;
-}
-export const IsMintingStatusFrame = (props: IsMintingStatusFrameProps) => {
-  const formattedIsMintingAmount = formatNumber(props.isMintingAmount);
-  return (
-    <div className="w-full flex flex-col items-center justify-center gap-4 text-base font-varela text-base-colors/neutral-500">
-      <LightFrame className="w-full items-center gap-4">
-        <IconHourglass size={12} />
-        <div className="w-full font-gluten font-bold relative text-lg tracking-[-0.04em] leading-[18px] inline-block font-heading-h5 text-text-primary text-center overflow-auto whitespace-normal">
-          {`${formattedIsMintingAmount} ${props.tokenShortName} are being minted!`}
-        </div>
-        <div className="w-full flex flex-row items-center justify-center text-center">
-          <p className="text-center">Do not refresh this page!</p>
-        </div>
-      </LightFrame>
-    </div>
-  );
-};
-
-export interface MintErrorStatusFrameProps {
-  error: string;
-}
-export const WrongNetworkStatusFrame = (props: MintErrorStatusFrameProps) => {
-  return (
-    <LightFrame className="w-full items-center gap-4 text-wrap text-base-colors/neutral-400">
-      <IconError size={12} />
-      <div className="w-full font-gluten font-bold relative text-lg tracking-[-0.04em] leading-[18px] inline-block font-heading-h5 text-text-primary text-center overflow-auto whitespace-normal">
-        {`Wrong network selected`}
-      </div>
-      <div className="w-full flex flex-row items-center justify-center text-left text-base font-varela gap-4">
-        <label>{props.error}</label>
-      </div>
-    </LightFrame>
-  );
-};
-
-export interface MintCompletedStatusFrameProps {
-  tokenShortName: string;
-  amountMinted: number;
-  timestamp: string;
-  explorerLink: string;
-}
-export const MintCompletedStatusFrame = (
-  props: MintCompletedStatusFrameProps,
-) => {
-  const formattedAmountMinted = formatNumber(props.amountMinted);
-  return (
-    <LightFrame className="w-full items-center gap-4 text-wrap text-base-colors/neutral-400">
-      <IconSuccess size={12} />
-      <div className="w-full font-gluten font-bold relative text-lg tracking-[-0.04em] leading-[18px] inline-block font-heading-h5 text-text-primary text-center overflow-auto whitespace-normal">
-        You minted {formattedAmountMinted} {props.tokenShortName}
-      </div>
-      <div className="w-full flex flex-row items-center justify-center text-left text-base font-varela gap-4">
-        <label>{props.timestamp}</label>
-      </div>
-      <Link
-        variant="small"
-        label="View in Explorer"
-        onClick={() => {
-          window.open(props.explorerLink, "_blank");
-        }}
-      />
-    </LightFrame>
   );
 };
