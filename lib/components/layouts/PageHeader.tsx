@@ -40,12 +40,7 @@ export const PageHeader = (props: PageHeaderProps) => {
             className="flex flex-row items-start justify-start p-2"
           >
             {!props.menuOpenSignal.value ? (
-              <div
-                onClick={() => {
-                  props.menuOpenSignal.value = true;
-                }}
-                className="flex flex-row gap-4 cursor-pointer hover:text-text-primary"
-              >
+              <div className="flex flex-row gap-4 cursor-pointer">
                 <DropdownTrigger
                   title=""
                   variant="small"
@@ -53,7 +48,14 @@ export const PageHeader = (props: PageHeaderProps) => {
                   selectedOption="Base"
                   icon={<IconNetworkBase />}
                 />
-                <IconMenu size={10} />
+                <div
+                  className="cursor-pointer hover:text-text-primary"
+                  onClick={() => {
+                    props.menuOpenSignal.value = true;
+                  }}
+                >
+                  <IconMenu size={10} />
+                </div>
               </div>
             ) : (
               <div>

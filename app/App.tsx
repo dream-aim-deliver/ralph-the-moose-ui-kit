@@ -3,7 +3,7 @@ import {
   BalanceCard,
   Button,
   MintCard,
-  MintCompletedStatusFrame,
+  // MintCompletedStatusFrame,
   PageTemplate,
   TextButton,
   WalletCard,
@@ -34,14 +34,14 @@ const mintCard = (
     tokenShortName="PR"
     isMinting={{ value: false } as unknown as Signal<boolean>}
     onMint={() => {}}
-    children={
-      <MintCompletedStatusFrame
-        tokenShortName="PR"
-        amountMinted={10000}
-        timestamp="2024-02-14 @ 16:03"
-        explorerLink="nowhere"
-      />
-    }
+    // children={
+    // <MintCompletedStatusFrame
+    //   tokenShortName="PR"
+    //   amountMinted={10000}
+    //   timestamp="2024-02-14 @ 16:03"
+    //   explorerLink="nowhere"
+    // />
+    // }
   />
 );
 const balanceCard = (
