@@ -55,7 +55,7 @@ export const RalphLogo = ({ variant }: RalphLogoProps) => {
   return (
     <div
       className={twMerge(
-        "h-full w-full relative object-contain",
+        "h-full w-full items-center relative object-contain",
         variant === "full-vertical" && "flex flex-col",
         variant === "full-horizontal" && "flex flex-row",
       )}
