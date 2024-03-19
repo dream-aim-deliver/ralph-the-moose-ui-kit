@@ -15,6 +15,7 @@ import {
 } from "../lib";
 import { RalphLogo } from "@/components/ralph-logo";
 import { signal } from "@preact/signals-react";
+import { NavLink } from "@/components/nav-link";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,6 +27,12 @@ function App() {
   );
   return (
     <>
+      <NavLink
+        variant="medium"
+        label="navlink / medium"
+        url="https://www.google.com"
+        defaultColorClass="text-blue-700"
+      />
       <UnwrapCard
         amountToUnwrap={amountToUnwrap}
         wrappedBalance={100000}
