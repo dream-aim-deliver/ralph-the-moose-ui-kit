@@ -77,7 +77,7 @@ WalletCard.Connected = ({
     <div className="self-stretch flex flex-row items-center justify-between gap-[16px]">
       {/** Wallet Addres div, pinned to the left of the parent */}
       <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
-        <div className="self-stretch text-sm relative leading-[14px] text-base-colors/neutral-500 font-varela">
+        <div className="self-stretch text-sm relative leading-[14px] text-text-secondary font-varela">
           Wallet
         </div>
         <Label variant="small" label={address} />

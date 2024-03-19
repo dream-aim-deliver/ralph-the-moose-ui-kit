@@ -6,6 +6,7 @@ import {
   BalanceCard,
   Button,
   DropdownTrigger,
+  Header,
   IconNetworkBase,
   InputAssetAmount,
   TextButton,
@@ -25,7 +26,8 @@ function App() {
     <TextButton text="Disconnect" size="medium" onClick={() => {}}></TextButton>
   );
   return (
-    <>
+    <div className="flex flex-col gap-y-10">
+      <Header />  
       <UnwrapModal
         amountToUnwrap={amountToUnwrap}
         wrappedAmount={100000}
@@ -58,7 +60,7 @@ function App() {
         onWrap={() => {}}
         onUnwrap={() => {}}
       />
-      <DropdownTrigger
+      {/* <DropdownTrigger
         title="Dropdown Trigger"
         variant="small"
         expanded={false}
@@ -71,6 +73,7 @@ function App() {
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
+        <Header />  
       </div>
       <h1>Vite + React</h1>
       <div className="card">
@@ -83,8 +86,8 @@ function App() {
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
-      </p>
-    </>
+      </p> */}
+    </div> 
   );
 }
 

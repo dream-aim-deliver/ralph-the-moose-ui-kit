@@ -47,20 +47,20 @@ export const UnwrapModal = ({
           tokenShortName={tokenShortName}
           icon={icon}
         />
-        <LightFrame className="w-full font-varela text-base-colors/neutral-500">
+        <LightFrame className="w-full font-varela text-text-secondary">
           <div className="self-stretch flex flex-row items-baseline justify-between">
-            <div className="relative leading-[14px]">Unwrap amount</div>
+            <div className="relative leading-[14px] text-text-secondary">Unwrap amount</div>
             <Label
               label={`${amountToUnwrap.value} ${wrappedTokenName}`}
               variant="medium"
             />
           </div>
           <div className="self-stretch flex flex-row items-baseline justify-between">
-            <div className="relative leading-[14px]">Unwrapping fee</div>
+            <div className="relative leading-[14px] text-text-secondary">Unwrapping fee</div>
             <Label label={`${fee} %`} variant="medium" />
           </div>
           <div className="self-stretch flex flex-row items-baseline justify-between">
-            <div className="relative leading-[14px]">You'll receive</div>
+            <div className="relative leading-[14px] text-text-secondary">You'll receive</div>
             <Label
               label={`${amountAfterUnwrapping} ${tokenShortName}`}
               variant="medium"

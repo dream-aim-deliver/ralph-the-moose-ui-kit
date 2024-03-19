@@ -2,6 +2,7 @@ export * from "./balance-card";
 export * from "./button";
 export * from "./dropdown";
 export * from "./heading";
+export * from "./header";
 export * from "./icons";
 export * from "./icon-button";
 export * from "./input-asset-amount";
