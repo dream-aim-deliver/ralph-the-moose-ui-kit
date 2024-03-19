@@ -9,6 +9,7 @@ export * from "./input-asset-amount-with-label";
 export * from "./label";
 export * from "./layouts";
 export * from "./link";
+export * from "./mint-card";
 export * from "./modal";
 export * from "./paragraph";
 export * from "./text-button";
