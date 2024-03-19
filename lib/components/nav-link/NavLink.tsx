@@ -59,9 +59,6 @@ export const NavLink = ({
   icon,
   url,
   className,
-  defaultColorClass,
-  onClickColorClass,
-  onHoverColorClass,
 }: NavLinkProps) => {
   const openLink = () => {
     window.open(url, "_blank");

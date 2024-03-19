@@ -2,7 +2,6 @@ import { twMerge } from "tailwind-merge";
 import { RalphLogo } from "../ralph-logo";
 import { IconClose, IconMenu, IconTelegram, IconTwitter } from "..";
 import { NavLink } from "../nav-link";
-import { PageFooter } from "./PageFooter";
 import { Signal } from "@preact/signals-react";
 
 export interface SupportedNetworkProps {
@@ -64,26 +63,6 @@ export const PageHeaderMobile = (props: PageHeaderProps) => {
     </div>
   );
 };
-
-// const mobileHeaderExpandedStyle = twMerge(
-//   "w-parent",
-//   "h-parent",
-//   "flex",
-//   "flex-col",
-//   "items-center",
-//   "justify-between",
-//   "p-8",
-//   "text-text-inverted",
-//   "bg-base-colors/neutral-600",
-//   "z-20",
-//   "fixed",
-//   "top-0",
-//   "left-0",
-// );
-
-// const mobileHeaderExpandedStyle = twMerge(
-//   "h-parent w-parent flex flex-wrap items-center justify-between mx-auto",
-// );
 
 export const MenuMobile = () => {
   return (

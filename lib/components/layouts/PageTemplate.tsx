@@ -37,7 +37,7 @@ export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
           {menuOpenSignal.value ? <MenuMobile /> : children}
         </div>
         <div className="flex flex-row items-center justify-center gap-[16px]">
-          <PageFooter menuOpenSignal={menuOpenSignal}/>
+          <PageFooter menuOpenSignal={menuOpenSignal} />
         </div>
       </div>
     </div>
