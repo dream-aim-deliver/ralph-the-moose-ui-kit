@@ -28,17 +28,19 @@ function App() {
     <>
       <UnwrapModal
         amountToUnwrap={amountToUnwrap}
-        wrappedAmount={100000}
+        wrappedBalance={100000}
         fee={2}
         tokenShortName="PR"
         icon={<RalphLogo variant="icon" />}
+        onUnwrap={() => {}}
       />
       <WrapModal
         tokenShortName="PR"
-        amount={amount}
+        amountToWrap={amount}
         fee={2}
-        maxAmount={100000}
+        inscriptionBalance={100000}
         icon={<RalphLogo variant="icon" />}
+        onWrap={() => {}}
       />
       <InputAssetAmount
         amount={amount}
@@ -53,10 +55,12 @@ function App() {
       />
       <BalanceCard
         inscriptionBalance={1000}
-        wrappedAmount={1000}
+        wrappedBalance={1000}
         tokenShortName="PR"
         onWrap={() => {}}
         onUnwrap={() => {}}
+        fee={2}
+        icon={<RalphLogo variant="icon" />}
       />
       <DropdownTrigger
         title="Dropdown Trigger"
