@@ -54,7 +54,7 @@ export const WrapCard = ({
           tokenShortName={tokenShortName}
           icon={icon}
         />
-        <LightFrame className="w-full font-varela text-base-colors/neutral-500">
+        <LightFrame className="w-full font-varela text-text-secondary">
           <div className="self-stretch flex flex-row items-baseline justify-between">
             <div className="relative leading-[14px]">Wrap amount</div>
             <Label
