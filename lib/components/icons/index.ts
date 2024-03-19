@@ -6,6 +6,7 @@ export { IconError } from "./IconError";
 export { IconExternalLink } from "./IconExternalLink";
 export { IconExternalLinkSmall } from "./IconExternalLinkSmall";
 export { IconForm } from "./IconForm";
+export { IconHourglass } from "./IconHourglass";
 export { IconMenu } from "./IconMenu";
 export { IconMooseHorn } from "./IconMooseHorn";
 export { IconNetworkBase } from "./IconNetworkBase";

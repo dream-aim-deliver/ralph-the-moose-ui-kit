@@ -15,6 +15,14 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
+    status: {
+      control: "inline-radio",
+      name: "Status",
+      options: ["whitelisted", "network_error", "minting", "error", "success"],
+    },
+    error: { control: "text", name: "Error" },
+    eligibleAmount: { control: "number", name: "Eligible Amount" },
+    isMintingAmount: { control: "number", name: "Minting Amount" },
     mintedPercentage: { control: "number", name: "Minted Percentage" },
     mintLimit: { control: "number", name: "Mint Limit" },
     totalSupply: { control: "number", name: "Total Supply" },
@@ -42,8 +50,11 @@ export const Default: Story = {
     fee: 0.00123,
     expectedReturn: 1000,
     isMinting: { value: false } as unknown as Signal<boolean>,
-    walletNetwork: { value: "ETH" } as unknown as Signal<string>,
-    selectedNetwork: { value: "ETH" } as unknown as Signal<string>,
+    isMintingAmount: 100000000,
+    walletNetwork: "Base",
+    selectedNetwork: "Base",
+    status: "whitelisted",
+    eligibleAmount: 100,
     onMint: () => {},
   },
 };
