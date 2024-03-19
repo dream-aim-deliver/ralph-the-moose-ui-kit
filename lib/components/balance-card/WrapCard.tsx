@@ -41,7 +41,7 @@ export const WrapCard = ({
   return (
     <Modal>
       <div className="flex w-full flex-col items-start justify-center gap-4">
-        <div className="flex relative flex-row justify-between">
+        <div className="flex w-full relative flex-row justify-between">
           <Heading title="Wrap" variant={HeadingVariant.H4} />
           <div className="ml-auto">
             <IconButtonClose size={4} onClick={onClose ? onClose : () => {}} />
@@ -54,7 +54,7 @@ export const WrapCard = ({
           tokenShortName={tokenShortName}
           icon={icon}
         />
-        <LightFrame className="w-full font-varela text-base-colors/neutral-500">
+        <LightFrame className="w-full font-varela text-text-secondary">
           <div className="self-stretch flex flex-row items-baseline justify-between">
             <div className="relative leading-[14px]">Wrap amount</div>
             <Label

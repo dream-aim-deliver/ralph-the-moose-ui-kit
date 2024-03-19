@@ -26,9 +26,7 @@ export const DropdownItem = ({
         "hover:rounded-[999px]",
         "hover:border-base-colors/neutral-500",
         "active:border-base-colors/neutral-900",
-        selected
-          ? "text-base-colors/brand-600"
-          : "text-base-colors/neutral-500",
+        selected ? "text-base-colors/brand-600" : "text-text-secondary",
       ].join(" ")}
       onClick={onClick}
     >

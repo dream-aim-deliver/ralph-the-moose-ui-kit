@@ -21,7 +21,7 @@ export interface TooltipProps {
  */
 export const Tooltip = ({ title, content }: TooltipProps) => {
   const titleSection = (
-    <div className="w-full text-left text-sm text-base-colors/neutral-500 font-varela">
+    <div className="w-full text-left text-sm text-text-secondary font-varela">
       {title}
     </div>
   );
@@ -39,7 +39,7 @@ export const Tooltip = ({ title, content }: TooltipProps) => {
             before:w-max before:max-w-xs
             before:-translate-x-1/2 before:-translate-y-full
             before:rounded-3xl
-            before:bg-base-colors/neutral-50 before:text-base-colors/neutral-500
+            before:bg-base-colors/neutral-50 before:text-text-secondary
             before:box-border before:overflow-hidden
             before:items-start before:justify-start
             before:text-left before:font-varela before:text-sm

@@ -26,7 +26,7 @@ const sampleItems = [
   <DropdownItem key={2} title="selected" selected={true} onClick={() => {}} />,
 ];
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Small: Story = {
+export const Example: Story = {
   args: {
     children: sampleItems,
   },
