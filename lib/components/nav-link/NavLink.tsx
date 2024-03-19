@@ -87,11 +87,13 @@ export const NavLink = ({
 
   return (
     <div role="link" className={classes} onClick={openLink}>
-      {icon}
-      <div className="flex flex-row items-start justify-start gap-[2px]">
+      <div className={icon ? "block" : "hidden"}>{icon}</div>
+      <div className="flex flex-row items-start justify-start gap-[2px] p-1">
         {label}
-        {variant === "medium" && <IconExternalLink size={4} />}
-        {variant === "small" && <IconExternalLinkSmall size={4} />}
+        <div className={url ? "block" : "hidden"}>
+          {variant === "medium" && <IconExternalLink size={4} />}
+          {variant === "small" && <IconExternalLinkSmall size={4} />}
+        </div>
       </div>
     </div>
   );
