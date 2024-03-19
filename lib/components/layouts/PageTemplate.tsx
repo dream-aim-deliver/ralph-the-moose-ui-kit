@@ -35,9 +35,10 @@ export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
         />
         <div
           id="content-container"
-          className="grid grid-col-3 items-center justify-center gap-[16px]"
+          className="grid grid-col-3 xl:grid xl:grid-col-2 xl:divide-y items-center justify-center gap-[16px]"
         >
-          {menuOpenSignal.value ? <Menu /> : children}
+          {menuOpenSignal.value && <Menu />}
+          {children}
         </div>
         <div className="flex flex-row items-center justify-center gap-[16px]">
           <PageFooter menuOpenSignal={menuOpenSignal} />

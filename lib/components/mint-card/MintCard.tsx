@@ -12,7 +12,7 @@ export interface MintCardProps {
   mintingDisabled: boolean;
   tokenShortName: string;
   isMinting: Signal<boolean>;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onMint: () => void;
 }
 

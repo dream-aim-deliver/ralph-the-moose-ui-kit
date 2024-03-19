@@ -3,7 +3,7 @@ import { NavLink } from "../nav-link";
 
 export const Menu = () => {
   return (
-    <div className="flex xl:flex-row flex-col items-center justify-center xl:gap-4 xl:shrink z-50">
+    <div className="flex xl:flex-row flex-col items-center justify-center mb-8 gap-4 xl:shrink z-50">
       <NavLink
         variant="medium"
         label="Website"
