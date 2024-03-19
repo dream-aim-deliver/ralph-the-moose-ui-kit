@@ -84,7 +84,7 @@ export const Toast = ({
             {status === "warning" && <IconWarning size={12} />}
           </div>
           <div className="flex-1 w-full relative flex flex-row items-center justify-start gap-[16px] text-left">
-            <div className="flex-1 flex flex-col items-start justify-start gap-[4px] font-varela text-base-colors/neutral-500">
+            <div className="flex-1 flex flex-col items-start justify-start gap-[4px] font-varela text-text-secondary">
               <div className="font-gluten font-bold text-text-primary">
                 {title}
               </div>

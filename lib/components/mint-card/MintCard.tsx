@@ -30,7 +30,7 @@ export const MintCard = (props: MintCardProps) => {
     <Modal>
       <div className="flex flex-col items-start justify-center gap-4 text-wrap">
         <Heading title="Mint" variant={HeadingVariant.H4} />
-        <div className="w-full flex flex-col gap-2 text-base-colors/neutral-500 font-varela text-base">
+        <div className="w-full flex flex-col gap-2 text-text-secondary font-varela text-base">
           <div className="w-full flex flex-row items-center justify-between text-left gap-4">
             <label>Minted%</label>
             <Label label={`${props.mintedPercentage}%`} variant="medium" />

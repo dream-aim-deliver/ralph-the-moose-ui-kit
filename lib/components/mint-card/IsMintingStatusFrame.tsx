@@ -24,7 +24,7 @@ export interface IsMintingStatusFrameProps {
 export const IsMintingStatusFrame = (props: IsMintingStatusFrameProps) => {
   const formattedIsMintingAmount = formatNumber(props.isMintingAmount);
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-4 text-base font-varela text-base-colors/neutral-500">
+    <div className="w-full flex flex-col items-center justify-center gap-4 text-base font-varela text-text-secondary">
       <LightFrame className="w-full items-center gap-4">
         <IconHourglass size={12} />
         <div className="w-full font-gluten font-bold relative text-lg tracking-[-0.04em] leading-[18px] inline-block font-heading-h5 text-text-primary text-center overflow-auto whitespace-normal">

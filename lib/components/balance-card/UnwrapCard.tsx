@@ -59,20 +59,20 @@ export const UnwrapCard = ({
   return (
     <Modal>
       <div className="flex w-full flex-col items-start justify-center gap-4">
-        <div className="flex relative flex-row justify-between">
+        <div className="flex w-full relative flex-row justify-between">
           <Heading title="Unwrap" variant={HeadingVariant.H4} />
           <div className="ml-auto">
             <IconButtonClose size={4} onClick={onClose ? onClose : () => {}} />
           </div>
         </div>
         <InputAssetAmountWithLabel
-          label="Amount to wrap"
+          label="Amount to unwrap"
           maxAmount={wrappedBalance}
           amount={amountToUnwrap}
           tokenShortName={tokenShortName}
           icon={icon}
         />
-        <LightFrame className="w-full font-varela text-base-colors/neutral-500">
+        <LightFrame className="w-full font-varela text-text-secondary">
           <div className="self-stretch flex flex-row items-baseline justify-between">
             <div className="relative leading-[14px]">Unwrap amount</div>
             <Label
