@@ -29,7 +29,7 @@ export interface ToastProps {
   /**
    * The children of the toast.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 enum ToastViewStatus {
@@ -92,9 +92,11 @@ export const Toast = ({
                 {message}
               </div>
             </div>
-            <div className="flex flex-row items-start justify-start ml-16">
-              {children ? children : ""}
-            </div>
+            {children && (
+              <div className="flex flex-row items-start justify-start ml-auto">
+                {children}
+              </div>
+            )}
           </div>
         </div>
       </Modal>
