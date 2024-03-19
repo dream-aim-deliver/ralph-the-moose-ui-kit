@@ -1,8 +1,13 @@
 import { twMerge } from "tailwind-merge";
 import { RalphLogo } from "../ralph-logo";
 import { IconMooseHorn } from "..";
+import { Signal } from "@preact/signals-react";
 
-export const PageFooter = () => {
+export const PageFooter = ({
+  menuOpenSignal,
+}: {
+  menuOpenSignal: Signal<boolean>;
+}) => {
   return (
     <div
       className={twMerge(
@@ -12,9 +17,11 @@ export const PageFooter = () => {
         "text-sm",
       )}
     >
-      <div className="items-center">
-        <RalphLogo variant="icon" />
-      </div>
+      {!menuOpenSignal.value && (
+        <div className="items-center">
+          <RalphLogo variant="icon" />
+        </div>
+      )}
       <div className="flex flex-row items-start justify-start gap-[4px]">
         <div className="relative leading-[14px]">{`Crafted with `}</div>
         <div className="self-stretch h-full">
