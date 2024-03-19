@@ -5,10 +5,9 @@ import { IconProps, generateClassesForIcon } from "./Icon";
  * @description External link icon
  * @usage <IconExternalLink />
  */
-export const IconExternalLink = ({ fill }: { fill: string }) => {
+export const IconExternalLink = ({ size }: { size?: number }) => {
   const props: IconProps = {
-    fill,
-    size: 12,
+    size: size || 12,
   };
   return (
     <svg
@@ -22,7 +21,7 @@ export const IconExternalLink = ({ fill }: { fill: string }) => {
       </g>
       <defs>
         <clipPath id="clip0_20_2500">
-          <rect width="24" height="24" fill="white" />
+          <rect width="24" height="24" />
         </clipPath>
       </defs>
     </svg>
