@@ -1,4 +1,4 @@
-import { IconSuccess, Link } from "..";
+import { IconSuccess } from "..";
 import { formatNumber } from "../../utils/tokenUtils";
 import { LightFrame } from "../layouts/LightFrame";
 import { NavLink } from "../nav-link";
