@@ -1,6 +1,13 @@
 import { twMerge } from "tailwind-merge";
 import { RalphLogo } from "../ralph-logo";
-import { IconClose, IconMenu, IconTelegram, IconTwitter } from "..";
+import {
+  DropdownTrigger,
+  IconClose,
+  IconMenu,
+  IconNetworkBase,
+  IconTelegram,
+  IconTwitter,
+} from "..";
 import { NavLink } from "../nav-link";
 import { Signal } from "@preact/signals-react";
 
@@ -27,38 +34,67 @@ export const PageHeaderMobile = (props: PageHeaderProps) => {
         "gap-[16px]",
       )}
     >
-      <div className="flex flex-row items-center justify-start gap-[9px]">
-        <RalphLogo variant="full-horizontal" />
-      </div>
-      <div className="flex flex-row items-center justify-start gap-[16px]">
-        {/* <div className="rounded-[54px] box-border h-10 flex flex-row items-center justify-start py-2.5 px-2 border-t-[1px] border-solid border-text-inverted border-r-[1px] border-b-[3px] border-l-[1px]">
-          <div className="flex flex-row items-center justify-start"> */}
-        {props.activeNetwork.icon}
-        {/* </div> */}
-        {/* </div> */}
-        {/* this div should be hidden in large screens */}
-        <div className="flex flex-row items-start justify-start p-2">
-          {!props.menuOpenSignal.value ? (
-            <div
-              onClick={() => {
-                props.menuOpenSignal.value = true;
-              }}
-              className="cursor-pointer hover:text-text-primary"
-            >
-              <IconMenu />
-            </div>
-          ) : (
-            <div>
+      <div
+        id="header-content-sm"
+        className="w-full flex flex-row items-center justify-between gap-[16px] xl:hidden"
+      >
+        <div className="flex flex-row items-center justify-start gap-[9px]">
+          <RalphLogo variant="full-horizontal" />
+        </div>
+        <div id="header-content-sm-network-menu" className="flex">
+          <DropdownTrigger
+            title=""
+            variant="small"
+            expanded={false}
+            selectedOption="Base"
+            icon={<IconNetworkBase />}
+          />
+          <div
+            id="menu-small"
+            className="flex flex-row items-start justify-start p-2"
+          >
+            {!props.menuOpenSignal.value ? (
               <div
                 onClick={() => {
-                  props.menuOpenSignal.value = false;
+                  props.menuOpenSignal.value = true;
                 }}
-                className="text-text-inverted cursor-pointer hover:text-text-primary"
+                className="cursor-pointer hover:text-text-primary"
               >
-                <IconClose />
+                <IconMenu />
               </div>
-            </div>
-          )}
+            ) : (
+              <div>
+                <div
+                  onClick={() => {
+                    props.menuOpenSignal.value = false;
+                  }}
+                  className="text-text-inverted cursor-pointer hover:text-text-primary"
+                >
+                  <IconClose />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div
+        id="header-content-xl"
+        className="hidden xl:flex w-full flex-row items-start justify-between"
+      >
+        <div className="flex flex-row items-center justify-start gap-[9px]">
+          <RalphLogo variant="full-horizontal" />
+        </div>
+        <div className="flex flex-row items-center justify-between text-base ml-40 mr-40">
+          <MenuMobile />
+        </div>
+        <div className="cursor-pointer">
+          <DropdownTrigger
+            title=""
+            variant="large"
+            expanded={false}
+            selectedOption="Base"
+            icon={<IconNetworkBase />}
+          />
         </div>
       </div>
     </div>
@@ -67,7 +103,7 @@ export const PageHeaderMobile = (props: PageHeaderProps) => {
 
 export const MenuMobile = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-8">
+    <div className="flex xl:flex-row flex-col items-center justify-center xl:gap-4 xl:shrink">
       <NavLink
         variant="medium"
         label="Website"

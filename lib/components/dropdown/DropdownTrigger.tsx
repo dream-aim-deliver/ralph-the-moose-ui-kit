@@ -28,15 +28,15 @@ export const DropdownTrigger = ({
         "flex flex-row items-center justify-start",
         "py-2.5 px-2",
         "border-t-[1px] border-solid border-r-[1px] border-b-[3px] border-l-[1px]",
-        `border-${defaultColor}`,
-        `text-${defaultColor}`,
-        `hover:border-${onHoverColor}`,
-        `hover:text-${onHoverColor}`,
+        `border-text-inverted`,
+        `text-text-inverted`,
+        `hover:border-text-primary`,
+        `hover:text-text-primary`,
         "transition-all",
       ].join(" ")}
     >
       <div
-        className={`flex flex-row items-center justify-start hover:text-${onHoverColor}`}
+        className={`flex flex-row items-center justify-start hover:text-text-primary`}
       >
         <div className="w-[25px] relative h-[25px] overflow-hidden shrink-0">
           {icon}
@@ -56,15 +56,15 @@ export const DropdownTrigger = ({
         "justify-start",
         "gap-[6px]",
         "font-varela",
-        `text-${defaultColor}`,
-
-        `border-${defaultColor}`,
-        `hover:border-${onHoverColor}`,
+        `text-text-inverted`,
+        `border-text-inverted`,
+        `hover:border-text-primary`,
       ].join(" ")}
     >
       <div className={"relative leading-[14px]"}>{title}</div>
       <div
         className={[
+          "cursor-pointer",
           "w-full relative rounded-[54px]",
           "box-border",
           "h-10",
@@ -77,7 +77,8 @@ export const DropdownTrigger = ({
           "border-r-[1px]",
           "border-b-[3px]",
           "border-l-[1px]",
-          `hover:text-${onHoverColor}`,
+          `hover:text-text-primary`,
+          `hover:border-text-primary`,
           "transition-all",
         ].join(" ")}
       >
