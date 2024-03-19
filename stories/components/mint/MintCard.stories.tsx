@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { MintCard } from "@/components/mint-card";
 import { Signal } from "@preact/signals-react";
-import { MintCompletedStatusFrame } from "@/components/mint-card/MintCard";
+import { MintCompletedStatusFrame } from "@/components/mint-card/";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
