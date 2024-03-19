@@ -42,13 +42,6 @@ export const PageHeader = (props: PageHeaderProps) => {
           <RalphLogo variant="full-horizontal" />
         </div>
         <div id="header-content-sm-network-menu" className="flex">
-          <DropdownTrigger
-            title=""
-            variant="small"
-            expanded={false}
-            selectedOption="Base"
-            icon={<IconNetworkBase />}
-          />
           <div
             id="menu-small"
             className="flex flex-row items-start justify-start p-2"
@@ -58,9 +51,16 @@ export const PageHeader = (props: PageHeaderProps) => {
                 onClick={() => {
                   props.menuOpenSignal.value = true;
                 }}
-                className="cursor-pointer hover:text-text-primary"
+                className="flex flex-row gap-4 cursor-pointer hover:text-text-primary"
               >
-                <IconMenu />
+                <DropdownTrigger
+                  title=""
+                  variant="small"
+                  expanded={false}
+                  selectedOption="Base"
+                  icon={<IconNetworkBase />}
+                />
+                <IconMenu size={10} />
               </div>
             ) : (
               <div>
