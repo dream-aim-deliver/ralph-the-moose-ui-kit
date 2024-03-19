@@ -1,6 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { PageFooter } from "./PageFooter";
 import { PageHeader } from "./PageHeaderSmall";
+import { IconNetworkBase } from "..";
 
 export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -14,7 +15,22 @@ export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
       )}
     >
       <div className="self-stretch flex flex-row items-center justify-between">
-        <PageHeader />
+        <PageHeader
+          networks={[
+            {
+              name: "Base",
+              chainId: 1,
+              icon: <IconNetworkBase />,
+            },
+          ]}
+          activeNetwork={{
+            name: "Base",
+            chainId: 1,
+            icon: <IconNetworkBase />,
+          }}
+          onNetworkChange={() => {}}
+          menuItems={<div />}
+        />
       </div>
       <div className="flex flex-row items-center justify-start gap-[16px]">
         {children}
@@ -25,4 +41,3 @@ export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
     </div>
   );
 };
-

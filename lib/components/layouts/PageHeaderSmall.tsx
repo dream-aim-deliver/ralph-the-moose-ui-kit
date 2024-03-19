@@ -31,7 +31,7 @@ export const PageHeader = (props: PageHeaderProps) => {
       <div className="flex flex-row items-center justify-start gap-[16px]">
         <div className="rounded-[54px] box-border h-10 flex flex-row items-center justify-start py-2.5 px-2 border-t-[1px] border-solid border-text-inverted border-r-[1px] border-b-[3px] border-l-[1px]">
           <div className="flex flex-row items-center justify-start">
-            <IconNetworkBase />
+            {props.activeNetwork.icon}
           </div>
         </div>
         <div className="flex flex-row items-start justify-start p-2">
