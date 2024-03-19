@@ -12,6 +12,20 @@ export default {
         varela: "Varela Round",
       },
       // Font Size Reference: https://tailwindcss.com/docs/font-size
+      animation: {
+        "slide-down": "slide-down 0.5s ease-out",
+        fadeout: "fadeout 3s ease-in-out",
+      },
+      keyframes: {
+        "slide-down": {
+          "0%": { transform: "translateY(-100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        fadeout: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+      },
       colors: {
         "base-colors/neutral": {
           50: "#FBF7F3",
