@@ -29,16 +29,23 @@ export interface NavLinkProps {
   url: string;
   /**
    * The default color class for the link.
+   * @deprecated Use className instead.
    */
   defaultColorClass?: string;
   /**
    * The color class for the link on hover.
+   * @deprecated Use className instead.
    */
   onHoverColorClass?: string;
   /**
    * The color class for the link on click.
+   * @deprecated Use className instead.
    */
   onClickColorClass?: string;
+  /**
+   * The TailwindCSS styles for the link.
+   */
+  className?: string;
 }
 
 /**
@@ -51,6 +58,7 @@ export const NavLink = ({
   label,
   icon,
   url,
+  className,
   defaultColorClass,
   onClickColorClass,
   onHoverColorClass,
@@ -58,12 +66,6 @@ export const NavLink = ({
   const openLink = () => {
     window.open(url, "_blank");
   };
-  const finalDefaultColorClass =
-    defaultColorClass || "text-base-colors/brand-600";
-  const finalOnHoverColorClass =
-    onHoverColorClass || "text-base-colors/brand-400";
-  const finalOnClickColorClass =
-    onClickColorClass || "text-base-colors/brand-700";
   const classes = twMerge([
     "flex flex-row items-center justify-start gap-2",
     "cursor-pointer",
@@ -77,12 +79,10 @@ export const NavLink = ({
     "ease-in-out",
     variant === "small" ? "text-xs" : "",
     variant === "medium" ? "text-base" : "",
-    `hover:${finalOnHoverColorClass}`,
-    `active:${finalOnClickColorClass}`,
-    finalDefaultColorClass,
     "text-left",
     "font-bold",
     "hover:scale-110",
+    className || "",
   ]);
 
   return (

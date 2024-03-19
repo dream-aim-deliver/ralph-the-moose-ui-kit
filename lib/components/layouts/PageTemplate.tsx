@@ -1,9 +1,12 @@
 import { twMerge } from "tailwind-merge";
 import { PageFooter } from "./PageFooter";
-import { PageHeader } from "./PageHeaderSmall";
+import { MenuMobile, PageHeaderMobile } from "./PageHeaderSmall";
 import { IconNetworkBase } from "..";
+import { useSignal, useSignals } from "@preact/signals-react/runtime";
 
 export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
+  useSignals();
+  const menuOpenSignal = useSignal<boolean>(false);
   return (
     <div
       className={twMerge(
@@ -11,11 +14,10 @@ export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
         "flex flex-col w-full self-stretch justify-start bg-base-colors/neutral-600",
         "box-border",
         "pt-2 px-4 pb-6",
-        "gap-[50px]",
       )}
     >
-      <div className="self-stretch flex flex-row items-center justify-between">
-        <PageHeader
+      <div className="space-y-16 items-center">
+        <PageHeaderMobile
           networks={[
             {
               name: "Base",
@@ -29,14 +31,14 @@ export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
             icon: <IconNetworkBase />,
           }}
           onNetworkChange={() => {}}
-          menuItems={<div />}
+          menuOpenSignal={menuOpenSignal}
         />
-      </div>
-      <div className="flex flex-row items-center justify-start gap-[16px]">
-        {children}
-      </div>
-      <div className="flex flex-row items-center justify-center gap-[16px]">
-        <PageFooter />
+        <div className="flex flex-col items-center justify-start gap-[16px]">
+          {menuOpenSignal.value ? <MenuMobile /> : children}
+        </div>
+        <div className="flex flex-row items-center justify-center gap-[16px]">
+          <PageFooter menuOpenSignal={menuOpenSignal}/>
+        </div>
       </div>
     </div>
   );
