@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { MintCard } from "@/components/mint-card";
 import { Signal } from "@preact/signals-react";
+import { MintCompletedStatusFrame } from "@/components/mint-card/MintCard";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -15,14 +16,6 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    status: {
-      control: "inline-radio",
-      name: "Status",
-      options: ["whitelisted", "network_error", "minting", "error", "success"],
-    },
-    error: { control: "text", name: "Error" },
-    eligibleAmount: { control: "number", name: "Eligible Amount" },
-    isMintingAmount: { control: "number", name: "Minting Amount" },
     mintedPercentage: { control: "number", name: "Minted Percentage" },
     mintLimit: { control: "number", name: "Mint Limit" },
     totalSupply: { control: "number", name: "Total Supply" },
@@ -30,7 +23,7 @@ const meta = {
     mintingFee: { control: "number", name: "Minting Fee" },
     mintingDisabled: { control: "boolean", name: "Minting Disabled" },
     tokenShortName: { control: "text", name: "Token Short Name" },
-    feeCurrency: { control: "text", name: "Minting Currency" },
+    isMinting: { control: "boolean", name: "Is Minting" },
   },
 } satisfies Meta<typeof MintCard>;
 
@@ -46,15 +39,15 @@ export const Default: Story = {
     mintingFee: 10,
     mintingDisabled: false,
     tokenShortName: "PR",
-    feeCurrency: "ETH",
-    fee: 0.00123,
-    expectedReturn: 1000,
     isMinting: { value: false } as unknown as Signal<boolean>,
-    isMintingAmount: 100000000,
-    walletNetwork: "Base",
-    selectedNetwork: "Base",
-    status: "whitelisted",
-    eligibleAmount: 100,
     onMint: () => {},
+    children: (
+      <MintCompletedStatusFrame
+        tokenShortName="PR"
+        amountMinted={10000}
+        timestamp="2024-02-14 @ 16:03"
+        explorerLink="nowhere"
+      />
+    ),
   },
 };

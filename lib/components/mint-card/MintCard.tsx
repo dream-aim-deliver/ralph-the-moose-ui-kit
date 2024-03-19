@@ -7,6 +7,7 @@ import {
   IconHourglass,
   IconSuccess,
   Label,
+  Link,
   Modal,
 } from "..";
 import { formatNumber } from "../../utils/tokenUtils";
@@ -19,18 +20,10 @@ export interface MintCardProps {
   totalSupply: number;
   totalMinted: number;
   mintingFee: number;
-  eligibleAmount: number;
-  expectedReturn: number;
   mintingDisabled: boolean;
   tokenShortName: string;
-  feeCurrency: string;
-  fee: number;
   isMinting: Signal<boolean>;
-  isMintingAmount: number;
-  walletNetwork: string;
-  selectedNetwork: string;
-  status: "whitelisted" | "network_error" | "minting" | "error" | "success";
-  error?: string;
+  children: React.ReactNode;
   onMint: () => void;
 }
 
@@ -66,14 +59,26 @@ export const MintCard = (props: MintCardProps) => {
             <Label label={`${formattedTotalMinted}`} variant="medium" />
           </div>
         </div>
-        <MintEnabledStatusFrame {...props} />
-        <Button label="Mint" variant="primary" onClick={handleMint} />
+        {props.children}
+        <Button
+          disabled={props.mintingDisabled}
+          label="Mint"
+          variant="primary"
+          onClick={handleMint}
+        />
       </div>
     </Modal>
   );
 };
 
-export const MintEnabledStatusFrame = (props: MintCardProps) => {
+export interface MintingEnabledFrameProps {
+  eligibleAmount: number;
+  expectedReturn: number;
+  fee: number;
+  feeCurrency: string;
+  tokenShortName: string;
+}
+export const MintEnabledStatusFrame = (props: MintingEnabledFrameProps) => {
   const formatedEligibleAmount = formatNumber(props.eligibleAmount);
   const formattedExpectedReturn = formatNumber(props.expectedReturn);
   return (
@@ -96,7 +101,12 @@ export const MintEnabledStatusFrame = (props: MintCardProps) => {
     </LightFrame>
   );
 };
-export const IsMintingStatusFrame = (props: MintCardProps) => {
+
+export interface IsMintingStatusFrameProps {
+  isMintingAmount: number;
+  tokenShortName: string;
+}
+export const IsMintingStatusFrame = (props: IsMintingStatusFrameProps) => {
   const formattedIsMintingAmount = formatNumber(props.isMintingAmount);
   return (
     <div className="w-full flex flex-col items-center justify-center gap-4 text-base font-varela text-base-colors/neutral-500">
@@ -109,12 +119,14 @@ export const IsMintingStatusFrame = (props: MintCardProps) => {
           <p className="text-center">Do not refresh this page!</p>
         </div>
       </LightFrame>
-      <MintEnabledStatusFrame {...props} />
     </div>
   );
 };
 
-export const WrongNetworkStatusFrame = (props: MintCardProps) => {
+export interface MintErrorStatusFrameProps {
+  error: string;
+}
+export const WrongNetworkStatusFrame = (props: MintErrorStatusFrameProps) => {
   return (
     <LightFrame className="w-full items-center gap-4 text-wrap text-base-colors/neutral-400">
       <IconError size={12} />
@@ -122,8 +134,38 @@ export const WrongNetworkStatusFrame = (props: MintCardProps) => {
         {`Wrong network selected`}
       </div>
       <div className="w-full flex flex-row items-center justify-center text-left text-base font-varela gap-4">
-        <label>{`You must connect to ${props.walletNetwork} Chain to access this mintdrop.`}</label>
+        <label>{props.error}</label>
       </div>
+    </LightFrame>
+  );
+};
+
+export interface MintCompletedStatusFrameProps {
+  tokenShortName: string;
+  amountMinted: number;
+  timestamp: string;
+  explorerLink: string;
+}
+export const MintCompletedStatusFrame = (
+  props: MintCompletedStatusFrameProps,
+) => {
+  const formattedAmountMinted = formatNumber(props.amountMinted);
+  return (
+    <LightFrame className="w-full items-center gap-4 text-wrap text-base-colors/neutral-400">
+      <IconSuccess size={12} />
+      <div className="w-full font-gluten font-bold relative text-lg tracking-[-0.04em] leading-[18px] inline-block font-heading-h5 text-text-primary text-center overflow-auto whitespace-normal">
+        You minted {formattedAmountMinted} {props.tokenShortName}
+      </div>
+      <div className="w-full flex flex-row items-center justify-center text-left text-base font-varela gap-4">
+        <label>{props.timestamp}</label>
+      </div>
+      <Link
+        variant="small"
+        label="View in Explorer"
+        onClick={() => {
+          window.open(props.explorerLink, "_blank");
+        }}
+      />
     </LightFrame>
   );
 };
