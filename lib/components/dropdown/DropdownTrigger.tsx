@@ -16,8 +16,6 @@ export const DropdownTrigger = ({
   title,
   icon,
   selectedOption,
-  defaultColor = "base-colors/brand-600",
-  onHoverColor = "base-colors/brand-400",
 }: DropdownTriggerProps) => {
   const smallTrigger = (
     <div

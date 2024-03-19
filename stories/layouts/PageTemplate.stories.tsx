@@ -73,7 +73,7 @@ const balanceCard = (
 export const Page: Story = {
   args: {
     children: (
-      <div className="w-full space-y-4">
+      <div className="w-full space-y-16">
         {walletCard}
         <div className="w-full flex flex-row items-center justify-between gap-4">
           {mintCard}
