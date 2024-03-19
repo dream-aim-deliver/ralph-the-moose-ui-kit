@@ -23,7 +23,7 @@ export interface PageHeaderProps {
   onNetworkChange: (network: SupportedNetworkProps) => void;
   menuOpenSignal: Signal<boolean>;
 }
-export const PageHeaderMobile = (props: PageHeaderProps) => {
+export const PageHeader = (props: PageHeaderProps) => {
   return (
     <div
       className={twMerge(
@@ -85,7 +85,7 @@ export const PageHeaderMobile = (props: PageHeaderProps) => {
           <RalphLogo variant="full-horizontal" />
         </div>
         <div className="flex flex-row items-center justify-between text-base ml-40 mr-40">
-          <MenuMobile />
+          <Menu />
         </div>
         <div className="cursor-pointer">
           <DropdownTrigger
@@ -101,7 +101,7 @@ export const PageHeaderMobile = (props: PageHeaderProps) => {
   );
 };
 
-export const MenuMobile = () => {
+export const Menu = () => {
   return (
     <div className="flex xl:flex-row flex-col items-center justify-center xl:gap-4 xl:shrink">
       <NavLink

@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import { PageFooter } from "./PageFooter";
-import { MenuMobile, PageHeaderMobile } from "./PageHeaderSmall";
+import { Menu, PageHeader } from "./PageHeader";
 import { IconNetworkBase } from "..";
 import { useSignal, useSignals } from "@preact/signals-react/runtime";
 
@@ -17,7 +17,7 @@ export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
       )}
     >
       <div className="space-y-16 items-center">
-        <PageHeaderMobile
+        <PageHeader
           networks={[
             {
               name: "Base",
@@ -34,7 +34,7 @@ export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
           menuOpenSignal={menuOpenSignal}
         />
         <div className="flex flex-col items-center justify-start gap-[16px]">
-          {menuOpenSignal.value ? <MenuMobile /> : children}
+          {menuOpenSignal.value ? <Menu /> : children}
         </div>
         <div className="flex flex-row items-center justify-center gap-[16px]">
           <PageFooter menuOpenSignal={menuOpenSignal} />
