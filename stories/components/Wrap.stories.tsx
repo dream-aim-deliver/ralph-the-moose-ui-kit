@@ -16,7 +16,7 @@ const meta = {
       control: "text",
       description: "The short name of the token.",
     },
-    amount: {
+    amountToWrap: {
       control: "number",
       description: "The amount of the token.",
     },
@@ -34,7 +34,7 @@ type Story = StoryObj<typeof meta>;
 export const WrapModal: Story = {
   args: {
     tokenShortName: "PR",
-    amount: 0 as unknown as Signal<number>,
+    amountToWrap: 0 as unknown as Signal<number>,
     fee: 2,
     maxAmount: 100000,
     icon: <RalphLogo variant="icon" />,

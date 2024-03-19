@@ -15,18 +15,22 @@ import { useSignals } from "@preact/signals-react/runtime";
 
 export interface UnwrapModalProps {
   amountToUnwrap: Signal<number>;
-  wrappedAmount: number;
+  wrappedBalance: number;
   fee: number;
   tokenShortName: string;
   icon: React.ReactNode;
+  onClose?: () => void;
+  onUnwrap: () => void;
 }
 
 export const UnwrapModal = ({
   amountToUnwrap,
-  wrappedAmount,
+  wrappedBalance,
   fee,
   tokenShortName,
   icon,
+  onClose,
+  onUnwrap,
 }: UnwrapModalProps) => {
   useSignals();
   const wrappedTokenName = `W${tokenShortName.toUpperCase()}`;
@@ -37,12 +41,12 @@ export const UnwrapModal = ({
         <div className="flex relative flex-row justify-between">
           <Heading title="Unwrap" variant={HeadingVariant.H4} />
           <div className="ml-auto">
-            <IconButtonClose size={4} onClick={() => {}} />
+            <IconButtonClose size={4} onClick={onClose ? onClose : () => {}} />
           </div>
         </div>
         <InputAssetAmountWithLabel
           label="Amount to wrap"
-          maxAmount={wrappedAmount}
+          maxAmount={wrappedBalance}
           amount={amountToUnwrap}
           tokenShortName={tokenShortName}
           icon={icon}
@@ -69,7 +73,7 @@ export const UnwrapModal = ({
           <Button
             label={`Unwrap ${amountToUnwrap} ${wrappedTokenName}`}
             variant="primary"
-            onClick={() => {}}
+            onClick={onUnwrap}
           />
         </LightFrame>
       </div>

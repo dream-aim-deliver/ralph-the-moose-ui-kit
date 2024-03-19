@@ -17,36 +17,40 @@ import { useSignals } from "@preact/signals-react/runtime";
  * Props for the WrapModal component.
  */
 export interface WrapModalProps {
-  amount: Signal<number>; // The amount to be wrapped
-  maxAmount: number; // The maximum amount that can be wrapped
+  amountToWrap: Signal<number>; // The amount to be wrapped
+  inscriptionBalance: number; // The maximum amount that can be wrapped
   fee: number; // The fee for wrapping
   tokenShortName: string; // The short name of the token
   icon: React.ReactNode; // The icon for the token
+  onClose?: () => void; // Callback function when the modal is closed
+  onWrap: () => void; // Callback function when wrapping is triggered
 }
 
 export const WrapModal = ({
-  amount,
-  maxAmount,
+  amountToWrap,
+  inscriptionBalance,
   fee,
   tokenShortName,
   icon,
+  onClose,
+  onWrap,
 }: WrapModalProps) => {
   useSignals();
   const wrappedTokenName = `W${tokenShortName.toUpperCase()}`;
-  const amountAfterWrapping = amount.value * (1 - fee / 100);
+  const amountAfterWrapping = amountToWrap.value * (1 - fee / 100);
   return (
     <Modal>
       <div className="flex w-full flex-col items-start justify-center gap-4">
         <div className="flex relative flex-row justify-between">
           <Heading title="Wrap" variant={HeadingVariant.H4} />
           <div className="ml-auto">
-            <IconButtonClose size={4} onClick={() => {}} />
+            <IconButtonClose size={4} onClick={onClose ? onClose : () => {}} />
           </div>
         </div>
         <InputAssetAmountWithLabel
           label="Amount to wrap"
-          maxAmount={maxAmount}
-          amount={amount}
+          maxAmount={inscriptionBalance}
+          amount={amountToWrap}
           tokenShortName={tokenShortName}
           icon={icon}
         />
@@ -54,7 +58,7 @@ export const WrapModal = ({
           <div className="self-stretch flex flex-row items-baseline justify-between">
             <div className="relative leading-[14px]">Wrap amount</div>
             <Label
-              label={`${amount.value} ${tokenShortName}`}
+              label={`${amountToWrap.value} ${tokenShortName}`}
               variant="medium"
             />
           </div>
@@ -70,9 +74,9 @@ export const WrapModal = ({
             />
           </div>
           <Button
-            label={`Wrap ${amount} ${tokenShortName}`}
+            label={`Wrap ${amountToWrap} ${tokenShortName}`}
             variant="primary"
-            onClick={() => {}}
+            onClick={onWrap}
           />
         </LightFrame>
       </div>
