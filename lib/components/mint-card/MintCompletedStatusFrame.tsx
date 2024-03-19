@@ -1,6 +1,7 @@
 import { IconSuccess, Link } from "..";
 import { formatNumber } from "../../utils/tokenUtils";
 import { LightFrame } from "../layouts/LightFrame";
+import { NavLink } from "../nav-link";
 
 /**
  * Props for the MintCompletedStatusFrame component.
@@ -40,12 +41,10 @@ export const MintCompletedStatusFrame = (
       <div className="w-full flex flex-row items-center justify-center text-left text-base font-varela gap-4">
         <label>{props.timestamp}</label>
       </div>
-      <Link
+      <NavLink
         variant="small"
         label="View in Explorer"
-        onClick={() => {
-          window.open(props.explorerLink, "_blank");
-        }}
+        url={props.explorerLink}
       />
     </LightFrame>
   );

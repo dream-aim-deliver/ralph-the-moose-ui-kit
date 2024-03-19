@@ -65,7 +65,7 @@ export const NavLink = ({
   const finalOnClickColorClass =
     onClickColorClass || "text-base-colors/brand-700";
   const classes = twMerge([
-    "flex flex-row items-center justify-between gap-2",
+    "flex flex-row items-center justify-start gap-2",
     "cursor-pointer",
     "relative",
     "tracking-[-0.04em]",
@@ -88,9 +88,11 @@ export const NavLink = ({
   return (
     <div role="link" className={classes} onClick={openLink}>
       {icon}
-      {label}
-      {variant === "medium" && <IconExternalLink size={4} />}
-      {variant === "small" && <IconExternalLinkSmall size={4} />}
+      <div className="flex flex-row items-start justify-start gap-[2px]">
+        {label}
+        {variant === "medium" && <IconExternalLink size={4} />}
+        {variant === "small" && <IconExternalLinkSmall size={4} />}
+      </div>
     </div>
   );
 };
