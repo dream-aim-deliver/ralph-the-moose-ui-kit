@@ -10,7 +10,7 @@ export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={twMerge(
-        "w-full h-full relative",
+        "w-screen h-full relative",
         "flex flex-col w-full self-stretch justify-start bg-base-colors/neutral-600",
         "box-border",
         "pt-2 px-4 pb-6",
@@ -33,7 +33,10 @@ export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
           onNetworkChange={() => {}}
           menuOpenSignal={menuOpenSignal}
         />
-        <div className="flex flex-col items-center justify-start gap-[16px]">
+        <div
+          id="content-container"
+          className="grid grid-col-3 items-center justify-center gap-[16px]"
+        >
           {menuOpenSignal.value ? <Menu /> : children}
         </div>
         <div className="flex flex-row items-center justify-center gap-[16px]">
