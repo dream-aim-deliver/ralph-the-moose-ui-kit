@@ -36,6 +36,7 @@ export const PageHeaderMobile = (props: PageHeaderProps) => {
         {props.activeNetwork.icon}
         {/* </div> */}
         {/* </div> */}
+        {/* this div should be hidden in large screens */}
         <div className="flex flex-row items-start justify-start p-2">
           {!props.menuOpenSignal.value ? (
             <div
