@@ -1,6 +1,14 @@
-import { Button, Heading, HeadingVariant, Label, Modal, Tooltip } from "..";
-import { LightFrame } from "../layouts/LightFrame";
+import { useSignal } from "@preact/signals-react";
+import { useSignals } from "@preact/signals-react/runtime";
+import { BalanceCardPrimaryVariant } from "./BalanceCardPrimary";
+import { WrapCard } from "./WrapCard";
+import { UnwrapCard } from "./UnwrapCard";
 
+enum BalanceCardVariants {
+  VARIANT_PRIMARY = "primary_variant",
+  VARIANT_WRAP = "wrap_variant",
+  VARIANT_UNWRAP = "unwrap_variant",
+}
 /**
  * Props for the BalanceCard component.
  */
@@ -12,11 +20,19 @@ export interface BalanceCardProps {
   /**
    * The wrapped amount.
    */
-  wrappedAmount: number;
+  wrappedBalance: number;
   /**
    * The short name of the token.
    */
   tokenShortName: string;
+  /**
+   * The icon for the token.
+   */
+  icon: React.ReactNode;
+  /**
+   * The transaction fee for wrapping and unwrapping.
+   */
+  fee: number;
   /**
    * Callback function when wrapping is triggered. It should open the wrapping modal.
    */
@@ -29,93 +45,46 @@ export interface BalanceCardProps {
 
 /**
  * Renders a balance card component.
- *
- * @param {object} props - The component props.
- * @param {number} props.inscriptionBalance - The balance of the inscription.
- * @param {number} props.wrappedAmount - The wrapped amount.
- * @param {string} props.tokenShortName - The short name of the token.
- * @returns {JSX.Element} The rendered balance card component.
  */
-export const BalanceCard = ({
-  inscriptionBalance,
-  wrappedAmount,
-  tokenShortName,
-}: BalanceCardProps) => {
-  return (
-    <Modal>
-      <div className="flex flex-col items-start justify-center gap-4">
-        <Heading title="Balance" variant={HeadingVariant.H4} />
-        <div className="flex flex-row items-center justify-between gap-4">
-          <BalanceCard.InscriptionSection
-            inscriptionBalance={inscriptionBalance}
-            tokenShortName={tokenShortName}
-            onWrap={() => {}}
-          />
-          <BalanceCard.WrappedSection
-            inscriptionBalance={wrappedAmount}
-            tokenShortName={tokenShortName}
-            onUnwrap={() => {}}
-          />
-        </div>
-      </div>
-    </Modal>
+export const BalanceCard = (props: BalanceCardProps) => {
+  useSignals();
+  const activeVariant = useSignal<BalanceCardVariants>(
+    BalanceCardVariants.VARIANT_PRIMARY,
   );
-};
-
-BalanceCard.InscriptionSection = ({
-  inscriptionBalance,
-  tokenShortName,
-  onWrap,
-}: {
-  inscriptionBalance: number;
-  tokenShortName: string;
-  onWrap: () => void;
-}) => {
-  const inscriptionBalanceString =
-    Intl.NumberFormat(`en-US`).format(inscriptionBalance);
+  const amountToWrap = useSignal<number>(0);
+  const amountToUnwrap = useSignal<number>(0);
+  const returnToPrimaryVariant = () => {
+    activeVariant.value = BalanceCardVariants.VARIANT_PRIMARY;
+  };
+  const showWrapVariant = () => {
+    activeVariant.value = BalanceCardVariants.VARIANT_WRAP;
+  };
+  const showUnwrapVariant = () => {
+    activeVariant.value = BalanceCardVariants.VARIANT_UNWRAP;
+  };
   return (
-    <LightFrame className="w-1/2">
-      <div className="w-full relative flex flex-col items-center justify-start gap-[8px]">
-        <Tooltip
-          title="Inscription"
-          content={`The amount of ${tokenShortName} inscriptions you have in your wallet.`}
-        />
-        <div className="flex flex-row items-center space-x-2">
-          <Label label={inscriptionBalanceString} variant="medium" />
-          <Label label={tokenShortName} variant="medium" />
-        </div>
-      </div>
-      <Button label="Wrap" variant="secondary" onClick={onWrap} />
-    </LightFrame>
-  );
-};
-
-BalanceCard.WrappedSection = ({
-  inscriptionBalance: inscriptionBalance,
-  tokenShortName,
-  onUnwrap,
-}: {
-  inscriptionBalance: number;
-  tokenShortName: string;
-  onUnwrap: () => void;
-}) => {
-  const inscriptionBalanceString =
-    Intl.NumberFormat(`en-US`).format(inscriptionBalance);
-  return (
-    <LightFrame className="w-1/2">
-      <div className="w-full relative flex flex-col items-center justify-start gap-[8px]">
-        <Tooltip
-          title="Inscription"
-          content={`The amount of ${tokenShortName} inscriptions you have in your wallet.`}
-        />
-        <div className="flex flex-row items-center space-x-2">
-          <Label label={inscriptionBalanceString} variant="medium" />
-          <Label label={tokenShortName} variant="medium" />
-        </div>
-      </div>
-      <div className="w-full">
-        <Button label="Unwrap" onClick={onUnwrap} variant="secondary" />
-      </div>
-    </LightFrame>
+    <div>
+      {activeVariant.value === BalanceCardVariants.VARIANT_PRIMARY && (
+        <BalanceCardPrimaryVariant
+          showWrapVariant={showWrapVariant}
+          showUnwrapVariant={showUnwrapVariant}
+          {...props}
+        ></BalanceCardPrimaryVariant>
+      )}
+      {activeVariant.value === BalanceCardVariants.VARIANT_WRAP && (
+        <WrapCard
+          amountToWrap={amountToWrap}
+          onClose={returnToPrimaryVariant}
+          {...props}
+        ></WrapCard>
+      )}
+      {activeVariant.value === BalanceCardVariants.VARIANT_UNWRAP && (
+        <UnwrapCard
+          amountToUnwrap={amountToUnwrap}
+          onClose={returnToPrimaryVariant}
+          {...props}
+        ></UnwrapCard>
+      )}
+    </div>
   );
 };

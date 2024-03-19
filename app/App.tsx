@@ -10,12 +10,13 @@ import {
   IconNetworkBase,
   InputAssetAmount,
   TextButton,
-  UnwrapModal,
+  UnwrapCard,
   WalletCard,
-  WrapModal,
+  WrapCard,
 } from "../lib";
 import { RalphLogo } from "@/components/ralph-logo";
 import { signal } from "@preact/signals-react";
+import { NavLink } from "@/components/nav-link";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,21 +27,28 @@ function App() {
     <TextButton text="Disconnect" size="medium" onClick={() => {}}></TextButton>
   );
   return (
-    <div className="flex flex-col gap-y-10">
-      <Header />  
-      <UnwrapModal
-        amountToUnwrap={amountToUnwrap}
-        wrappedAmount={100000}
-        fee={2}
-        tokenShortName="PR"
-        icon={<RalphLogo variant="icon" />}
+    <div>
+      <NavLink
+        variant="medium"
+        label="navlink / medium"
+        url="https://www.google.com"
+        defaultColorClass="text-blue-700"
       />
-      <WrapModal
-        tokenShortName="PR"
-        amount={amount}
+      <UnwrapCard
+        amountToUnwrap={amountToUnwrap}
+        wrappedBalance={100000}
         fee={2}
-        maxAmount={100000}
+        tokenShortName="PR"
         icon={<RalphLogo variant="icon" />}
+        onUnwrap={() => {}}
+      />
+      <WrapCard
+        tokenShortName="PR"
+        amountToWrap={amount}
+        fee={2}
+        inscriptionBalance={100000}
+        icon={<RalphLogo variant="icon" />}
+        onWrap={() => {}}
       />
       <InputAssetAmount
         amount={amount}
@@ -55,39 +63,14 @@ function App() {
       />
       <BalanceCard
         inscriptionBalance={1000}
-        wrappedAmount={1000}
+        wrappedBalance={1000}
         tokenShortName="PR"
         onWrap={() => {}}
         onUnwrap={() => {}}
+        fee={2}
+        icon={<RalphLogo variant="icon" />}
       />
-      {/* <DropdownTrigger
-        title="Dropdown Trigger"
-        variant="small"
-        expanded={false}
-        icon={<IconNetworkBase />}
-      />
-      <div className="text-3xl font-bold underline">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-        <Header />  
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
-    </div> 
+    </div>
   );
 }
 

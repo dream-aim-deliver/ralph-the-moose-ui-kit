@@ -13,21 +13,46 @@ import { LightFrame } from "../layouts/LightFrame";
 import { Signal } from "@preact/signals-react";
 import { useSignals } from "@preact/signals-react/runtime";
 
-export interface UnwrapModalProps {
+/**
+ * Props for the UnwrapModal component
+ */
+export interface UnwrapCardProps {
+  /**
+   * The amount to be unwrapped
+   */
   amountToUnwrap: Signal<number>;
-  wrappedAmount: number;
+  /**
+   * The wrapped balance i.e. Maximum amount that can be unwrapped
+   */
+  wrappedBalance: number;
   fee: number;
+  /**
+   * The short name of the token
+   */
   tokenShortName: string;
+  /**
+   * The icon for the token
+   */
   icon: React.ReactNode;
+  /**
+   * Callback function when the modal is closed
+   */
+  onClose?: () => void;
+  /**
+   * Callback function when unwrapping is triggered
+   */
+  onUnwrap: () => void;
 }
 
-export const UnwrapModal = ({
+export const UnwrapCard = ({
   amountToUnwrap,
-  wrappedAmount,
+  wrappedBalance,
   fee,
   tokenShortName,
   icon,
-}: UnwrapModalProps) => {
+  onClose,
+  onUnwrap,
+}: UnwrapCardProps) => {
   useSignals();
   const wrappedTokenName = `W${tokenShortName.toUpperCase()}`;
   const amountAfterUnwrapping = amountToUnwrap.value * (1 - fee / 100);
@@ -37,12 +62,12 @@ export const UnwrapModal = ({
         <div className="flex relative flex-row justify-between">
           <Heading title="Unwrap" variant={HeadingVariant.H4} />
           <div className="ml-auto">
-            <IconButtonClose size={4} onClick={() => {}} />
+            <IconButtonClose size={4} onClick={onClose ? onClose : () => {}} />
           </div>
         </div>
         <InputAssetAmountWithLabel
           label="Amount to wrap"
-          maxAmount={wrappedAmount}
+          maxAmount={wrappedBalance}
           amount={amountToUnwrap}
           tokenShortName={tokenShortName}
           icon={icon}
@@ -69,7 +94,7 @@ export const UnwrapModal = ({
           <Button
             label={`Unwrap ${amountToUnwrap} ${wrappedTokenName}`}
             variant="primary"
-            onClick={() => {}}
+            onClick={onUnwrap}
           />
         </LightFrame>
       </div>
