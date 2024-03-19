@@ -9,9 +9,9 @@ import {
   IconNetworkBase,
   InputAssetAmount,
   TextButton,
-  UnwrapModal,
+  UnwrapCard,
   WalletCard,
-  WrapModal,
+  WrapCard,
 } from "../lib";
 import { RalphLogo } from "@/components/ralph-logo";
 import { signal } from "@preact/signals-react";
@@ -26,7 +26,7 @@ function App() {
   );
   return (
     <>
-      <UnwrapModal
+      <UnwrapCard
         amountToUnwrap={amountToUnwrap}
         wrappedBalance={100000}
         fee={2}
@@ -34,7 +34,7 @@ function App() {
         icon={<RalphLogo variant="icon" />}
         onUnwrap={() => {}}
       />
-      <WrapModal
+      <WrapCard
         tokenShortName="PR"
         amountToWrap={amount}
         fee={2}
