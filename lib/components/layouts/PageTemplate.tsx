@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { PageFooter } from "./PageFooter";
-import { Menu, PageHeader } from "./PageHeader";
-import { IconNetworkBase } from "..";
+import { PageHeader } from "./PageHeader";
+import { IconNetworkBase, Menu } from "..";
 import { useSignal, useSignals } from "@preact/signals-react/runtime";
 
 export const PageTemplate = ({ children }: { children: React.ReactNode }) => {
