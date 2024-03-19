@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { UnwrapModal as Component } from "@/components/wrap-unwrap-modal";
+import { UnwrapCard as Component } from "@/components/balance-card";
 import { RalphLogo } from "@/components/ralph-logo";
 import { Signal } from "@preact/signals-react";
 
 const meta = {
-  title: "Components/ModalContent/Unwrap",
+  title: "Components/Balance/Unwrap",
   component: Component,
   parameters: {
     layout: "centered",
@@ -37,6 +37,7 @@ export const Unwrap: Story = {
     tokenShortName: "PR",
     amountToUnwrap: 0 as unknown as Signal<number>,
     fee: 2,
-    wrappedAmount: 100000,
+    wrappedBalance: 100000,
+    onUnwrap: () => {},
   },
 };

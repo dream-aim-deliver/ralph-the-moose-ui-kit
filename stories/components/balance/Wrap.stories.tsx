@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { WrapModal as Component } from "@/components/wrap-unwrap-modal";
+import { WrapCard as Component } from "@/components/balance-card";
 import { RalphLogo } from "@/components/ralph-logo";
 import { Signal } from "@preact/signals-react";
 
 const meta = {
-  title: "Components/ModalContent/Wrap",
+  title: "Components/Balance/Wrap",
   component: Component,
   parameters: {
     layout: "centered",
@@ -36,7 +36,8 @@ export const WrapModal: Story = {
     tokenShortName: "PR",
     amountToWrap: 0 as unknown as Signal<number>,
     fee: 2,
-    maxAmount: 100000,
     icon: <RalphLogo variant="icon" />,
+    inscriptionBalance: 100000,
+    onWrap: () => {},
   },
 };

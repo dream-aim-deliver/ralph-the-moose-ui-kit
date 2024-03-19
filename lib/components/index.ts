@@ -14,4 +14,3 @@ export * from "./paragraph";
 export * from "./text-button";
 export * from "./tooltip";
 export * from "./wallet-card";
-export * from "./wrap-unwrap-modal";

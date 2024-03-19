@@ -14,69 +14,87 @@ import { Signal } from "@preact/signals-react";
 import { useSignals } from "@preact/signals-react/runtime";
 
 /**
- * Props for the WrapModal component.
+ * Props for the UnwrapModal component
  */
-export interface WrapModalProps {
-  amountToWrap: Signal<number>; // The amount to be wrapped
-  inscriptionBalance: number; // The maximum amount that can be wrapped
-  fee: number; // The fee for wrapping
-  tokenShortName: string; // The short name of the token
-  icon: React.ReactNode; // The icon for the token
-  onClose?: () => void; // Callback function when the modal is closed
-  onWrap: () => void; // Callback function when wrapping is triggered
+export interface UnwrapCardProps {
+  /**
+   * The amount to be unwrapped
+   */
+  amountToUnwrap: Signal<number>;
+  /**
+   * The wrapped balance i.e. Maximum amount that can be unwrapped
+   */
+  wrappedBalance: number;
+  fee: number;
+  /**
+   * The short name of the token
+   */
+  tokenShortName: string;
+  /**
+   * The icon for the token
+   */
+  icon: React.ReactNode;
+  /**
+   * Callback function when the modal is closed
+   */
+  onClose?: () => void;
+  /**
+   * Callback function when unwrapping is triggered
+   */
+  onUnwrap: () => void;
 }
 
-export const WrapModal = ({
-  amountToWrap,
-  inscriptionBalance,
+export const UnwrapCard = ({
+  amountToUnwrap,
+  wrappedBalance,
   fee,
   tokenShortName,
   icon,
   onClose,
-  onWrap,
-}: WrapModalProps) => {
+  onUnwrap,
+}: UnwrapCardProps) => {
   useSignals();
   const wrappedTokenName = `W${tokenShortName.toUpperCase()}`;
-  const amountAfterWrapping = amountToWrap.value * (1 - fee / 100);
+  const amountAfterUnwrapping = amountToUnwrap.value * (1 - fee / 100);
   return (
     <Modal>
       <div className="flex w-full flex-col items-start justify-center gap-4">
         <div className="flex relative flex-row justify-between">
-          <Heading title="Wrap" variant={HeadingVariant.H4} />
+          <Heading title="Unwrap" variant={HeadingVariant.H4} />
           <div className="ml-auto">
             <IconButtonClose size={4} onClick={onClose ? onClose : () => {}} />
           </div>
         </div>
         <InputAssetAmountWithLabel
           label="Amount to wrap"
-          maxAmount={inscriptionBalance}
-          amount={amountToWrap}
+          maxAmount={wrappedBalance}
+          amount={amountToUnwrap}
           tokenShortName={tokenShortName}
           icon={icon}
         />
         <LightFrame className="w-full font-varela text-base-colors/neutral-500">
           <div className="self-stretch flex flex-row items-baseline justify-between">
-            <div className="relative leading-[14px]">Wrap amount</div>
+            <div className="relative leading-[14px]">Unwrap amount</div>
             <Label
-              label={`${amountToWrap.value} ${tokenShortName}`}
+              label={`${amountToUnwrap.value} ${wrappedTokenName}`}
               variant="medium"
             />
           </div>
           <div className="self-stretch flex flex-row items-baseline justify-between">
-            <div className="relative leading-[14px]">Wrapping fee</div>
+            <div className="relative leading-[14px]">Unwrapping fee</div>
             <Label label={`${fee} %`} variant="medium" />
           </div>
           <div className="self-stretch flex flex-row items-baseline justify-between">
             <div className="relative leading-[14px]">You'll receive</div>
             <Label
-              label={`${amountAfterWrapping} ${wrappedTokenName}`}
+              label={`${amountAfterUnwrapping} ${tokenShortName}`}
               variant="medium"
             />
           </div>
           <Button
-            label={`Wrap ${amountToWrap} ${tokenShortName}`}
+            label={`Unwrap ${amountToUnwrap} ${wrappedTokenName}`}
             variant="primary"
-            onClick={onWrap}
+            onClick={onUnwrap}
           />
         </LightFrame>
       </div>
