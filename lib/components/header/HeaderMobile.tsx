@@ -1,42 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { IconMenu, IconTwitter, IconTelegram, IconNetworkBase, IconClose, IconMooseHorn} from "../icons";
-import { NavLink, } from "../header";
+import {
+  IconMenu,
+  IconTwitter,
+  IconTelegram,
+  IconNetworkBase,
+  IconClose,
+  IconMooseHorn,
+} from "../icons";
+import { NavLink } from "../header";
 import { RalphLogo } from "../ralph-logo";
 import { DropdownTrigger } from "../dropdown";
 
-export interface HeaderMobileProps {
+export interface HeaderMobileProps {}
 
-}
-
-const mobileHeaderStyle  = twMerge(
-    "flex",
-    "flex-row",
-    "justify-between",
-    "w-full",
-    "box-border",
-    "pb-8",
+const mobileHeaderStyle = twMerge(
+  "flex",
+  "flex-row",
+  "justify-between",
+  "w-full",
+  "box-border",
+  "pb-8",
 );
 
-const mobileHeaderExpandedStyle  = twMerge(
-    "w-screen",
-    "h-screen",
-    "flex",
-    "flex-col",
-    "items-center",
-    "justify-between",
-    "p-8",
-    "text-text-inverted",
-    "bg-base-colors/neutral-600",
-    "z-20",
-    "fixed",
-    "top-0",
-    "left-0",
+const mobileHeaderExpandedStyle = twMerge(
+  "w-screen",
+  "h-screen",
+  "flex",
+  "flex-col",
+  "items-center",
+  "justify-between",
+  "p-8",
+  "text-text-inverted",
+  "bg-base-colors/neutral-600",
+  "z-20",
+  "fixed",
+  "top-0",
+  "left-0",
 );
-
 
 export const HeaderMobile = () => {
-
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenMenu = () => {
@@ -49,33 +52,72 @@ export const HeaderMobile = () => {
 
   return (
     <div>
-        <div className={`${ isOpen ? "hidden" : mobileHeaderStyle }`}>
-            <RalphLogo variant="full-horizontal" />
-            <div className="flex flex-row items-center gap-4">
-                <DropdownTrigger title="" expanded={false} selectedOption="" variant="large" icon={<IconNetworkBase/>} defaultColor="text-text-inverted" />
-                <div onClick={handleOpenMenu}><IconMenu/></div>
-            </div>
+      <div className={`${isOpen ? "hidden" : mobileHeaderStyle}`}>
+        <RalphLogo variant="full-horizontal" />
+        <div className="flex flex-row items-center gap-4">
+          <DropdownTrigger
+            title=""
+            expanded={false}
+            selectedOption=""
+            variant="large"
+            icon={<IconNetworkBase />}
+            defaultColor="text-text-inverted"
+          />
+          <div onClick={handleOpenMenu}>
+            <IconMenu />
+          </div>
         </div>
+      </div>
 
-       <div className={`${ isOpen ? mobileHeaderExpandedStyle : "hidden" }`} >
-            <div className="flex flex-row justify-between w-full">
-                <RalphLogo variant="full-horizontal" />
-                <div onClick={handleCloseMenu}><IconClose/></div>
-            </div>
-            <div  className="flex flex-col items-center justify-center gap-8">
-                <NavLink label="Website" isExternal={false} link="https://ralphthemoose.com/" leftIcon={false} icon={<IconMenu />}/>
-                <NavLink label="Swap" isExternal={true} link="https://app.elk.finance/swap/8453/ETH/ELK" leftIcon={false} icon={<IconMenu />}/>
-                <NavLink label="Farm" isExternal={true} link="https://app.elk.finance/farms/all/" leftIcon={false} icon={<IconMenu />}/>
-                <NavLink label="Twitter" isExternal={true} link="https://twitter.com/RalphTheMoose" leftIcon={true} icon={<IconTwitter />}/>
-                <NavLink label="Telegram" isExternal={true} link="https://t.me/RalphTheMoose" leftIcon={true} icon={<IconTelegram />}/>
-            </div>
-            <div className="flex flex-row items-center gap-2 justify-center text-text-inverted">
-                Crafted with {<IconMooseHorn />} by the Ralph team
-            </div>
+      <div className={`${isOpen ? mobileHeaderExpandedStyle : "hidden"}`}>
+        <div className="flex flex-row justify-between w-full">
+          <RalphLogo variant="full-horizontal" />
+          <div onClick={handleCloseMenu}>
+            <IconClose />
+          </div>
         </div>
-
+        <div className="flex flex-col items-center justify-center gap-8">
+          <NavLink
+            label="Website"
+            isExternal={false}
+            link="https://ralphthemoose.com/"
+            leftIcon={false}
+            icon={<IconMenu />}
+          />
+          <NavLink
+            label="Swap"
+            isExternal={true}
+            link="https://app.elk.finance/swap/8453/ETH/ELK"
+            leftIcon={false}
+            icon={<IconMenu />}
+          />
+          <NavLink
+            label="Farm"
+            isExternal={true}
+            link="https://app.elk.finance/farms/all/"
+            leftIcon={false}
+            icon={<IconMenu />}
+          />
+          <NavLink
+            label="Twitter"
+            isExternal={true}
+            link="https://twitter.com/RalphTheMoose"
+            leftIcon={true}
+            icon={<IconTwitter />}
+          />
+          <NavLink
+            label="Telegram"
+            isExternal={true}
+            link="https://t.me/RalphTheMoose"
+            leftIcon={true}
+            icon={<IconTelegram />}
+          />
+        </div>
+        <div className="flex flex-row items-center gap-2 justify-center text-text-inverted">
+          Crafted with {<IconMooseHorn />} by the Ralph team
+        </div>
+      </div>
     </div>
-
 
     // <div className="relative">
     //   {/* Hamburger menu icon */}
@@ -110,4 +152,3 @@ export const HeaderMobile = () => {
     // </div>
   );
 };
-

@@ -19,13 +19,19 @@
     "**/*.css"
   ],
   "exports": {
-    "./css": "./dist/style.css"
+    "./css": "./dist/style.css",
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "scripts": {
     "app": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
-    "build-docs": "npx typedoc --entryPoints lib/components --tsconfig tsconfig-typedoc.json",
-    "build-storybook": "storybook build",
+    "build:watch": "tsc --p ./tsconfig-build.json && vite build --watch",
+    "build:docs": "typedoc --out docs lib/index.ts",
+    "build:storybook": "storybook build",
     "clean": "rimraf dist docs coverage storybook-static",
     "dev": "storybook dev -p 6006",
     "format": "prettier --write \"app/**/*.{ts,tsx}\" \"lib/**/*.{ts,tsx}\" \"stories/**/*.{ts,tsx}\"",
@@ -34,9 +40,7 @@
     "start": "vite --host --open",
     "test": "vitest --run --coverage",
     "test:watch": "vitest --watch",
-    "test:ui": "vitest --ui",
-    "uninstall": "rimraf node_modules package-lock.json",
-    "build-tailwind": "tailwindcss -i lib/tailwind/theme.css -o lib/tailwind/tailwind.css"
+    "test:ui": "vitest --ui"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -44,14 +48,15 @@
     "winston": "^3.11.0"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^8.0.0",
-    "@storybook/addon-interactions": "^8.0.0",
-    "@storybook/addon-links": "^8.0.0",
-    "@storybook/addon-onboarding": "^8.0.0",
-    "@storybook/blocks": "^8.0.0",
-    "@storybook/react": "^8.0.0",
-    "@storybook/react-vite": "^8.0.0",
-    "@storybook/test": "^8.0.0",
+    "@chromatic-com/storybook": "^1.3.3",
+    "@storybook/addon-essentials": "^8.0.10",
+    "@storybook/addon-interactions": "^8.0.10",
+    "@storybook/addon-links": "^8.0.10",
+    "@storybook/addon-onboarding": "^8.0.10",
+    "@storybook/blocks": "^8.0.10",
+    "@storybook/react": "^8.0.10",
+    "@storybook/react-vite": "^8.0.10",
+    "@storybook/test": "^8.0.10",
     "@tailwindcss/typography": "^0.5.10",
     "@testing-library/jest-dom": "^6.3.0",
     "@testing-library/react": "^14.1.2",
@@ -77,7 +82,9 @@
     "prettier": "^3.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook": "^8.0.0",
+    "rollup-plugin-preserve-directives": "^0.4.0",
+    "storybook": "^8.0.10",
+    "storybook-dark-mode": "^4.0.1",
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1",
     "typedoc": "^0.25.7",

@@ -1,13 +1,12 @@
 import dts from "vite-plugin-dts";
-import { libInjectCss } from "vite-plugin-lib-inject-css";
 import path from "path";
 import react from "@vitejs/plugin-react-swc";
 import { defineConfig, UserConfig } from "vitest/config";
 import { glob } from "glob";
 import { extname, relative } from "path";
 import { fileURLToPath } from "node:url";
-import tailwindcss from "tailwindcss";
 import { peerDependencies } from "./package.json";
+import preserveDirectives from "rollup-plugin-preserve-directives";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -61,18 +60,17 @@ export default defineConfig({
         ".storybook/",
         "stories/**/*.{ts,tsx}",
         ".eslint*",
+        "tools",
+        "lib/utils",
+        "lib/tailwind",
+        "docs",
       ],
     },
   },
 
-  plugins: [dts({ include: ["lib"] }), react(), libInjectCss()],
-  css: {
-    postcss: {
-      plugins: [tailwindcss],
-    },
-  },
+  plugins: [dts({ include: ["lib"] }), react()],
   build: {
-    copyPublicDir: false,
+    copyPublicDir: true,
     lib: {
       entry: path.resolve(__dirname, "lib/index.ts"),
       formats: ["es"],
@@ -98,6 +96,7 @@ export default defineConfig({
       output: {
         assetFileNames: "assets/[name][extname]",
         entryFileNames: "[name].js",
+        preserveModules: true,
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
@@ -105,6 +104,7 @@ export default defineConfig({
           tailwindcss: "tailwindcss",
           ...peerDependencies,
         },
+        plugins: [preserveDirectives()],
       },
     },
     target: "esnext",
