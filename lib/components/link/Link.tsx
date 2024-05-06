@@ -14,10 +14,6 @@ export interface LinkProps {
    */
   label: string;
   /**
-   * Inverts the color of the link on dark backgrounds
-   */
-  onDark: boolean;
-  /**
    * The onClick callback.
    * @returns {unknown} - The return value of the callback, defaults to unknown.
    */
@@ -29,7 +25,7 @@ export interface LinkProps {
  * This is a link component that can be used to display text links.
  * @param {LinkProps} props - The properties of the link.
  */
-export const Link = ({ variant, label, onDark, onClick }: LinkProps) => {
+export const Link = ({ variant, label, onClick }: LinkProps) => {
   const classes = twMerge([
     "cursor-pointer",
     "relative",
@@ -43,7 +39,6 @@ export const Link = ({ variant, label, onDark, onClick }: LinkProps) => {
     "ease-in-out",
     variant === "small" ? "text-xs" : "",
     variant === "medium" ? "text-base" : "",
-    onDark ? "text-text-inverted" : "text-text-primary",
     "text-left",
     "font-bold",
     "hover:scale-110",
