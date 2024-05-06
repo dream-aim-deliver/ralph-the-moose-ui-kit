@@ -22,5 +22,5 @@ jobs:
       
       - name: Build Docs 🔧
         run: |
-          npm run build-docs
+          npm run build:docs
   
