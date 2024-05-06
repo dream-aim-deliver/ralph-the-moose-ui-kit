@@ -44,7 +44,7 @@ jobs:
           
       - name: Build Docs 🔧
         run: |
-          npm run build-docs
+          npm run build:docs
 
       - name: "Upload Docs"
         uses: actions/upload-artifact@v4
@@ -54,7 +54,7 @@ jobs:
 
       - name: Build Storybook 🔧
         run: |
-          npm run build-storybook
+          npm run build:storybook
 
       - name: "Upload Storybook"
         uses: actions/upload-artifact@v4
