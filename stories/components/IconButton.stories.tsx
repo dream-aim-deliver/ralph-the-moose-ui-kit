@@ -27,5 +27,6 @@ type Story = StoryObj<typeof meta>;
 export const CloseSmallDefault: Story = {
   args: {
     size: 4,
+    onClick: () => {},
   },
 };

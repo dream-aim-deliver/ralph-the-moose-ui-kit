@@ -37,12 +37,12 @@ export const NavLink = ({
           {leftIcon ? (
             <div className="relative bottom-1 mr-1 ">{icon}</div>
           ) : null}
-          <Link variant="medium" label={label} onDark={true} />
+          <Link variant="medium" label={label} />
           <IconExternalLinkSmall size={16} />
         </a>
       ) : (
         <a className={navLinkStyle} href={link}>
-          <Link variant="medium" label={label} onDark={true} />
+          <Link variant="medium" label={label} />
         </a>
       )}
     </div>
