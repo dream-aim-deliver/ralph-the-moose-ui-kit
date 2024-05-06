@@ -1,9 +1,17 @@
 import "../lib/tailwind/theme.css";
 import "../lib/tailwind/tailwind.css";
 import type { Preview } from "@storybook/react";
+import { themes } from "@storybook/theming";
+
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    darkMode: {
+      darkClass: "dark",
+      lightClass: "light",
+      stylePreview: true,
+      dark: { ...themes.dark, appBg: "black" },
+      light: { ...themes.normal, appBg: "#f7fafc" },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
