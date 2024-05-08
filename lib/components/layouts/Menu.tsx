@@ -12,18 +12,6 @@ export const Menu = () => {
       />
       <NavLink
         variant="medium"
-        label="Swap"
-        url="https://app.elk.finance/swap/8453/ETH/ELK"
-        className="text-text-inverted"
-      />
-      <NavLink
-        variant="medium"
-        label="Farm"
-        url="https://app.elk.finance/farms/all/"
-        className="text-text-inverted"
-      />
-      <NavLink
-        variant="medium"
         label="Twitter"
         url="https://twitter.com/RalphTheMoose"
         icon={<IconTwitter />}
@@ -34,6 +22,25 @@ export const Menu = () => {
         label="Telegram"
         url="https://t.me/RalphTheMoose"
         icon={<IconTelegram />}
+        className="text-text-inverted"
+      />
+      <NavLink
+        variant="medium"
+        label="Farm"
+        url="https://app.elk.finance/farms/all/"
+        className="text-text-inverted"
+      />
+      <NavLink
+        variant="medium"
+        label="ElkDex"
+        url="https://app.elk.finance/swap/8453/ETH/PR"
+        // icon={<IconElk size={4} />}
+        className="text-text-inverted"
+      />
+      <NavLink
+        variant="medium"
+        label="UniSwap"
+        url="https://app.uniswap.org/swap"
         className="text-text-inverted"
       />
     </div>

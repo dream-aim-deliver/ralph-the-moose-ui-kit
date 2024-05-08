@@ -1,4 +1,4 @@
-import { IconProps, generateClassesForIcon } from "./Icon";
+import { type IconProps, generateClassesForIcon } from "./Icon";
 
 /**
  * IconExternalLink
@@ -7,7 +7,7 @@ import { IconProps, generateClassesForIcon } from "./Icon";
  */
 export const IconExternalLink = ({ size }: { size?: number }) => {
   const props: IconProps = {
-    size: size || 12,
+    size: size ?? 12,
   };
   return (
     <svg

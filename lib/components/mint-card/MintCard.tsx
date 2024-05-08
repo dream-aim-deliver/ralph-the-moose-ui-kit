@@ -1,7 +1,7 @@
 import { useSignals } from "@preact/signals-react/runtime";
-import { Button, Heading, HeadingVariant, Label, Modal } from "..";
+import { Button, Heading, HeadingVariant, Label, Card } from "..";
 import { formatNumber } from "../../utils/tokenUtils";
-import { Signal } from "@preact/signals-react";
+import { type Signal } from "@preact/signals-react";
 
 export interface MintCardProps {
   mintedPercentage: number;
@@ -13,21 +13,19 @@ export interface MintCardProps {
   tokenShortName: string;
   isMinting: Signal<boolean>;
   children?: React.ReactNode;
+
   onMint: () => void;
 }
-
 export const MintCard = (props: MintCardProps) => {
   useSignals();
   const formattedMintLimit = formatNumber(props.mintLimit);
   const formattedTotalSupply = formatNumber(props.totalSupply);
   const formattedTotalMinted = formatNumber(props.totalMinted);
-
   const handleMint = () => {
-    props.isMinting.value = true;
     props.onMint();
   };
   return (
-    <Modal>
+    <Card>
       <div className="w-full flex flex-col items-start justify-center gap-4 text-wrap">
         <Heading title="Mint" variant={HeadingVariant.H4} />
         <div className="w-full flex flex-col items-center justify-between gap-2 text-text-secondary font-varela text-base">
@@ -56,6 +54,6 @@ export const MintCard = (props: MintCardProps) => {
           onClick={handleMint}
         />
       </div>
-    </Modal>
+    </Card>
   );
 };

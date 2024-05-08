@@ -45,12 +45,15 @@ export const Button = ({
   }
 
   return (
-    <div className={containerClasses} aria-disabled={disabled}>
+    <div
+      className={containerClasses}
+      aria-disabled={disabled}
+      onClick={disabled ? () => {} : onClick}
+    >
       <div
         aria-disabled={disabled}
         role="button"
         className={buttonClasses}
-        onClick={disabled ? () => {} : onClick}
         {...props}
       >
         {label}

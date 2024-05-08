@@ -1,4 +1,4 @@
-import { Signal } from "@preact/signals-react";
+import { type Signal } from "@preact/signals-react";
 import { useSignals } from "@preact/signals-react/runtime";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -35,9 +35,6 @@ export const InputAssetAmount = ({
     }
     try {
       amount.value = parseInt(value, 10);
-      console.log(
-        `[DEBUG:: InputAssetAmountComponent]: amount.value: ${amount.value}`,
-      );
     } catch (e) {
       console.log(
         `[ERROR:: InputAssetAmountComponent]: Error parsing ${value} to number`,
@@ -62,7 +59,7 @@ export const InputAssetAmount = ({
         defaultValue={amount.value}
         placeholder="Enter a Value"
         className={[
-          "flex-1 relative tracking-[0.02em] leading-[16px] min-w-[14rem] border-none",
+          "flex-1 relative tracking-[0.02em] leading-[16px] min-w-[10rem] border-none",
           "bg-white text-left appearance-none",
           "focus:outline-none",
           "focus:ring-0",

@@ -45,6 +45,7 @@ export const TextButton = ({
         "aria-disabled:opacity-40",
         "aria-disabled:pointer-events-none",
         "transition-all",
+        "cursor-pointer",
       )}
       role="button"
       aria-disabled={disabled}

@@ -27,7 +27,8 @@ export interface HeadingProps {
  */
 export const Heading = ({ title, variant }: HeadingProps) => {
   const classes = [
-    "w-[324.33px]",
+    // "w-[324.33px]",
+    "w-full",
     "relative",
     "tracking-[-0.04em]",
     "leading-[24px]",
@@ -44,7 +45,7 @@ export const Heading = ({ title, variant }: HeadingProps) => {
     .join(" ");
 
   return (
-    <label role="heading" className={classes}>
+    <label aria-level={1} role="heading" className={classes}>
       {title}
     </label>
   );
