@@ -77,7 +77,7 @@ export const HeaderMobile = () => {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-8">
-        <NavLink
+          <NavLink
             variant="medium"
             label="Website"
             isExternal={true}
