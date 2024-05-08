@@ -1,4 +1,4 @@
-import { IconProps, generateClassesForIcon } from "./Icon";
+import { type IconProps, generateClassesForIcon } from "./Icon";
 
 /**
  * @usage <IconExternalLinkSmall />

@@ -40,7 +40,7 @@ export const secondaryStyles = twMerge(
   "border-t-[1px] border-solid border-r-[1px] border-b-[3px] border-l-[1px]",
   "border-base-colors/brand-600",
   buttonTextStyles,
-  "text-text-action",
+  "text-base-colors/brand-600",
   "hover:border-base-colors/brand-400",
   "hover:text-base-colors/brand-400",
   "active:border-base-colors/brand-700",

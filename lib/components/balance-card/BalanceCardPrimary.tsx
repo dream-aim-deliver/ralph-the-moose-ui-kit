@@ -1,4 +1,4 @@
-import { Modal, Heading, HeadingVariant } from "..";
+import { Card, Heading, HeadingVariant } from "..";
 import { InscriptionBalance } from "./InscriptionBalance";
 import { WrappedBalance } from "./WrappedBalance";
 
@@ -40,10 +40,10 @@ export const BalanceCardPrimaryVariant = ({
   showUnwrapVariant,
 }: BalanceCardPrimaryVariantProps) => {
   return (
-    <Modal>
+    <Card>
       <div className="w-full flex flex-col items-start justify-center gap-4">
         <Heading title="Balance" variant={HeadingVariant.H4} />
-        <div className="w-full flex flex-row items-center justify-between gap-4">
+        <div className="w-full grid grid-cols-2 items-center justify-between gap-4">
           <InscriptionBalance
             inscriptionBalance={inscriptionBalance}
             tokenShortName={tokenShortName}
@@ -56,6 +56,6 @@ export const BalanceCardPrimaryVariant = ({
           />
         </div>
       </div>
-    </Modal>
+    </Card>
   );
 };

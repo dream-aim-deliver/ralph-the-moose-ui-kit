@@ -50,7 +50,7 @@ export const Tooltip = ({ title, content }: TooltipProps) => {
             "
         data-tip={content}
       >
-        <div className="flex flex-row items-center justify-start gap-[2px]">
+        <div className="flex flex-row items-center justify-start gap-[2px] opacity-30 hover:opacity-100">
           <IconTooltip size={4} />
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IconError, IconSuccess, IconWarning, Modal } from "..";
+import { IconError, IconSuccess, IconWarning, Card } from "..";
 
 /**
  * Props for the Toast component.
@@ -49,11 +49,9 @@ export const Toast = ({
     ToastViewStatus.Show,
   );
   useEffect(() => {
-    setTimeout(() => {
-      if (isPermanent) return;
-      setViewStatus(ToastViewStatus.Fading);
-    }, 3000);
-  });
+    if (isPermanent) return;
+    setViewStatus(ToastViewStatus.Fading);
+  }, []);
 
   useEffect(() => {
     if (viewStatus === ToastViewStatus.Fading) {
@@ -61,45 +59,45 @@ export const Toast = ({
         setViewStatus(ToastViewStatus.Hide);
       }, 3000);
     }
-  });
+  }, [viewStatus]);
 
   const classList = () => {
     switch (viewStatus) {
       case ToastViewStatus.Show:
-        return "opacity-100 delay-300";
+        return "opacity-100";
       case ToastViewStatus.Fading:
-        return "animate-fadeout delay-[3000ms]";
+        return "opacity-100 animate-fadeout delay-[3000ms]";
       case ToastViewStatus.Hide:
         return "hidden";
     }
   };
 
   return (
-    <div className={classList()}>
-      <Modal>
-        <div className="w-full h-10 flex flex-row items-center justify-start gap-4">
+    <div className={`${classList()}`}>
+      <Card>
+        <div className="flex h-10 w-full flex-row items-center justify-start gap-4">
           <div>
             {status === "success" && <IconSuccess size={12} />}
             {status === "error" && <IconError size={12} />}
             {status === "warning" && <IconWarning size={12} />}
           </div>
-          <div className="flex-1 w-full relative flex flex-row items-center justify-start gap-[16px] text-left">
-            <div className="flex-1 flex flex-col items-start justify-start gap-[4px] font-varela text-text-secondary">
+          <div className="relative flex w-full flex-1 flex-row items-center justify-start gap-[16px] text-left">
+            <div className="flex flex-1 flex-col items-start justify-start gap-[4px] font-varela text-text-secondary">
               <div className="font-gluten font-bold text-text-primary">
                 {title}
               </div>
-              <div className="self-stretch flex flex-row items-start justify-start text-clip">
+              <div className="flex flex-row items-start justify-start self-stretch text-clip">
                 {message}
               </div>
             </div>
             {children && (
-              <div className="flex flex-row items-start justify-start ml-auto">
+              <div className="ml-auto flex flex-row items-start justify-start">
                 {children}
               </div>
             )}
           </div>
         </div>
-      </Modal>
+      </Card>
     </div>
   );
 };

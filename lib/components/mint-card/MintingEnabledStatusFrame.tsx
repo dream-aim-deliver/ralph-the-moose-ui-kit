@@ -27,7 +27,7 @@ export const MintEnabledStatusFrame = (props: MintEnabledStatusFrameProps) => {
         {`You're eligible to mint ${formatedEligibleAmount} ${props.tokenShortName}`}
       </div>
       <div className="w-full flex flex-row items-center justify-between">
-        <label>You'll receive</label>
+        <label>{`You'll receive`}</label>
         <Label
           label={`${formattedExpectedReturn} ${props.tokenShortName}`}
           variant="medium"

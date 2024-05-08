@@ -1,6 +1,6 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import { IconButtonProps, IconClose } from "..";
+import { type IconButtonProps, IconClose } from "..";
 
 /**
  * The CloseIconButton component.

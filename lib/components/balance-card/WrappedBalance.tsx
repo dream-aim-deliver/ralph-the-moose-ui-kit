@@ -17,7 +17,7 @@ export const WrappedBalance = ({
   const wrappedBalanceString =
     Intl.NumberFormat(`en-US`).format(wrappedBalance);
   return (
-    <LightFrame className="w-1/2">
+    <LightFrame className="w-full">
       <div className="w-full relative flex flex-col items-center justify-start gap-[8px]">
         <Tooltip
           title="Wrapped"

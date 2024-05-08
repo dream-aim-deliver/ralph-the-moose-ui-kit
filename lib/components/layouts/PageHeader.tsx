@@ -1,8 +1,9 @@
 import { twMerge } from "tailwind-merge";
 import { RalphLogo } from "../ralph-logo";
 import { DropdownTrigger, IconClose, IconMenu, IconNetworkBase } from "..";
-import { Signal } from "@preact/signals-react";
+import { type Signal } from "@preact/signals-react";
 import { Menu } from "./Menu";
+import { useSignals } from "@preact/signals-react/runtime";
 
 export interface SupportedNetworkProps {
   name: string;
@@ -17,10 +18,11 @@ export interface PageHeaderProps {
   menuOpenSignal: Signal<boolean>;
 }
 export const PageHeader = (props: PageHeaderProps) => {
+  useSignals();
   return (
     <div
       className={twMerge(
-        "w-full relative flex flex-row items-center justify-between",
+        "relative flex w-full flex-row items-center justify-between",
         "text-left font-gluten",
         "text-[23.64px]",
         "text-text-inverted ",
@@ -29,7 +31,7 @@ export const PageHeader = (props: PageHeaderProps) => {
     >
       <div
         id="header-content-sm"
-        className="w-full flex flex-row items-center justify-between gap-[16px] xl:hidden"
+        className="flex w-full flex-row items-center justify-between gap-[16px] xl:hidden"
       >
         <div className="flex flex-row items-center justify-start gap-[9px]">
           <RalphLogo variant="full-horizontal" />
@@ -40,14 +42,16 @@ export const PageHeader = (props: PageHeaderProps) => {
             className="flex flex-row items-start justify-start p-2"
           >
             {!props.menuOpenSignal.value ? (
-              <div className="flex flex-row gap-4 cursor-pointer">
-                <DropdownTrigger
-                  title=""
-                  variant="small"
-                  expanded={false}
-                  selectedOption="Base"
-                  icon={<IconNetworkBase />}
-                />
+              <div className="flex cursor-pointer flex-row gap-4">
+                <div onClick={() => props.onNetworkChange(props.activeNetwork)}>
+                  <DropdownTrigger
+                    title=""
+                    variant="small"
+                    expanded={true}
+                    selectedOption={props.activeNetwork.name}
+                    icon={<IconNetworkBase />}
+                  />
+                </div>
                 <div
                   className="cursor-pointer hover:text-text-primary"
                   onClick={() => {
@@ -63,7 +67,7 @@ export const PageHeader = (props: PageHeaderProps) => {
                   onClick={() => {
                     props.menuOpenSignal.value = false;
                   }}
-                  className="text-text-inverted cursor-pointer hover:text-text-primary"
+                  className="cursor-pointer text-text-inverted hover:text-text-primary"
                 >
                   <IconClose />
                 </div>
@@ -74,20 +78,24 @@ export const PageHeader = (props: PageHeaderProps) => {
       </div>
       <div
         id="header-content-xl"
-        className="hidden xl:flex w-full flex-row items-start justify-between"
+        className="hidden w-full flex-row items-start justify-between xl:flex"
       >
         <div className="flex flex-row items-center justify-start gap-[9px]">
           <RalphLogo variant="full-horizontal" />
         </div>
-        <div className="flex flex-row items-center justify-between text-base ml-40 mr-40">
+        <div className="ml-40 mr-40 flex flex-row items-center justify-between text-base">
           <Menu />
         </div>
-        <div className="cursor-pointer">
+        {/* TODO: Implement network change and dropdown content */}
+        <div
+          className="cursor-pointer"
+          onClick={() => props.onNetworkChange(props.activeNetwork)}
+        >
           <DropdownTrigger
             title=""
             variant="large"
             expanded={false}
-            selectedOption="Base"
+            selectedOption={props.activeNetwork.name}
             icon={<IconNetworkBase />}
           />
         </div>

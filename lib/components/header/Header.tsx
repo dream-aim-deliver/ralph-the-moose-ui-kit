@@ -1,9 +1,9 @@
-// import { IconMenu } from "../icons/IconMenu";
 import { RalphLogo } from "../ralph-logo";
 import { twMerge } from "tailwind-merge";
-import { NavLink, HeaderMobile } from "../header";
+import { HeaderMobile } from "../header";
 import { IconMenu, IconTwitter, IconTelegram, IconNetworkBase } from "../icons";
 import { DropdownTrigger } from "../dropdown";
+import { NavLink } from "../nav-link";
 /**
  * ViewModel for link component.
  * @typedef {Object} HeaderProps
@@ -40,38 +40,38 @@ export const Header = () => {
         <RalphLogo variant="full-horizontal" />
         <div className="flex flex-row items-center w-full gap-2">
           <NavLink
+            variant="medium"
             label="Website"
             isExternal={true}
-            link="https://ralphthemoose.com/"
-            leftIcon={false}
+            url="https://ralphthemoose.com/"
             icon={<IconMenu />}
           />
           <NavLink
+            variant="medium"
             label="Swap"
             isExternal={true}
-            link="https://app.elk.finance/swap/8453/ETH/ELK"
-            leftIcon={false}
+            url="https://app.elk.finance/swap/8453/ETH/ELK"
             icon={<IconMenu />}
           />
           <NavLink
+            variant="medium"
             label="Farm"
             isExternal={true}
-            link="https://app.elk.finance/farms/all/"
-            leftIcon={false}
+            url="https://app.elk.finance/farms/all/"
             icon={<IconMenu />}
           />
           <NavLink
+            variant="medium"
             label="Twitter"
             isExternal={true}
-            link="https://twitter.com/RalphTheMoose"
-            leftIcon={true}
+            url="https://twitter.com/RalphTheMoose"
             icon={<IconTwitter />}
           />
           <NavLink
+            variant="medium"
             label="Telegram"
             isExternal={true}
-            link="https://t.me/RalphTheMoose"
-            leftIcon={true}
+            url="https://t.me/RalphTheMoose"
             icon={<IconTelegram />}
           />
           <DropdownTrigger

@@ -1,5 +1,4 @@
 import logo from "@/assets/ralph-logo.svg";
-
 import { twMerge } from "tailwind-merge";
 export interface RalphLogoProps {
   variant: "icon" | "full-vertical" | "full-horizontal";

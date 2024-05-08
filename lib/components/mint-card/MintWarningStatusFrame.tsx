@@ -1,11 +1,11 @@
-import { IconError } from "..";
+import { IconWarning } from "..";
 import { LightFrame } from "../layouts/LightFrame";
 import { NavLink } from "../nav-link";
 
 /**
- * Props for the MintErrorStatusFrame component.
+ * Props for the MintWarningStatusFrame component.
  */
-export interface MintErrorStatusFrameProps {
+export interface MintWarningStatusFrameProps {
   error: string;
   message: string;
   explorerLink?: string;
@@ -13,16 +13,16 @@ export interface MintErrorStatusFrameProps {
 
 /**
  * Displays an error message when the user is on the wrong network.
- * @param props {@link MintErrorStatusFrameProps}
+ * @param props {@link MintWarningStatusFrameProps }
  */
-export const MintErrorStatusFrame = (props: MintErrorStatusFrameProps) => {
+export const MintWarningStatusFrame = (props: MintWarningStatusFrameProps) => {
   return (
     <LightFrame className="w-full items-center gap-4 text-wrap text-base-colors/neutral-400">
-      <IconError size={12} />
-      <div className="w-full font-gluten font-bold relative text-lg tracking-[-0.04em] leading-[18px] inline-block font-heading-h5 text-text-primary text-center overflow-auto whitespace-normal">
+      <IconWarning size={12} />
+      <div className="font-heading-h5 relative inline-block w-full overflow-auto whitespace-normal text-center font-gluten text-lg font-bold leading-[18px] tracking-[-0.04em] text-text-primary">
         {props.error}
       </div>
-      <div className="w-full flex flex-row items-center justify-center text-left text-base font-varela gap-4">
+      <div className="flex w-full flex-row items-center justify-center gap-4 text-left font-varela text-base">
         <label>{props.message}</label>
       </div>
       {props.explorerLink && (

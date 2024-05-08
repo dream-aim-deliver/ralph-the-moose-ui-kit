@@ -30,6 +30,7 @@ export const Label = ({ variant, label }: LabelProps) => {
     variant === "medium" ? "text-base" : "",
     "text-text-primary",
     "text-left",
+    "break-all",
   ]);
   return <div className={classes}>{label}</div>;
 };

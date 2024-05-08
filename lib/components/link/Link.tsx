@@ -39,10 +39,10 @@ export const Link = ({ variant, label, onClick }: LinkProps) => {
     "ease-in-out",
     variant === "small" ? "text-xs" : "",
     variant === "medium" ? "text-base" : "",
+    "text-text-primary",
     "text-left",
     "font-bold",
     "hover:scale-110",
-    // "text-rose-900",
   ]);
 
   return (

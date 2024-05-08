@@ -42,8 +42,5 @@ export const ColorVariant: Story = {
     variant: "medium",
     label: "navlink / medium",
     url: "https://www.google.com",
-    defaultColorClass: "text-blue-500",
-    onHoverColorClass: "text-red-500",
-    onClickColorClass: "text-blue-700",
   },
 };
