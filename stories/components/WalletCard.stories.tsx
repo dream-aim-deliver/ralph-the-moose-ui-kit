@@ -36,6 +36,7 @@ export const WalletCard: Story = {
   args: {
     status: "disconnected",
     address: "0x1234...5678",
+    walletName: "My Wallet", // Added the missing walletName property
     connectButton,
     disconnectButton,
   },
