@@ -51,7 +51,7 @@ export const Toast = ({
   useEffect(() => {
     if (isPermanent) return;
     setViewStatus(ToastViewStatus.Fading);
-  }, []);
+  }, [isPermanent]);
 
   useEffect(() => {
     if (viewStatus === ToastViewStatus.Fading) {
