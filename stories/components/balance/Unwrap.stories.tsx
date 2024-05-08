@@ -39,5 +39,11 @@ export const Unwrap: Story = {
     fee: 2,
     wrappedBalance: 100000,
     onUnwrap: () => {},
+    networkCurrency: "", // Add missing property
+    SUnwrapStatusMessage: {} as Signal<string>, // Add missing property
+    SUnwrapCardView: "default" as unknown as Signal<
+      "unwrapping" | "default" | "unwrapping-ended"
+    >, // Add missing property
+    SUnwrapEndedStatusFrame: {} as Signal<React.ReactNode>, // Add missing property
   },
 };

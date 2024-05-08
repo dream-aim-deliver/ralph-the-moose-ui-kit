@@ -39,5 +39,11 @@ export const WrapModal: Story = {
     icon: <RalphLogo variant="icon" />,
     inscriptionBalance: 100000,
     onWrap: () => {},
+    networkCurrency: "", // Add missing property
+    claimableAmount: 0, // Add missing property
+    onClaim: () => {}, // Add missing property
+    SWrapStatusMessage: "" as unknown as Signal<string>, // Add missing property
+    SClaimStatusMessage: "" as unknown as Signal<string>, // Add missing property
+    SWrapCardView: 0 as unknown as Signal<"wrapping" | "claiming" | "default">, // Add missing property
   },
 };

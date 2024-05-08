@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { BalanceCard } from "@/components/balance-card";
 import { RalphLogo } from "@/components/ralph-logo";
+import { Signal } from "@preact/signals-react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -33,10 +34,25 @@ export const Default: Story = {
   args: {
     inscriptionBalance: 80000,
     wrappedBalance: 20000,
+    claimableAmount: 0, // Add the missing property
     tokenShortName: "PR",
     icon: <RalphLogo variant="icon" />,
     fee: 2,
+    networkCurrency: "", // Add the missing property
     onWrap: () => {},
     onUnwrap: () => {},
+    onClaim: () => {}, // Add the missing property
+    amountToWrap: 0 as unknown as Signal<number>, // Add the missing property
+    SWrapStatusMessage: "Wrapping in progress..." as unknown as Signal<string>,
+    amountToUnwrap: 0 as unknown as Signal<number>, // Add the missing property
+    SClaimStatusMessage: "" as unknown as Signal<string>, // Add the missing property
+    SWrapCardView: "wrapping" as unknown as Signal<
+      "claiming" | "wrapping" | "default"
+    >, // Add the missing property
+    SUnwrapStatusMessage: "" as unknown as Signal<string>, // Add the missing property
+    SUnwrapEndedStatusFrame: "" as unknown as Signal<string>, // Add the missing property
+    SUnwrapCardView: "unwrapping" as unknown as Signal<
+      "default" | "unwrapping" | "unwrapping-ended"
+    >, // Add the missing property
   },
 };
