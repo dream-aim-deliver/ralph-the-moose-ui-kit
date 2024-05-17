@@ -14,3 +14,8 @@ export type TChainConfig = {
   ralphReservoirAddress: string;
   ralphTokenAddress: string;
 };
+
+export type TChainViewModel = {
+  chainId: number;
+  name: string;
+};
