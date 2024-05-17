@@ -1,6 +1,7 @@
 export * from "./balance-card";
 export * from "./card";
 export * from "./button";
+export * from "./bridge-card";
 export * from "./dropdown";
 export * from "./header";
 export * from "./heading";
