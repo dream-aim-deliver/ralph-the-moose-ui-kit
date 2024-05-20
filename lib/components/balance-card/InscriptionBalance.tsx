@@ -27,7 +27,10 @@ export const InscriptionBalance = ({
           <Label label={tokenShortName} variant="medium" />
         </div>
       </div>
-      <Button label="Wrap" variant="secondary" onClick={onClick} />
+      <div className="flex flex-row space-x-4">
+        <Button label="Wrap" variant="secondary" onClick={onClick} />
+        <Button label="Send" variant="secondary" disabled={true} />
+      </div>
     </LightFrame>
   );
 };

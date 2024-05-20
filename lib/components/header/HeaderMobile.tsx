@@ -4,7 +4,6 @@ import {
   IconMenu,
   IconTwitter,
   IconTelegram,
-  IconNetworkBase,
   IconClose,
   IconMooseHorn,
 } from "../icons";
@@ -55,14 +54,7 @@ export const HeaderMobile = () => {
       <div className={`${isOpen ? "hidden" : mobileHeaderStyle}`}>
         <RalphLogo variant="full-horizontal" />
         <div className="flex flex-row items-center gap-4">
-          <DropdownTrigger
-            title=""
-            expanded={false}
-            selectedOption=""
-            variant="large"
-            icon={<IconNetworkBase />}
-            defaultColor="text-text-inverted"
-          />
+          <DropdownTrigger title="" expanded={false} selectedOption="" />
           <div onClick={handleOpenMenu}>
             <IconMenu />
           </div>

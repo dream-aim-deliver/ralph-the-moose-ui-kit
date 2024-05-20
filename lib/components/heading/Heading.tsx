@@ -13,10 +13,12 @@ export enum HeadingVariant {
  * @typedef {Object} HeadingProps
  * @property {string} title - The title of the heading.
  * @property {HeadingVariant} variant - The variant of the heading.
+ * @property {string} [className] - The class name of the heading.
  */
 export interface HeadingProps {
   title: string;
   variant: HeadingVariant;
+  className?: string;
 }
 
 /**
@@ -25,7 +27,7 @@ export interface HeadingProps {
  * @property {string} title - The title of the heading.
  * @property {HeadingVariant} variant - The variant of the heading.
  */
-export const Heading = ({ title, variant }: HeadingProps) => {
+export const Heading = ({ title, variant, className }: HeadingProps) => {
   const classes = [
     // "w-[324.33px]",
     "w-full",
@@ -40,6 +42,7 @@ export const Heading = ({ title, variant }: HeadingProps) => {
     variant === HeadingVariant.H5 ? "text-xl" : "",
     "text-text-primary",
     "text-left",
+    className,
   ]
     .filter(Boolean)
     .join(" ");

@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { BalanceCard } from "@/components/balance-card";
 import { RalphLogo } from "@/components/ralph-logo";
 import { Signal } from "@preact/signals-react";
+import { TChainViewModel } from "../../../lib";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -54,5 +55,21 @@ export const Default: Story = {
     SUnwrapCardView: "unwrapping" as unknown as Signal<
       "default" | "unwrapping" | "unwrapping-ended"
     >, // Add the missing property
+    supportedChains: [
+      {
+        name: "Base",
+        chainId: 1,
+      },
+      {
+        name: "Ethereum",
+        chainId: 2,
+      },
+    ], // Add the missing property
+    activeChain: {
+      value: {
+        name: "Base",
+        chainId: 1,
+      },
+    } as unknown as Signal<TChainViewModel>,
   },
 };

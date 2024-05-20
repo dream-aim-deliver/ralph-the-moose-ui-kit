@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import { RalphLogo } from "../ralph-logo";
-import { DropdownTrigger, IconClose, IconMenu, IconNetworkBase } from "..";
+import { DropdownTrigger, IconClose, IconMenu } from "..";
 import { type Signal } from "@preact/signals-react";
 import { Menu } from "./Menu";
 import { useSignals } from "@preact/signals-react/runtime";
@@ -46,10 +46,8 @@ export const PageHeader = (props: PageHeaderProps) => {
                 <div onClick={() => props.onNetworkChange(props.activeNetwork)}>
                   <DropdownTrigger
                     title=""
-                    variant="small"
                     expanded={true}
                     selectedOption={props.activeNetwork.name}
-                    icon={<IconNetworkBase />}
                   />
                 </div>
                 <div
@@ -93,10 +91,8 @@ export const PageHeader = (props: PageHeaderProps) => {
         >
           <DropdownTrigger
             title=""
-            variant="large"
             expanded={false}
             selectedOption={props.activeNetwork.name}
-            icon={<IconNetworkBase />}
           />
         </div>
       </div>

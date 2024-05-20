@@ -3,11 +3,14 @@ import { useSignals } from "@preact/signals-react/runtime";
 import { BalanceCardPrimaryVariant } from "./BalanceCardPrimary";
 import { WrapCard } from "./WrapCard";
 import { UnwrapCard } from "./UnwrapCard";
+import { BridgeCard } from "../bridge-card";
+import { TChainViewModel } from "../../core";
 
 enum BalanceCardVariants {
   VARIANT_PRIMARY = "primary_variant",
   VARIANT_WRAP = "wrap_variant",
   VARIANT_UNWRAP = "unwrap_variant",
+  VARIANT_BRIDGE = "bridge_variant",
 }
 /**
  * Props for the BalanceCard component.
@@ -29,6 +32,14 @@ export interface BalanceCardProps {
    * The short name of the token.
    */
   tokenShortName: string;
+  /**
+   * Supported Networks
+   */
+  supportedChains: TChainViewModel[];
+  /**
+   * Active Network
+   */
+  activeChain: Signal<TChainViewModel>;
   /**
    * The icon for the token.
    */
@@ -96,6 +107,9 @@ export const BalanceCard = (props: BalanceCardProps) => {
   const activeVariant = useSignal<BalanceCardVariants>(
     BalanceCardVariants.VARIANT_PRIMARY,
   );
+  // const [activeVariant, setActiveVariant] = useState(
+  //   BalanceCardVariants.VARIANT_PRIMARY,
+  // );
   const returnToPrimaryVariant = () => {
     activeVariant.value = BalanceCardVariants.VARIANT_PRIMARY;
   };
@@ -105,11 +119,16 @@ export const BalanceCard = (props: BalanceCardProps) => {
   const showUnwrapVariant = () => {
     activeVariant.value = BalanceCardVariants.VARIANT_UNWRAP;
   };
+  const showBridgeVariant = () => {
+    console.log("showBridgeVariant");
+    activeVariant.value = BalanceCardVariants.VARIANT_BRIDGE;
+  };
   return (
     <div className="w-full border-none">
       <BalanceCardPrimaryVariant
         showWrapVariant={showWrapVariant}
         showUnwrapVariant={showUnwrapVariant}
+        showBridgeVariant={showBridgeVariant}
         {...props}
       ></BalanceCardPrimaryVariant>
 
@@ -119,6 +138,17 @@ export const BalanceCard = (props: BalanceCardProps) => {
 
       {activeVariant.value === BalanceCardVariants.VARIANT_UNWRAP && (
         <UnwrapCard onClose={returnToPrimaryVariant} {...props}></UnwrapCard>
+      )}
+      {activeVariant.value === BalanceCardVariants.VARIANT_BRIDGE && (
+        <BridgeCard
+          onClose={returnToPrimaryVariant}
+          supportedChains={props.supportedChains}
+          activeChain={props.activeChain}
+          icon={props.icon}
+          maxBridgeAmount={props.wrappedBalance}
+          onBridge={showBridgeVariant}
+          tokenShortName={props.tokenShortName}
+        ></BridgeCard>
       )}
     </div>
   );
