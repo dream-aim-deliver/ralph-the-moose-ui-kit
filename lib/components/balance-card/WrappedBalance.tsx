@@ -7,11 +7,13 @@ import { LightFrame } from "../layouts/LightFrame";
 export const WrappedBalance = ({
   wrappedBalance: wrappedBalance,
   tokenShortName,
-  onClick,
+  onWrap: onWrap,
+  onBridge: onBridge,
 }: {
   wrappedBalance: number;
   tokenShortName: string;
-  onClick: () => void;
+  onWrap: () => void;
+  onBridge: () => void;
 }) => {
   const wrappedTokenName = `W${tokenShortName.toUpperCase()}`;
   const wrappedBalanceString =
@@ -28,8 +30,9 @@ export const WrappedBalance = ({
           <Label label={wrappedTokenName} variant="medium" />
         </div>
       </div>
-      <div className="w-full">
-        <Button label="Unwrap" onClick={onClick} variant="secondary" />
+      <div className="flex flex-row space-x-4 w-full">
+        <Button label="Unwrap" onClick={onWrap} variant="secondary" />
+        <Button label="Bridge" onClick={onBridge} variant="secondary" />
       </div>
     </LightFrame>
   );

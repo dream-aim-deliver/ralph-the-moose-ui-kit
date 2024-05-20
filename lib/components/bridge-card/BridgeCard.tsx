@@ -1,5 +1,4 @@
 import { Button } from "../button";
-import { Card } from "../card";
 import { Heading, HeadingVariant } from "../heading";
 import { InputAssetAmountWithLabel } from "../input-asset-amount-with-label";
 import { TChainViewModel } from "../../core";
@@ -7,6 +6,7 @@ import { Signal, useSignal } from "@preact/signals-react";
 import { useSignals } from "@preact/signals-react/runtime";
 import { IconButtonClose } from "../icon-button/IconButtonClose";
 import { Dropdown } from "../dropdown";
+import { Modal } from "../modal";
 
 export interface BridgeCardProps {
   supportedChains: TChainViewModel[];
@@ -15,25 +15,22 @@ export interface BridgeCardProps {
   icon: React.ReactNode;
   maxBridgeAmount: number;
   onBridge: () => void;
+  onClose: () => void;
 }
 
 export const BridgeCard = (props: BridgeCardProps) => {
   useSignals();
   const amountToBridge = useSignal(0);
   return (
-    <Card>
+    <Modal>
       <div className="w-full flex flex-col items-start justify-center gap-4 text-wrap">
         <div className="relative flex w-full flex-row justify-between">
           <Heading title="Bridge" variant={HeadingVariant.H4} />
           <div className="ml-auto">
-            <IconButtonClose
-              size={4}
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
+            <IconButtonClose size={4} onClick={props.onClose} />
           </div>
         </div>
+        <div className="flex w-full flex-col items-center justify-center gap-4"></div>
         <div
           id="bridge-card-network-selection"
           className="flex flex-row items-start justify-between self-stretch"
@@ -43,11 +40,9 @@ export const BridgeCard = (props: BridgeCardProps) => {
             variant="large"
             defaultItem={{
               title: props.activeChain.value.name,
-              icon: <IconButtonClose size={4} onClick={() => {}} />,
             }}
             items={props.supportedChains.map((chain) => ({
               title: chain.name,
-              icon: <IconButtonClose size={4} onClick={() => {}} />,
               onClick: () => (props.activeChain.value = chain),
             }))}
           />
@@ -67,6 +62,6 @@ export const BridgeCard = (props: BridgeCardProps) => {
         />
         <Button label="Bridge" variant="primary" onClick={props.onBridge} />
       </div>
-    </Card>
+    </Modal>
   );
 };

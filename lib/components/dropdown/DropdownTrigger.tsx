@@ -21,7 +21,6 @@ export const DropdownTrigger = ({
         "relative",
         "flex",
         "flex-col",
-        "xl:flex-row",
         "items-left",
         "justify-start",
         "gap-[6px]",

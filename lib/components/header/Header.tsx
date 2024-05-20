@@ -1,7 +1,7 @@
 import { RalphLogo } from "../ralph-logo";
 import { twMerge } from "tailwind-merge";
 import { HeaderMobile } from "../header";
-import { IconMenu, IconTwitter, IconTelegram, IconNetworkBase } from "../icons";
+import { IconMenu, IconTwitter, IconTelegram } from "../icons";
 import { DropdownTrigger } from "../dropdown";
 import { NavLink } from "../nav-link";
 /**
@@ -78,9 +78,6 @@ export const Header = () => {
             title="Network"
             expanded={false}
             selectedOption="Base"
-            variant="large"
-            icon={<IconNetworkBase />}
-            defaultColor="text-base-colors/neutral-900"
           />
         </div>
       </div>
