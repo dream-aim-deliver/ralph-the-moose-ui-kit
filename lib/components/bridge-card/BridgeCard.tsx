@@ -6,6 +6,7 @@ import { TChainViewModel } from "../../core";
 import { Signal, useSignal } from "@preact/signals-react";
 import { useSignals } from "@preact/signals-react/runtime";
 import { IconButtonClose } from "../icon-button/IconButtonClose";
+import { Dropdown } from "../dropdown";
 
 export interface BridgeCardProps {
   supportedChains: TChainViewModel[];
@@ -32,6 +33,24 @@ export const BridgeCard = (props: BridgeCardProps) => {
               }}
             />
           </div>
+        </div>
+        <div
+          id="bridge-card-network-selection"
+          className="flex flex-row items-start justify-between self-stretch"
+        >
+          <Dropdown
+            title="Destination Chain"
+            variant="large"
+            defaultItem={{
+              title: props.activeChain.value.name,
+              icon: <IconButtonClose size={4} onClick={() => {}} />,
+            }}
+            items={props.supportedChains.map((chain) => ({
+              title: chain.name,
+              icon: <IconButtonClose size={4} onClick={() => {}} />,
+              onClick: () => (props.activeChain.value = chain),
+            }))}
+          />
         </div>
         <div id="bridge-card-amount-to-bridge"></div>
         <InputAssetAmountWithLabel

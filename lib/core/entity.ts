@@ -19,3 +19,7 @@ export type TChainViewModel = {
   chainId: number;
   name: string;
 };
+
+export type TChainViewModelWithIcon = TChainViewModel & {
+  icon: React.ReactNode;
+};

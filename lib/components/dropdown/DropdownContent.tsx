@@ -1,5 +1,5 @@
 export interface DropdownContentProps {
-  children: React.ReactNode[];
+  children: React.ReactNode;
   defaultColor?: string;
   onHoverColor?: string;
 }
@@ -24,8 +24,6 @@ export const DropdownContent = ({ children }: DropdownContentProps) => {
         "font-gluten",
         "border-[1px]",
         "border-solid",
-        "text-text-secondary",
-        "border-base-colors/neutral-200",
         "z-10",
       ].join(" ")}
     >
