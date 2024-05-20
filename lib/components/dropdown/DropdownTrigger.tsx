@@ -2,64 +2,36 @@ import { IconCaretDown, IconCaretUp } from "@/components/icons";
 
 export interface DropdownTriggerProps {
   title: string;
-  variant: "small" | "large";
   expanded: boolean;
   selectedOption?: string;
-  defaultColor?: string;
-  onHoverColor?: string;
-  icon: React.ReactNode;
+  className?: string;
 }
 
 export const DropdownTrigger = ({
-  variant,
   expanded,
   title,
-  icon,
   selectedOption,
+  className,
 }: DropdownTriggerProps) => {
-  const smallTrigger = (
+  return (
     <div
       className={[
-        "relative rounded-[54px]",
-        "box-border",
-        "w-full h-10",
-        "flex flex-row items-center justify-start",
-        "py-2.5 px-2",
-        "border-t-[1px] border-solid border-r-[1px] border-b-[3px] border-l-[1px]",
-        `border-text-inverted`,
-        `text-text-inverted`,
-        `hover:border-text-primary`,
-        `hover:text-text-primary`,
-        "transition-all",
-      ].join(" ")}
-    >
-      <div
-        className={`flex flex-row items-center justify-start hover:text-text-primary`}
-      >
-        <div className="w-[25px] relative h-[25px] overflow-hidden shrink-0">
-          {icon}
-        </div>
-      </div>
-    </div>
-  );
-
-  const largeTrigger = (
-    <div
-      className={[
-        "relative",
         "w-full",
+        "h-full",
+        "relative",
         "flex",
-        "flex-row",
-        "items-center",
+        "flex-col",
+        "xl:flex-row",
+        "items-left",
         "justify-start",
         "gap-[6px]",
         "font-varela",
-        `text-text-inverted`,
-        `border-text-inverted`,
-        `hover:border-text-primary`,
+        `${className}`,
       ].join(" ")}
     >
-      <div className={"relative leading-[14px]"}>{title}</div>
+      <div className={"relative h-full leading-[14px] text-text-secondary"}>
+        {title}
+      </div>
       <div
         className={[
           "cursor-pointer",
@@ -75,15 +47,11 @@ export const DropdownTrigger = ({
           "border-r-[1px]",
           "border-b-[3px]",
           "border-l-[1px]",
-          `hover:text-text-primary`,
-          `hover:border-text-primary`,
+          "border-text-action text-text-action hover:border-text-actionHover hover:text-text-actionHover aria-pressed:border-text-actionPressed aria-pressed:text-text-actionPressed",
           "transition-all",
         ].join(" ")}
       >
         <div className="flex-1 flex flex-row items-center justify-start gap-[8px]">
-          <div className="w-[25px] relative h-[25px] overflow-hidden shrink-0">
-            {icon}
-          </div>
           <b className="relative tracking-[-0.04em] leading-[16px]">
             {selectedOption}
           </b>
@@ -95,5 +63,4 @@ export const DropdownTrigger = ({
       </div>
     </div>
   );
-  return <div>{variant == "small" ? smallTrigger : largeTrigger}</div>;
 };

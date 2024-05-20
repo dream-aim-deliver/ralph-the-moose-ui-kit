@@ -36,8 +36,10 @@ export const Default: Story = {
       { chainId: 2, name: "Binance Smart Chain" },
     ],
     activeChain: {
-      chainId: 1,
-      name: "Ethereum",
+      value: {
+        chainId: 1,
+        name: "Ethereum",
+      },
     } as unknown as Signal<TChainViewModel>,
     tokenShortName: "ETH",
     icon: <RalphLogo variant="icon" />,
