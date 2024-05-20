@@ -60,7 +60,6 @@ const theme = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const plugins: string[] = ["@tailwindcss/typography"];
 
 export {
