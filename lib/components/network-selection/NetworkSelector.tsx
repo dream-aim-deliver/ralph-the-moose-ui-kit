@@ -75,10 +75,10 @@ export const NetworkSelector = (props: NetworkSelectorProps) => {
       >
         <div className="flex-1 flex flex-row items-center justify-start gap-[8px]">
           <div className="w-[25px] relative h-[25px] overflow-hidden shrink-0">
-            {props.activeNetwork.icon}
+            {selectedOption.value.icon}
           </div>
           <b className="relative tracking-[-0.04em] leading-[16px]">
-            {props.activeNetwork.name}
+            {selectedOption.value.name}
           </b>
         </div>
         <div className="flex flex-row w-3 h-relative ml-2 items-center">
