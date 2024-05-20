@@ -93,6 +93,19 @@ const balanceCard = (
     SUnwrapEndedStatusFrame={
       (<div>Unwrapping ended</div>) as unknown as Signal<React.ReactNode>
     }
+    supportedChains={[
+      {
+        name: "Base",
+        chainId: 1,
+      },
+      {
+        name: "Ethereum",
+        chainId: 2,
+      },
+    ]}
+    activeChain={
+      signal({ name: "Base", chainId: 1 }) as unknown as Signal<TChainConfig>
+    }
   />
 );
 export const Page: Story = {
