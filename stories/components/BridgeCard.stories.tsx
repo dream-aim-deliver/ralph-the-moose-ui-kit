@@ -47,5 +47,8 @@ export const Default: Story = {
     onBridge() {
       console.log("Bridge button clicked");
     },
+    onClose() {
+      console.log("Close button clicked");
+    },
   },
 };

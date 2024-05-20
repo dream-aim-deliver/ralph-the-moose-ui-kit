@@ -22,8 +22,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const sampleItems = [
-  <DropdownItem key={1} title="default" selected={false} onClick={() => {}} />,
-  <DropdownItem key={2} title="selected" selected={true} onClick={() => {}} />,
+  <DropdownItem key={1} title="default" selected={false} />,
+  <DropdownItem key={2} title="selected" selected={true} />,
 ];
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Example: Story = {
