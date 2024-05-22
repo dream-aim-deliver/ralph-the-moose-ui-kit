@@ -21,7 +21,7 @@ const ralphIcon = <RalphLogo variant="icon" />;
 export const Ralph: Story = {
   args: {
     icon: ralphIcon,
-    amount: 100 as unknown as Signal<number>,
+    initialAmount: 100 as unknown as Signal<number>,
     tokenShortName: "PR",
   },
 };
@@ -29,7 +29,7 @@ export const Ralph: Story = {
 export const BurgerToken: Story = {
   args: {
     icon: "🍔",
-    amount: 100 as unknown as Signal<number>,
+    initialAmount: 100 as unknown as Signal<number>,
     tokenShortName: "BR",
   },
 };
