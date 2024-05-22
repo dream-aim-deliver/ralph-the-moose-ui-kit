@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Heading,
@@ -12,13 +12,40 @@ import {
 
 import { LightFrame } from "../layouts/LightFrame";
 import { type Signal } from "@preact/signals-react";
-import { useSignals } from "@preact/signals-react/runtime";
 import { formatNumber } from "../../utils/tokenUtils";
+import { TChainViewModel } from "../../core";
+
+export type WrapCardVariantWrapProps = {
+  variant: "wrap";
+  inscriptionBalance: number;
+  fee: number;
+  token: {
+    shortName: string;
+    icon: React.ReactNode;
+  };
+  onWrap: () => void;
+};
+
+export type WrapCardVariantWrappingProps = {
+  variant: "wrapping";
+  amountToWrap: number;
+  fee: number;
+  network: TChainViewModel;
+  token: {
+    shortName: string;
+    icon: React.ReactNode;
+  };
+  status: {
+    type: "success" | "error" | "info";
+    message: string;
+  };
+};
 
 /**
  * Props for the WrapModal component.
  */
 export interface WrapCardProps {
+  variant: "wrap" | "wrapping" | "claiming" | "claiming";
   amountToWrap: Signal<number>; // The amount to be wrapped
   inscriptionBalance: number; // The maximum amount that can be wrapped
   fee: number; // The fee for wrapping
@@ -49,9 +76,9 @@ export const WrapCard = ({
   SWrapStatusMessage,
   SClaimStatusMessage,
 }: WrapCardProps) => {
-  useSignals();
+  const [amount, setAmount] = useState<number>(inscriptionBalance);
   const wrappedTokenName = `W${tokenShortName.toUpperCase()}`;
-  const amountAfterWrapping = amountToWrap.value;
+  const amountAfterWrapping = amount;
   const defaultView = (
     <div className="flex w-full flex-col items-start justify-center gap-4">
       <div className="relative flex w-full flex-row justify-between">
@@ -62,21 +89,20 @@ export const WrapCard = ({
       </div>
       <InputAssetAmountWithLabel
         label="Amount to wrap"
+        onChange={setAmount}
         maxAmount={inscriptionBalance}
-        amount={amountToWrap}
+        initialAmount={inscriptionBalance}
         tokenShortName={tokenShortName}
         icon={icon}
         errorMessage={
-          amountToWrap.value > inscriptionBalance
-            ? "Tryn'a reap before you sow, eh?"
-            : ""
+          amount > inscriptionBalance ? "Tryn'a reap before you sow, eh?" : ""
         }
       />
       <LightFrame className="w-full font-varela text-text-secondary">
         <div className="flex flex-row items-baseline justify-between self-stretch">
           <div className="relative leading-[14px]">Wrap amount</div>
           <Label
-            label={`${formatNumber(amountToWrap.value)} ${tokenShortName}`}
+            label={`${formatNumber(amount)} ${tokenShortName}`}
             variant="medium"
           />
         </div>
@@ -92,7 +118,7 @@ export const WrapCard = ({
           />
         </div>
         <Button
-          label={`Wrap ${formatNumber(amountToWrap.value)} ${tokenShortName}`}
+          label={`Wrap ${formatNumber(amount)} ${tokenShortName}`}
           variant="primary"
           onClick={onWrap}
         />

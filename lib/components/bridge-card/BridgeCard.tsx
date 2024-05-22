@@ -51,7 +51,7 @@ export const BridgeCard = (props: BridgeCardProps) => {
         <InputAssetAmountWithLabel
           label="Amount to bridge"
           maxAmount={props.maxBridgeAmount}
-          amount={amountToBridge}
+          initialAmount={amountToBridge}
           tokenShortName={props.tokenShortName}
           icon={props.icon}
           errorMessage={

@@ -25,7 +25,7 @@ export const Ralph: Story = {
     maxAmount: 100,
     errorMessage: "You ain't got enough tokens!",
     icon: ralphIcon,
-    amount: 1000 as unknown as Signal<number>,
+    initialAmount: 1000 as unknown as Signal<number>,
     tokenShortName: "PR",
   },
 };
@@ -33,7 +33,7 @@ export const BurgerToken: Story = {
   args: {
     maxAmount: 100,
     icon: "🍔",
-    amount: 100 as unknown as Signal<number>,
+    initialAmount: 100 as unknown as Signal<number>,
     tokenShortName: "PR",
   },
 };

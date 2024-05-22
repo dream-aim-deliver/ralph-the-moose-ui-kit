@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { WrapCard as Component } from "@/components/balance-card";
 import { RalphLogo } from "@/components/ralph-logo";
 import { Signal } from "@preact/signals-react";
+import { useSignals } from "@preact/signals-react/runtime";
 
 const meta = {
   title: "Components/Balance/Wrap",
@@ -25,6 +26,16 @@ const meta = {
       description: "The fee of the token.",
     },
   },
+  decorators: [
+    (Story) => (
+      useSignals(),
+      (
+        <div className="w-96">
+          <Story />
+        </div>
+      )
+    ),
+  ],
 } satisfies Meta<typeof Component>;
 
 export default meta;
@@ -34,7 +45,7 @@ type Story = StoryObj<typeof meta>;
 export const WrapModal: Story = {
   args: {
     tokenShortName: "PR",
-    amountToWrap: 0 as unknown as Signal<number>,
+    amountToWrap: {value: 10} as unknown as Signal<number>,
     fee: 2,
     icon: <RalphLogo variant="icon" />,
     inscriptionBalance: 100000,
@@ -44,6 +55,8 @@ export const WrapModal: Story = {
     onClaim: () => {}, // Add missing property
     SWrapStatusMessage: "" as unknown as Signal<string>, // Add missing property
     SClaimStatusMessage: "" as unknown as Signal<string>, // Add missing property
-    SWrapCardView: 0 as unknown as Signal<"wrapping" | "claiming" | "default">, // Add missing property
+    SWrapCardView: { value: "default" } as unknown as Signal<
+      "wrapping" | "claiming" | "default"
+    >, // Add missing property
   },
 };

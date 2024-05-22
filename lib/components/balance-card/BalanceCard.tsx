@@ -1,10 +1,10 @@
-import { type Signal, useSignal } from "@preact/signals-react";
-import { useSignals } from "@preact/signals-react/runtime";
+import { type Signal } from "@preact/signals-react";
 import { BalanceCardPrimaryVariant } from "./BalanceCardPrimary";
 import { WrapCard } from "./WrapCard";
 import { UnwrapCard } from "./UnwrapCard";
 import { BridgeCard } from "../bridge-card";
 import { TChainViewModel } from "../../core";
+import { useState } from "react";
 
 enum BalanceCardVariants {
   VARIANT_PRIMARY = "primary_variant",
@@ -103,25 +103,24 @@ export interface BalanceCardProps {
  * Renders a balance card component.
  */
 export const BalanceCard = (props: BalanceCardProps) => {
-  useSignals();
-  const activeVariant = useSignal<BalanceCardVariants>(
+  const [activeVariant, setActiveVariant ] = useState<BalanceCardVariants>(
     BalanceCardVariants.VARIANT_PRIMARY,
   );
   // const [activeVariant, setActiveVariant] = useState(
   //   BalanceCardVariants.VARIANT_PRIMARY,
   // );
   const returnToPrimaryVariant = () => {
-    activeVariant.value = BalanceCardVariants.VARIANT_PRIMARY;
+    setActiveVariant(BalanceCardVariants.VARIANT_PRIMARY);
   };
   const showWrapVariant = () => {
-    activeVariant.value = BalanceCardVariants.VARIANT_WRAP;
+    setActiveVariant(BalanceCardVariants.VARIANT_WRAP);
   };
   const showUnwrapVariant = () => {
-    activeVariant.value = BalanceCardVariants.VARIANT_UNWRAP;
+    setActiveVariant(BalanceCardVariants.VARIANT_UNWRAP);
   };
   const showBridgeVariant = () => {
     console.log("showBridgeVariant");
-    activeVariant.value = BalanceCardVariants.VARIANT_BRIDGE;
+    setActiveVariant(BalanceCardVariants.VARIANT_BRIDGE);
   };
   return (
     <div className="w-full border-none">
@@ -132,14 +131,14 @@ export const BalanceCard = (props: BalanceCardProps) => {
         {...props}
       ></BalanceCardPrimaryVariant>
 
-      {activeVariant.value === BalanceCardVariants.VARIANT_WRAP && (
+      {activeVariant === BalanceCardVariants.VARIANT_WRAP && (
         <WrapCard onClose={returnToPrimaryVariant} {...props}></WrapCard>
       )}
 
-      {activeVariant.value === BalanceCardVariants.VARIANT_UNWRAP && (
+      {activeVariant === BalanceCardVariants.VARIANT_UNWRAP && (
         <UnwrapCard onClose={returnToPrimaryVariant} {...props}></UnwrapCard>
       )}
-      {activeVariant.value === BalanceCardVariants.VARIANT_BRIDGE && (
+      {activeVariant === BalanceCardVariants.VARIANT_BRIDGE && (
         <BridgeCard
           onClose={returnToPrimaryVariant}
           supportedChains={props.supportedChains}

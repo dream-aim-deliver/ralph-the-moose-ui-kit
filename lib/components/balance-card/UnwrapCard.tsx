@@ -89,7 +89,7 @@ export const UnwrapCard = ({
       <InputAssetAmountWithLabel
         label="Amount to unwrap"
         maxAmount={wrappedBalance}
-        amount={amountToUnwrap}
+        initialAmount={amountToUnwrap}
         tokenShortName={tokenShortName}
         icon={icon}
         errorMessage={
