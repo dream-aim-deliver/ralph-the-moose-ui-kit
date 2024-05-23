@@ -5,5 +5,6 @@ export {
 
 export {
   UnwrapModalUnwrappingVariant,
-  type UnwrapModalUnwrappingVariantProps,
+  type UnwrappingNonSuccessViewModel,
+  type UnwrappingSuccessViewModel,
 } from "./UnwrapModalUnwrappingVariant";
