@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { WrapModal as Component } from "@/components/wrap-modal";
+import { WrapClaimModal as Component } from "@/components/wrap-claim-modal";
 import { RalphLogo } from "@/components/ralph-logo";
 
 const meta = {

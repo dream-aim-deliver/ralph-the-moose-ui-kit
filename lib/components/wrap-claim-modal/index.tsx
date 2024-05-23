@@ -1,9 +1,9 @@
-export { WrapModal } from "./WrapModal";
+export { WrapClaimModal } from "./WrapClaimModal";
 export {
   WrapModalContentVariantWrap,
   type WrapModalVariantWrapProps,
-} from "./WrapModalVariantWrap";
+} from "./WrapClaimModalVariantWrap";
 export {
   WrapCardContentVariantWrapping,
   type WrapCardVariantWrappingProps,
-} from "./WrapModalVariantWrapping";
+} from "./WrapClaimModalVariantWrapping";

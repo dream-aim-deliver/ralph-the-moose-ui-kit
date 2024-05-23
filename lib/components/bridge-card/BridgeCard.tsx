@@ -2,15 +2,15 @@ import { Button } from "../button";
 import { Heading, HeadingVariant } from "../heading";
 import { InputAssetAmountWithLabel } from "../input-asset-amount-with-label";
 import { TChainViewModel } from "../../core";
-import { Signal, useSignal } from "@preact/signals-react";
 import { useSignals } from "@preact/signals-react/runtime";
 import { IconButtonClose } from "../icon-button/IconButtonClose";
 import { Dropdown } from "../dropdown";
 import { Modal } from "../modal";
+import { useState } from "react";
 
 export interface BridgeCardProps {
   supportedChains: TChainViewModel[];
-  activeChain: Signal<TChainViewModel>;
+  activeChain: TChainViewModel;
   tokenShortName: string;
   icon: React.ReactNode;
   maxBridgeAmount: number;
@@ -20,7 +20,12 @@ export interface BridgeCardProps {
 
 export const BridgeCard = (props: BridgeCardProps) => {
   useSignals();
-  const amountToBridge = useSignal(0);
+  const [amountToBridge, setAmountToBridge] = useState<number>(
+    props.maxBridgeAmount,
+  );
+  const destinationChains = props.supportedChains.filter(
+    (chain) => chain.name !== props.activeChain.name,
+  );
   return (
     <Modal>
       <div className="w-full flex flex-col items-start justify-center gap-4 text-wrap">
@@ -39,11 +44,11 @@ export const BridgeCard = (props: BridgeCardProps) => {
             title="Destination Chain"
             variant="large"
             defaultItem={{
-              title: props.activeChain.value.name,
+              title: destinationChains[0].name,
             }}
-            items={props.supportedChains.map((chain) => ({
+            items={destinationChains.map((chain) => ({
               title: chain.name,
-              onClick: () => (props.activeChain.value = chain),
+              onClick: () => (props.activeChain = chain),
             }))}
           />
         </div>
@@ -55,10 +60,11 @@ export const BridgeCard = (props: BridgeCardProps) => {
           tokenShortName={props.tokenShortName}
           icon={props.icon}
           errorMessage={
-            amountToBridge.value > props.maxBridgeAmount
+            amountToBridge > props.maxBridgeAmount
               ? "Kind Ser/Madam, really?"
               : ""
           }
+          onChange={setAmountToBridge}
         />
         <Button label="Bridge" variant="primary" onClick={props.onBridge} />
       </div>
