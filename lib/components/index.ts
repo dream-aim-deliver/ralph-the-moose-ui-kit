@@ -24,3 +24,4 @@ export * from "./text-button";
 export * from "./toast";
 export * from "./tooltip";
 export * from "./wallet-card";
+export * from "./wrap-modal";

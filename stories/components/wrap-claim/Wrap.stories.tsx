@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { WrapCardNew as Component } from "@/components/balance-card";
+import { WrapModal as Component } from "@/components/wrap-modal";
 import { RalphLogo } from "@/components/ralph-logo";
 
 const meta = {
-  title: "Components/Balance/WrapNew",
+  title: "Components/Wrap",
   component: Component,
   parameters: {
     layout: "centered",
