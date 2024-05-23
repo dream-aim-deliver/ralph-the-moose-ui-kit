@@ -1,17 +1,7 @@
-import { type Signal } from "@preact/signals-react";
-import { BalanceCardPrimaryVariant } from "./BalanceCardPrimary";
-import { WrapCard } from "./WrapCard";
-import { UnwrapCard } from "./UnwrapCard";
-import { BridgeCard } from "../bridge-card";
-import { TChainViewModel } from "../../core";
-import { useState } from "react";
+import { Card, Heading, HeadingVariant } from "..";
+import { InscriptionBalance } from "./InscriptionBalance";
+import { WrappedBalance } from "./WrappedBalance";
 
-enum BalanceCardVariants {
-  VARIANT_PRIMARY = "primary_variant",
-  VARIANT_WRAP = "wrap_variant",
-  VARIANT_UNWRAP = "unwrap_variant",
-  VARIANT_BRIDGE = "bridge_variant",
-}
 /**
  * Props for the BalanceCard component.
  */
@@ -25,130 +15,69 @@ export interface BalanceCardProps {
    */
   wrappedBalance: number;
   /**
-   * The claimable amount.
-   */
-  claimableAmount: number;
-  /**
    * The short name of the token.
    */
   tokenShortName: string;
   /**
-   * Supported Networks
-   */
-  supportedChains: TChainViewModel[];
-  /**
-   * Active Network
-   */
-  activeChain: Signal<TChainViewModel>;
-  /**
-   * The icon for the token.
-   */
-  icon: React.ReactNode;
-  /**
-   * The transaction fee for wrapping and unwrapping.
-   */
-  fee: number;
-  /**
-   * The network currency.
-   */
-  networkCurrency: string;
-  /**
    * Callback function when wrapping is triggered. It should open the wrapping modal.
    */
-  onWrap: () => void;
+  showWrapClaimVariant: () => void;
   /**
    * Callback function when unwrapping is triggered. It should open the unwrapping modal.
    */
-  onUnwrap: () => void;
-
+  showUnwrapVariant: () => void;
   /**
-   * Callback function when claiming is triggered. It should open the claiming modal.
+   * Callback function when bridging is triggered. It should open the bridging modal.
    */
-  onClaim: () => void;
-  /**
-   * The amount to wrap, populated by the wrap modal.
-   */
-  amountToWrap: Signal<number>;
-  /**
-   * The amount to unwrap, populated by the unwrap modal.
-   */
-  amountToUnwrap: Signal<number>;
-  /**
-   * SWrapStatusMessage: The status message populated during the wrapping process.
-   */
-  SWrapStatusMessage: Signal<string>;
-  /**
-   * SClaimStatusMessage: The status message populated during the claiming process.
-   */
-  SClaimStatusMessage: Signal<string>;
-  /**
-   * SWrapCardView: The view of the wrap card.
-   */
-  SWrapCardView: Signal<"wrapping" | "claiming" | "default">;
-  /**
-   * SUnwrapStatusMessage: The status message populated during the unwrapping process.
-   */
-  SUnwrapStatusMessage: Signal<string>;
-  /**
-   * SunwrapCardView: The view of the unwrap card.
-   */
-  SUnwrapCardView: Signal<"unwrapping" | "default" | "unwrapping-ended">;
-  /**
-   * SUnwrapEndedStatusFrame: The status frame displayed after unwrapping is completed.
-   */
-  SUnwrapEndedStatusFrame: Signal<React.ReactNode>;
+  showBridgeVariant: () => void;
 }
 
 /**
- * Renders a balance card component.
+ * Renders a Primary Variant of the balance card component.
+ * This is composed of the Inscription Balance and Wrapped Balance components.
  */
-export const BalanceCard = (props: BalanceCardProps) => {
-  const [activeVariant, setActiveVariant ] = useState<BalanceCardVariants>(
-    BalanceCardVariants.VARIANT_PRIMARY,
-  );
-  // const [activeVariant, setActiveVariant] = useState(
-  //   BalanceCardVariants.VARIANT_PRIMARY,
-  // );
-  const returnToPrimaryVariant = () => {
-    setActiveVariant(BalanceCardVariants.VARIANT_PRIMARY);
-  };
-  const showWrapVariant = () => {
-    setActiveVariant(BalanceCardVariants.VARIANT_WRAP);
-  };
-  const showUnwrapVariant = () => {
-    setActiveVariant(BalanceCardVariants.VARIANT_UNWRAP);
-  };
-  const showBridgeVariant = () => {
-    console.log("showBridgeVariant");
-    setActiveVariant(BalanceCardVariants.VARIANT_BRIDGE);
-  };
+export const BalanceCard = ({
+  inscriptionBalance,
+  wrappedBalance,
+  tokenShortName,
+  showWrapClaimVariant,
+  showUnwrapVariant,
+  showBridgeVariant,
+}: BalanceCardProps) => {
   return (
-    <div className="w-full border-none">
-      <BalanceCardPrimaryVariant
-        showWrapVariant={showWrapVariant}
-        showUnwrapVariant={showUnwrapVariant}
-        showBridgeVariant={showBridgeVariant}
-        {...props}
-      ></BalanceCardPrimaryVariant>
+    <Card>
+      <div className="w-full flex flex-col items-start justify-center gap-4">
+        <Heading title="Balance" variant={HeadingVariant.H4} />
 
-      {activeVariant === BalanceCardVariants.VARIANT_WRAP && (
-        <WrapCard onClose={returnToPrimaryVariant} {...props}></WrapCard>
-      )}
+        <div className="w-full grid grid-rows-2 items-center justify-between gap-4">
+          <div className="space-y-4">
+            <Heading
+              title="Inscriptions"
+              variant={HeadingVariant.H5}
+              className="text-text-secondary"
+            />
+            <InscriptionBalance
+              inscriptionBalance={inscriptionBalance}
+              tokenShortName={tokenShortName}
+              onClick={showWrapClaimVariant}
+            />
+          </div>
 
-      {activeVariant === BalanceCardVariants.VARIANT_UNWRAP && (
-        <UnwrapCard onClose={returnToPrimaryVariant} {...props}></UnwrapCard>
-      )}
-      {activeVariant === BalanceCardVariants.VARIANT_BRIDGE && (
-        <BridgeCard
-          onClose={returnToPrimaryVariant}
-          supportedChains={props.supportedChains}
-          activeChain={props.activeChain}
-          icon={props.icon}
-          maxBridgeAmount={props.wrappedBalance}
-          onBridge={showBridgeVariant}
-          tokenShortName={props.tokenShortName}
-        ></BridgeCard>
-      )}
-    </div>
+          <div className="space-y-4">
+            <Heading
+              title="Wrapped"
+              variant={HeadingVariant.H5}
+              className="text-text-secondary"
+            />
+            <WrappedBalance
+              wrappedBalance={wrappedBalance}
+              tokenShortName={tokenShortName}
+              onWrap={showUnwrapVariant}
+              onBridge={showBridgeVariant}
+            />
+          </div>
+        </div>
+      </div>
+    </Card>
   );
 };

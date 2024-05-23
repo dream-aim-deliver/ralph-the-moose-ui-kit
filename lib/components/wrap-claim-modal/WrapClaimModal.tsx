@@ -3,16 +3,16 @@ import { IconButtonClose, Modal, Tabs, WrapCardVariantWrappingProps } from "..";
 import {
   WrapModalVariantWrapProps,
   WrapModalContentVariantWrap,
-} from "./WrapModalVariantWrap";
-import { WrapCardContentVariantWrapping } from "./WrapModalVariantWrapping";
+} from "./WrapClaimModalVariantWrap";
+import { WrapCardContentVariantWrapping } from "./WrapClaimModalVariantWrapping";
 import {
   WrapModalContentVariantClaim,
   WrapModalVariantClaimProps,
-} from "./WrapModalVariantClaim";
+} from "./WrapClaimModalVariantClaim";
 import {
   WrapModalContentVariantClaiming,
   WrapModalVariantClaimingProps,
-} from "./WrapModalVariantClaiming";
+} from "./WrapClaimModalVariantClaiming";
 
 const WrapCardHeaderTab = ({
   variant,
@@ -33,7 +33,7 @@ const WrapCardHeaderTab = ({
     </div>
   );
 };
-export const WrapModal = (
+export const WrapClaimModal = (
   props: (
     | WrapModalVariantWrapProps
     | WrapCardVariantWrappingProps

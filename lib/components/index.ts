@@ -23,5 +23,6 @@ export * from "./tabs";
 export * from "./text-button";
 export * from "./toast";
 export * from "./tooltip";
+export * from "./unwrap-modal";
 export * from "./wallet-card";
-export * from "./wrap-modal";
+export * from "./wrap-claim-modal";
