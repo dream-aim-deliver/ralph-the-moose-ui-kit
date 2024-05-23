@@ -16,7 +16,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["wrap", "wrapping"],
+      options: ["claim", "claiming"],
       description: "The variant of the wrap card.",
     },
   },

@@ -23,3 +23,13 @@ export type TChainViewModel = {
 export type TChainViewModelWithIcon = TChainViewModel & {
   icon: React.ReactNode;
 };
+
+export type TExecutedTransaction = {
+  hash: string;
+  status: "success" | "error" | "partial";
+  blockNumber: number;
+  timestamp: number;
+  explorerUrl?: string;
+  from: string;
+  network: TChainViewModel;
+};
