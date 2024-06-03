@@ -28,6 +28,59 @@ export const Default: Story = {
     fee: 10,
     allocation: 1000,
     disabled: false,
+    isMinting: false,
+    token: {
+      shortName: "PR",
+    },
+    callbacks: {
+      onMint: () => {},
+    },
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+      nativeCurrency: "ETH",
+    },
+  },
+};
+
+export const IsMinting: Story = {
+  args: {
+    stats: {
+      mintedPercentage: 0.5,
+      mintLimit: 100000,
+      totalSupply: 100000,
+      totalMinted: 50000,
+    },
+    fee: 10,
+    allocation: 1000,
+    disabled: false,
+    isMinting: true,
+    token: {
+      shortName: "PR",
+    },
+    callbacks: {
+      onMint: () => {},
+    },
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+      nativeCurrency: "ETH",
+    },
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    stats: {
+      mintedPercentage: 0.5,
+      mintLimit: 100000,
+      totalSupply: 100000,
+      totalMinted: 50000,
+    },
+    fee: 10,
+    allocation: 1000,
+    disabled: true,
+    isMinting: false,
     token: {
       shortName: "PR",
     },
