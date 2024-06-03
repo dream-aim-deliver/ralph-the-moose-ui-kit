@@ -5,5 +5,7 @@ export {
 
 export {
   BridgeModalBridgingVariant,
-  type BridgeModalBridgingVariantProps,
+  type BridgeModalBridgingVariantSuccessProps,
+  type BridgeModalBridgingVariantErrorProps,
+  type BridgeModalBridgingVariantProgressProps,
 } from "./BridgeModalBridgingVariant";

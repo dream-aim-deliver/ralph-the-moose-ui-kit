@@ -1,24 +1,17 @@
 import { twMerge } from "tailwind-merge";
 import { RalphLogo } from "../ralph-logo";
 import { DropdownTrigger, IconClose, IconMenu } from "..";
-import { type Signal } from "@preact/signals-react";
 import { Menu } from "./Menu";
-import { useSignals } from "@preact/signals-react/runtime";
-
-export interface SupportedNetworkProps {
-  name: string;
-  chainId: number;
-  icon: React.ReactNode;
-}
+import { Signal } from "@preact/signals-react";
+import { TChainViewModelWithIcon } from "../../core";
 
 export interface PageHeaderProps {
-  networks: SupportedNetworkProps[];
-  activeNetwork: SupportedNetworkProps;
-  onNetworkChange: (network: SupportedNetworkProps) => void;
+  networks: TChainViewModelWithIcon[];
+  activeNetwork: TChainViewModelWithIcon;
+  onNetworkChange: (network: TChainViewModelWithIcon) => void;
   menuOpenSignal: Signal<boolean>;
 }
 export const PageHeader = (props: PageHeaderProps) => {
-  useSignals();
   return (
     <div
       className={twMerge(
