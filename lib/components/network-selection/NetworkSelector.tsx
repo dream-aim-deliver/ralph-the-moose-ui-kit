@@ -1,7 +1,7 @@
-import { useSignal, useSignals } from "@preact/signals-react/runtime";
 import { TChainViewModelWithIcon } from "../../core";
 import { DropdownContent, DropdownItem } from "../dropdown";
 import { IconCaretUp, IconCaretDown } from "../icons";
+import { useState, useEffect, useRef } from "react";
 
 export interface NetworkSelectorProps {
   supportedNetworks: TChainViewModelWithIcon[];
@@ -10,17 +10,36 @@ export interface NetworkSelectorProps {
 }
 
 export const NetworkSelector = (props: NetworkSelectorProps) => {
-  useSignals();
-  const selectedOption = useSignal<TChainViewModelWithIcon>(
+  const [selectedOption, setSelectedOption] = useState<TChainViewModelWithIcon>(
     props.activeNetwork,
   );
-  const isOpen = useSignal(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const networkSelectorRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        networkSelectorRef.current &&
+        !(
+          networkSelectorRef.current as unknown as {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            contains: (arg0: any) => any;
+          }
+        ).contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   const dropdownItems = props.supportedNetworks.map((network) => (
     <div
       key={network.name}
       onClick={() => {
-        selectedOption.value = network;
-        isOpen.value = false;
+        setSelectedOption(network);
+        setIsOpen(false);
         props.onNetworkChange(network);
       }}
       className="w-full"
@@ -28,7 +47,7 @@ export const NetworkSelector = (props: NetworkSelectorProps) => {
       <DropdownItem
         title={network.name}
         icon={network.icon}
-        selected={network.name === selectedOption.value.name}
+        selected={network.name === selectedOption.name}
       />
     </div>
   ));
@@ -49,7 +68,7 @@ export const NetworkSelector = (props: NetworkSelectorProps) => {
         `hover:border-text-primary`,
       ].join(" ")}
       onClick={() => {
-        isOpen.value = !isOpen.value;
+        setIsOpen(!isOpen);
       }}
     >
       <div className={"relative leading-[14px] hidden xl:visible"}>Network</div>
@@ -75,15 +94,15 @@ export const NetworkSelector = (props: NetworkSelectorProps) => {
       >
         <div className="flex-1 flex flex-row items-center justify-start gap-[8px]">
           <div className="w-[25px] relative h-[25px] overflow-hidden shrink-0">
-            {selectedOption.value.icon}
+            {selectedOption.icon}
           </div>
           <b className="relative tracking-[-0.04em] leading-[16px]">
-            {selectedOption.value.name}
+            {selectedOption.name}
           </b>
         </div>
         <div className="flex flex-row w-3 h-relative ml-2 items-center">
-          {isOpen.value && <IconCaretUp size={4} />}
-          {!isOpen.value && <IconCaretDown size={4} />}
+          {isOpen && <IconCaretUp size={4} />}
+          {!isOpen && <IconCaretDown size={4} />}
         </div>
       </div>
     </div>
@@ -91,8 +110,8 @@ export const NetworkSelector = (props: NetworkSelectorProps) => {
   return (
     <div>
       <div className="w-full">{largeTrigger}</div>
-      <div className="w-full">
-        {isOpen.value && <DropdownContent>{dropdownItems}</DropdownContent>}
+      <div className="w-full" ref={networkSelectorRef}>
+        {isOpen && <DropdownContent>{dropdownItems}</DropdownContent>}
       </div>
     </div>
   );

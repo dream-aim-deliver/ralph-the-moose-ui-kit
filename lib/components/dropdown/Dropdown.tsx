@@ -1,7 +1,7 @@
 import { DropdownContent } from "./DropdownContent";
 import { DropdownItem, DropdownItemProps } from "./DropdownItem";
 import { DropdownTrigger } from "./DropdownTrigger";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export interface DropdownProps {
   title: string;
@@ -16,6 +16,26 @@ export const Dropdown = (props: DropdownProps) => {
   const [selectedOption, setSelectedOption] = useState<DropdownItemProps>(
     props.defaultItem,
   );
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !(
+          dropdownRef.current as unknown as {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            contains: (arg0: any) => any;
+          }
+        ).contains(event.target)
+      ) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   const [isOpen, setOpen] = useState(false);
   const optionNodes = props.items.map((item) => (
     <div
@@ -48,7 +68,7 @@ export const Dropdown = (props: DropdownProps) => {
           selectedOption={selectedOption.title}
         />
       </div>
-      <div className="w-full">
+      <div className="w-full" ref={dropdownRef}>
         {isOpen && <DropdownContent>{optionNodes}</DropdownContent>}
       </div>
     </div>
