@@ -29,7 +29,7 @@ export type TExecutedTransaction = {
   status: "success" | "error" | "partial";
   blockNumber: number;
   timestamp: number;
-  explorerUrl?: string;
+  explorerUrl: string;
   from: string;
   network: TChainViewModel;
 };
