@@ -90,7 +90,7 @@ export const AwaitingIndexer: Story = {
     amount: 1000,
     transaction: {
       hash: "0x1234567890",
-      blockNumber: 123456,
+      blockNumber: 3000,
       status: "success",
       timestamp: 1234567890,
       from: "0x1234567890",
@@ -100,8 +100,8 @@ export const AwaitingIndexer: Story = {
         name: "Ethereum",
       },
     },
-    indexerBlockNumber: 123456,
-    initialIndexerBlockNumber: 123456,
+    indexerBlockNumber: 2500,
+    initialIndexerBlockNumber: 2000,
   },
 };
 
@@ -136,7 +136,8 @@ export const IndexerError: Story = {
   args: {
     status: "error",
     type: "indexer-error",
-    message: "The indexer failed",
+    message:
+      "Error getting inscription status for the transaction. Please try again later.",
     amount: 1000,
     indexerBlockNumber: 123456,
     initialIndexerBlockNumber: 123456,
@@ -151,7 +152,7 @@ export const TransactionError: Story = {
   args: {
     status: "error",
     type: "transaction-error",
-    message: "The transaction failed",
+    message: "Insufficient funds",
     amount: 1000,
     transaction: {
       hash: "0x1234567890",
@@ -178,7 +179,8 @@ export const VerificationError: Story = {
   args: {
     status: "error",
     type: "verification-error",
-    message: "The verification failed",
+    message:
+      "Could not verify that your balance was updated. Do not worry, your funds are safe. Just wait a moment to let the balance to auto-update. Or get in touch and we will happily resolve the matter.",
     amount: 1000,
     transaction: {
       hash: "0x1234567890",

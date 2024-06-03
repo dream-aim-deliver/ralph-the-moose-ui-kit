@@ -8,6 +8,7 @@ import { LightFrame } from "../layouts";
 import { Modal } from "../modal";
 import { NavLink } from "../nav-link";
 import { Paragraph } from "../paragraph";
+import { ProgressBar } from "../progress-bar";
 
 export interface MintingSuccessViewModel {
   status: "success";
@@ -116,29 +117,56 @@ export const MintingModal = (
       switch (props.type) {
         case "indexer-error":
           return (
-            <div>
+            <div className="w-full flex flex-col items-center justify-between gap-4">
               <Paragraph>
-                The minting process failed due to an indexer error. Please try
-                again.
+                The minting process failed due to an indexer error. Here are
+                some details:
               </Paragraph>
+              <LightFrame>
+                <Paragraph>{props.message}</Paragraph>
+              </LightFrame>
+              <div className="w-full flex flex-col items-end text-text-error">
+                {props.transaction && (
+                  <NavLink
+                    variant="small"
+                    url={props.transaction.explorerUrl}
+                    label="View in Explorer"
+                  ></NavLink>
+                )}
+              </div>
             </div>
           );
         case "transaction-error":
           return (
-            <div>
+            <div className="w-full flex flex-col items-center justify-between gap-4">
               <Paragraph>
-                The minting process failed due to a transaction error. Please
-                try again.
+                The minting transaction failed. The backend reported the
+                following error:{" "}
               </Paragraph>
+              <LightFrame>
+                <Paragraph>{props.message}</Paragraph>
+              </LightFrame>
+              <div className="w-full flex flex-col items-end text-text-error">
+                {props.transaction && (
+                  <NavLink
+                    variant="small"
+                    url={props.transaction.explorerUrl}
+                    label="View in Explorer"
+                  ></NavLink>
+                )}
+              </div>
             </div>
           );
         case "verification-error":
           return (
-            <div>
+            <div className="w-full flex flex-col items-center justify-between gap-4">
               <Paragraph>
-                The minting process failed due to a verification error. Please
-                try again.
+                The minting transaction went through, but we couldn't verify it.
+                Here are some details:
               </Paragraph>
+              <LightFrame className="gap-4 space-x-4">
+                <Paragraph>{props.message}</Paragraph>
+              </LightFrame>
               <div className="w-full flex flex-col items-end text-text-error">
                 {props.transaction && (
                   <NavLink
@@ -153,31 +181,73 @@ export const MintingModal = (
       }
     }
     if (props.status === "in-progress") {
+      let progress = 0;
+      if (props.transaction) {
+        progress =
+          (100 * (props.indexerBlockNumber - props.initialIndexerBlockNumber)) /
+          (props.transaction.blockNumber - props.initialIndexerBlockNumber);
+      }
+      console.log(progress);
       switch (props.type) {
         case "awaiting-transaction":
           return (
             <div>
               <Paragraph>
-                The minting process is in progress. Awaiting transaction
-                confirmation.
+                Preparing and sending the minting transaction. Awaiting
+                confirmation 👀
               </Paragraph>
             </div>
           );
         case "awaiting-indexer":
           return (
-            <div>
+            <div className="w-full flex flex-col items-center justify-between gap-4">
+              <ProgressBar width={100} progress={progress} />
               <Paragraph>
-                The minting process is in progress. Awaiting indexer
-                confirmation.
+                You will find the newly minted PR in your balance as soon as the
+                indexer's block number reaches the transaction's block number.
+                Patience!
               </Paragraph>
+              <LightFrame>
+                <div className="w-full flex flex-row items-center justify-between text-left gap-4">
+                  <Paragraph>Indexer's Block Number</Paragraph>
+                  <Label
+                    label={`${props.indexerBlockNumber}`}
+                    variant="medium"
+                  />
+                </div>
+                <div className="w-full flex flex-row items-center justify-between text-left gap-4">
+                  <Paragraph>Your Block Number</Paragraph>
+                  <Label
+                    label={`${props.transaction?.blockNumber}`}
+                    variant="medium"
+                  />
+                </div>
+              </LightFrame>
+
+              <div className="w-full flex flex-col items-end text-text-success">
+                {props.transaction && (
+                  <NavLink
+                    variant="small"
+                    url={props.transaction.explorerUrl}
+                    label="View in Explorer"
+                  ></NavLink>
+                )}
+              </div>
             </div>
           );
         case "awaiting-verification":
           return (
-            <div>
-              <Paragraph>
-                The minting process is in progress. Awaiting verification.
-              </Paragraph>
+            <div className="w-full flex flex-col gap-4">
+              <Paragraph>{props.message} </Paragraph>
+              <div className="w-full flex flex-col items-end text-text-success">
+                {props.transaction && (
+                  <NavLink
+                    variant="small"
+                    url={props.transaction.explorerUrl}
+                    label="View in Explorer"
+                  ></NavLink>
+                )}
+              </div>
             </div>
           );
       }
