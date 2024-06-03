@@ -13,6 +13,7 @@ export * from "./label";
 export * from "./layouts";
 export * from "./link";
 export * from "./mint-card";
+export * from "./minting-modal";
 export * from "./modal";
 export * from "./nav-link";
 export * from "./layouts";
