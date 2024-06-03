@@ -1,8 +1,7 @@
-import { useSignal } from "@preact/signals-react";
 import { DropdownContent } from "./DropdownContent";
 import { DropdownItem, DropdownItemProps } from "./DropdownItem";
 import { DropdownTrigger } from "./DropdownTrigger";
-import { useSignals } from "@preact/signals-react/runtime";
+import { useState } from "react";
 
 export interface DropdownProps {
   title: string;
@@ -14,26 +13,24 @@ export interface DropdownProps {
 }
 
 export const Dropdown = (props: DropdownProps) => {
-  useSignals();
-  const selectedOption = useSignal<DropdownItemProps>(props.defaultItem);
-  const isOpen = useSignal(false);
+  const [selectedOption, setSelectedOption] = useState<DropdownItemProps>(
+    props.defaultItem,
+  );
+  const [isOpen, setOpen] = useState(false);
   const optionNodes = props.items.map((item) => (
     <div
       key={item.title}
       onClick={() => {
-        const oldItem = selectedOption.value;
-        selectedOption.value = item;
-        isOpen.value = false;
+        const oldItem = selectedOption;
+        setSelectedOption(item);
+        setOpen(false);
         if (props.onChange) {
           props.onChange(oldItem, item);
         }
       }}
       className="w-full"
     >
-      <DropdownItem
-        {...item}
-        selected={item.title === selectedOption.value.title}
-      />
+      <DropdownItem {...item} selected={item.title === selectedOption.title} />
     </div>
   ));
   return (
@@ -42,17 +39,17 @@ export const Dropdown = (props: DropdownProps) => {
         id="dropdown-trigger"
         className="w-full"
         onClick={() => {
-          isOpen.value = !isOpen.value;
+          setOpen(!isOpen);
         }}
       >
         <DropdownTrigger
           title={props.title}
-          expanded={isOpen.value}
-          selectedOption={selectedOption.value.title}
+          expanded={isOpen}
+          selectedOption={selectedOption.title}
         />
       </div>
       <div className="w-full">
-        {isOpen.value && <DropdownContent>{optionNodes}</DropdownContent>}
+        {isOpen && <DropdownContent>{optionNodes}</DropdownContent>}
       </div>
     </div>
   );

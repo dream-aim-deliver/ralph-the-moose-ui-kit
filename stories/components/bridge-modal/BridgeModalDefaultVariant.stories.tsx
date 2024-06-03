@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { BridgeCard } from "@/components/bridge-card";
-import { RalphLogo, TChainViewModel } from "../../lib";
-import { Signal } from "@preact/signals-react";
+import { BridgeModalDefaultVariant } from "@/components/bridge-modal";
+import { RalphLogo } from "../../../lib";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Components/BridgeCard",
-  component: BridgeCard,
+  title: "Components/BridgeModal/DefaultVariant",
+  component: BridgeModalDefaultVariant,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
@@ -15,15 +14,8 @@ const meta = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  argTypes: {
-    // variant: {
-    //   control: "inline-radio",
-    //   options: ["primary", "secondary"],
-    // },
-    // onClick: { action: "clicked" },
-    // disabled: { control: "boolean" },
-  },
-} satisfies Meta<typeof BridgeCard>;
+  argTypes: {},
+} satisfies Meta<typeof BridgeModalDefaultVariant>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -34,21 +26,27 @@ export const Default: Story = {
     supportedChains: [
       { chainId: 1, name: "Ethereum" },
       { chainId: 2, name: "Binance Smart Chain" },
+      { chainId: 3, name: "Base" },
     ],
     activeChain: {
-      value: {
-        chainId: 1,
-        name: "Ethereum",
-      },
-    } as unknown as Signal<TChainViewModel>,
-    tokenShortName: "ETH",
-    icon: <RalphLogo variant="icon" />,
-    maxBridgeAmount: 100,
-    onBridge() {
-      console.log("Bridge button clicked");
+      chainId: 1,
+      name: "Ethereum",
+      bridgingFee: 0.00123,
+      nativeCurrency: "ETH",
     },
-    onClose() {
-      console.log("Close button clicked");
+
+    token: {
+      shortName: "PR",
+      icon: <RalphLogo variant="icon" />,
+    },
+    balance: { inscriptions: 100 },
+    callbacks: {
+      onBridge: () => {
+        console.log("Bridge button clicked");
+      },
+      onClose: () => {
+        console.log("Close button clicked");
+      },
     },
   },
 };
