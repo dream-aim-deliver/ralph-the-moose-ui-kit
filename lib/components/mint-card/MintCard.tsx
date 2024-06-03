@@ -18,6 +18,7 @@ export interface MintCardProps {
     mintLimit: number;
   };
   disabled: boolean;
+  isMinting: boolean;
   fee: number;
   allocation: number;
   token: {
@@ -63,7 +64,7 @@ export const MintCard = (props: MintCardProps) => {
             <Label label={`${formattedTotalMinted}`} variant="medium" />
           </div>
         </div>
-        {!props.disabled && (
+        {!props.disabled && !props.isMinting && (
           <LightFrame className="w-full items-center gap-4 text-left text-base font-varela text-text-secondary">
             <IconSuccess size={12} />
             <div className="w-full font-gluten font-bold relative text-lg tracking-[-0.04em] leading-[18px] inline-block font-heading-h5 text-text-primary text-center overflow-auto whitespace-normal">
@@ -87,7 +88,7 @@ export const MintCard = (props: MintCardProps) => {
         )}
         <Button
           disabled={props.disabled}
-          label="Mint"
+          label={props.isMinting ? "Check progress" : "Mint"}
           variant="primary"
           onClick={handleMint}
         />
