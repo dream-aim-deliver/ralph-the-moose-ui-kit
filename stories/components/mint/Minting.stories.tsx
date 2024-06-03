@@ -37,3 +37,16 @@ export const MintingSuccess: Story = {
     },
   },
 };
+
+export const EstimatedGas: Story = {
+  args: {
+    status: "estimated-gas",
+    amount: 1000,
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    estimatedGas: 1000,
+    gasLimit: 20000, // Add the gasLimit property
+  },
+};
