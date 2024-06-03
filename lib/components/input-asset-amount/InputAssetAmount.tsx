@@ -15,7 +15,6 @@ export const InputAssetAmount = ({
   tokenShortName,
   onChange,
 }: InputAssetAmountProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   /**
    *
    * @param value The new value for the Amount signal

@@ -1,1 +1,4 @@
-export { MintingModal, type MintingSuccessViewModel as MintingModalProps } from "./MintingModal";
+export {
+  MintingModal,
+  type MintingSuccessViewModel as MintingModalProps,
+} from "./MintingModal";
