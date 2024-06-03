@@ -50,3 +50,153 @@ export const EstimatedGas: Story = {
     gasLimit: 20000, // Add the gasLimit property
   },
 };
+
+export const AwaitingTransaction: Story = {
+  args: {
+    status: "in-progress",
+    type: "awaiting-transaction",
+    message: "Awaiting transaction",
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    amount: 1000,
+    transaction: {
+      hash: "0x1234567890",
+      blockNumber: 123456,
+      status: "success",
+      timestamp: 1234567890,
+      from: "0x1234567890",
+      explorerUrl: "https://etherscan.io/tx/0x1234567890",
+      network: {
+        chainId: 1,
+        name: "Ethereum",
+      },
+    },
+    indexerBlockNumber: 123456,
+    initialIndexerBlockNumber: 123456,
+  },
+};
+
+export const AwaitingIndexer: Story = {
+  args: {
+    status: "in-progress",
+    type: "awaiting-indexer",
+    message: "Awaiting indexer",
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    amount: 1000,
+    transaction: {
+      hash: "0x1234567890",
+      blockNumber: 123456,
+      status: "success",
+      timestamp: 1234567890,
+      from: "0x1234567890",
+      explorerUrl: "https://etherscan.io/tx/0x1234567890",
+      network: {
+        chainId: 1,
+        name: "Ethereum",
+      },
+    },
+    indexerBlockNumber: 123456,
+    initialIndexerBlockNumber: 123456,
+  },
+};
+
+export const AwaitingVerification: Story = {
+  args: {
+    status: "in-progress",
+    type: "awaiting-verification",
+    message: "Awaiting verification",
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    amount: 1000,
+    transaction: {
+      hash: "0x1234567890",
+      blockNumber: 123456,
+      status: "success",
+      timestamp: 1234567890,
+      from: "0x1234567890",
+      explorerUrl: "https://etherscan.io/tx/0x1234567890",
+      network: {
+        chainId: 1,
+        name: "Ethereum",
+      },
+    },
+    indexerBlockNumber: 123456,
+    initialIndexerBlockNumber: 123456,
+  },
+};
+
+export const IndexerError: Story = {
+  args: {
+    status: "error",
+    type: "indexer-error",
+    message: "The indexer failed",
+    amount: 1000,
+    indexerBlockNumber: 123456,
+    initialIndexerBlockNumber: 123456,
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+  },
+};
+
+export const TransactionError: Story = {
+  args: {
+    status: "error",
+    type: "transaction-error",
+    message: "The transaction failed",
+    amount: 1000,
+    transaction: {
+      hash: "0x1234567890",
+      blockNumber: 123456,
+      status: "error",
+      timestamp: 1234567890,
+      from: "0x1234567890",
+      explorerUrl: "https://etherscan.io/tx/0x1234567890",
+      network: {
+        chainId: 1,
+        name: "Ethereum",
+      },
+    },
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    indexerBlockNumber: 123456,
+    initialIndexerBlockNumber: 123456,
+  },
+};
+
+export const VerificationError: Story = {
+  args: {
+    status: "error",
+    type: "verification-error",
+    message: "The verification failed",
+    amount: 1000,
+    transaction: {
+      hash: "0x1234567890",
+      blockNumber: 123456,
+      status: "error",
+      timestamp: 1234567890,
+      from: "0x1234567890",
+      explorerUrl: "https://etherscan.io/tx/0x1234567890",
+      network: {
+        chainId: 1,
+        name: "Ethereum",
+      },
+    },
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    indexerBlockNumber: 123456,
+    initialIndexerBlockNumber: 123456,
+  },
+};

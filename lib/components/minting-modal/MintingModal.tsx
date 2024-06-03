@@ -112,6 +112,76 @@ export const MintingModal = (
         </div>
       );
     }
+    if (props.status === "error") {
+      switch (props.type) {
+        case "indexer-error":
+          return (
+            <div>
+              <Paragraph>
+                The minting process failed due to an indexer error. Please try
+                again.
+              </Paragraph>
+            </div>
+          );
+        case "transaction-error":
+          return (
+            <div>
+              <Paragraph>
+                The minting process failed due to a transaction error. Please
+                try again.
+              </Paragraph>
+            </div>
+          );
+        case "verification-error":
+          return (
+            <div>
+              <Paragraph>
+                The minting process failed due to a verification error. Please
+                try again.
+              </Paragraph>
+              <div className="w-full flex flex-col items-end text-text-error">
+                {props.transaction && (
+                  <NavLink
+                    variant="small"
+                    url={props.transaction.explorerUrl}
+                    label="View in Explorer"
+                  ></NavLink>
+                )}
+              </div>
+            </div>
+          );
+      }
+    }
+    if (props.status === "in-progress") {
+      switch (props.type) {
+        case "awaiting-transaction":
+          return (
+            <div>
+              <Paragraph>
+                The minting process is in progress. Awaiting transaction
+                confirmation.
+              </Paragraph>
+            </div>
+          );
+        case "awaiting-indexer":
+          return (
+            <div>
+              <Paragraph>
+                The minting process is in progress. Awaiting indexer
+                confirmation.
+              </Paragraph>
+            </div>
+          );
+        case "awaiting-verification":
+          return (
+            <div>
+              <Paragraph>
+                The minting process is in progress. Awaiting verification.
+              </Paragraph>
+            </div>
+          );
+      }
+    }
   };
   return (
     <Modal>
