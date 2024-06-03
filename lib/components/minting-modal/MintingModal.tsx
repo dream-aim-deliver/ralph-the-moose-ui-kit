@@ -3,6 +3,8 @@ import { formatNumber } from "../../utils/tokenUtils";
 import { Heading, HeadingVariant } from "../heading";
 import { IconButtonClose } from "../icon-button";
 import { IconError, IconHourglass, IconSuccess } from "../icons";
+import { Label } from "../label";
+import { LightFrame } from "../layouts";
 import { Modal } from "../modal";
 import { NavLink } from "../nav-link";
 import { Paragraph } from "../paragraph";
@@ -59,7 +61,7 @@ export const MintingModal = (
     if (props.status === "error") {
       return <IconError size={12} />;
     }
-    if (props.status === "in-progress") {
+    if (props.status === "in-progress" || props.status === "estimated-gas") {
       return <IconHourglass size={12} />;
     }
   };
@@ -91,6 +93,22 @@ export const MintingModal = (
               ></NavLink>
             )}
           </div>
+        </div>
+      );
+    }
+    if (props.status === "estimated-gas") {
+      return (
+        <div className="w-full">
+          <LightFrame>
+            <div className="w-full flex flex-row items-center justify-between text-left gap-4">
+              <Paragraph>Estimated Gas</Paragraph>
+              <Label label={`${props.estimatedGas}`} variant="medium" />
+            </div>
+            <div className="w-full flex flex-row items-center justify-between text-left gap-4">
+              <Paragraph>Gas Limit</Paragraph>
+              <Label label={`${props.gasLimit}`} variant="medium" />
+            </div>
+          </LightFrame>
         </div>
       );
     }
