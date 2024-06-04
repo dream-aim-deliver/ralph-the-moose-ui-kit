@@ -1,8 +1,9 @@
+"use client";
 import { useState } from "react";
 import { TChainViewModel } from "../../core";
 import { formatNumber } from "../../utils/tokenUtils";
 import { Button } from "../button";
-import { InputAssetAmountWithLabel } from "../input-asset-amount-with-label";
+import { InputAssetAmountWithLabel } from "../input-asset-amount-with-label/InputAssetAmountWithLabel";
 import { Label } from "../label";
 import { LightFrame } from "../layouts";
 import { Modal } from "../modal";

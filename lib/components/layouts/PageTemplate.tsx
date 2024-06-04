@@ -1,9 +1,10 @@
+"use client";
 import { twMerge } from "tailwind-merge";
 import { PageHeader } from "./PageHeader";
 import { PageFooter } from "./PageFooter";
 import { useState } from "react";
 import { IconMooseHorn } from "../icons";
-import { Toast, ToastProps } from "../toast";
+import { Toast, ToastProps } from "../toast/Toast";
 import { ToastContext } from "../../contexts/ToastContext";
 export const PageTemplate = ({
   menu,
