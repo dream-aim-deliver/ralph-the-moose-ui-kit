@@ -1,16 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { PageTemplate as Component } from "@/components/layouts";
+import { PageTemplate as Component, Menu } from "@/components/layouts";
 import {
-  BalanceCard,
   Button,
-  MintCard,
-  TChainConfig,
+  IconNetworkAvax,
+  IconNetworkBase,
+  IconTelegram,
+  IconTwitter,
+  NavLink,
   TextButton,
-  ToastProps,
   WalletCard,
 } from "../../lib";
-import { Signal, signal } from "@preact/signals-react";
+import { NetworkSelector } from "@/components/network-selection";
 
 const meta = {
   title: "Layouts/Page Template",
@@ -40,78 +41,79 @@ const walletCard = (
   />
 );
 
-const mintCard = (
-  <MintCard
-    mintedPercentage={0.5}
-    mintLimit={100000}
-    totalSupply={100000}
-    totalMinted={50000}
-    mintingFee={10}
-    mintingDisabled={false}
-    tokenShortName="PR"
-    isMinting={{ value: false } as unknown as Signal<boolean>}
-    onMint={() => {}}
+const menu = (
+  <Menu>
+    <NavLink
+      variant="medium"
+      label="Website"
+      url="https://ralphthemoose.com/"
+      className="text-text-inverted"
+    />
+    <NavLink
+      variant="medium"
+      label="Twitter"
+      url="https://twitter.com/RalphTheMoose"
+      icon={<IconTwitter />}
+      className="text-text-inverted"
+    />
+    <NavLink
+      variant="medium"
+      label="Telegram"
+      url="https://t.me/RalphTheMoose"
+      icon={<IconTelegram />}
+      className="text-text-inverted"
+    />
+    <NavLink
+      variant="medium"
+      label="Farm"
+      url="https://app.elk.finance/farms/all/"
+      className="text-text-inverted"
+    />
+    <NavLink
+      variant="medium"
+      label="ElkDex"
+      url="https://app.elk.finance/swap/8453/ETH/PR"
+      // icon={<IconElk size={4} />}
+      className="text-text-inverted"
+    />
+    <NavLink
+      variant="medium"
+      label="UniSwap"
+      url="https://app.uniswap.org/swap"
+      className="text-text-inverted"
+    />
+  </Menu>
+);
+
+const networks = [
+  {
+    name: "Base",
+    chainId: 1,
+    icon: <IconNetworkBase />,
+  },
+  {
+    name: "AVAX",
+    chainId: 56,
+    icon: <IconNetworkAvax />,
+  },
+];
+
+const networkSelector = (
+  <NetworkSelector
+    supportedNetworks={networks}
+    activeNetwork={networks[0]}
+    onNetworkChange={(network) => {
+      console.log(`Network changed to ${network.name}`);
+    }}
   />
 );
 
-const balanceCard = (
-  <BalanceCard
-    inscriptionBalance={80000}
-    wrappedBalance={20000}
-    tokenShortName="PR"
-    icon={<div />}
-    fee={2}
-    onWrap={() => {}}
-    onUnwrap={() => {}}
-    claimableAmount={0} // Add missing prop
-    networkCurrency="" // Add missing prop
-    onClaim={() => {}} // Add missing prop
-    amountToWrap={signal(100)} // Add missing prop
-    amountToUnwrap={signal(100)} // Add missing prop
-    SWrapStatusMessage={"Wrapping in progress..." as unknown as Signal<string>}
-    SClaimStatusMessage={signal("Ready to claim!")}
-    SWrapCardView={
-      "wrapping" as unknown as Signal<"wrapping" | "claiming" | "default">
-    }
-    SUnwrapStatusMessage={
-      "Unwrapping in progress..." as unknown as Signal<string>
-    }
-    SUnwrapCardView={
-      "unwrapping" as unknown as Signal<
-        "default" | "unwrapping" | "unwrapping-ended"
-      >
-    }
-    SUnwrapEndedStatusFrame={
-      (<div>Unwrapping ended</div>) as unknown as Signal<React.ReactNode>
-    }
-    supportedChains={[
-      {
-        name: "Base",
-        chainId: 1,
-      },
-      {
-        name: "Ethereum",
-        chainId: 2,
-      },
-    ]}
-    activeChain={
-      signal({ name: "Base", chainId: 1 }) as unknown as Signal<TChainConfig>
-    }
-  />
-);
 export const Page: Story = {
   args: {
-    children: (
-      <div className="w-full space-y-16">
-        {walletCard}
-        <div className="w-full flex flex-row items-center justify-between gap-4">
-          {mintCard}
-        </div>
-        {balanceCard}
-      </div>
-    ),
-    toasts: signal([]) as unknown as Signal<ToastProps[]>,
-    activeNetwork: signal({}) as unknown as Signal<TChainConfig>,
-    supportedNetworks: [] as TChainConfig[],
+    menu: menu,
+    networkSelector: networkSelector,
+    footerContent:
+      "Ralph's UI may take a few seconds to update balances due to relayer response delays (around 5-6 seconds). Rest assured, your funds are safe, just give it a moment to catch up. Thank you for your patience!",
+    children: <div className="w-full space-y-16">{walletCard}</div>,
   },
 };

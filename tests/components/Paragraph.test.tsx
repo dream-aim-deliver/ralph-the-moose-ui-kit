@@ -5,7 +5,7 @@ import { Paragraph } from "@/components/paragraph";
 
 describe("<Paragraph/>", () => {
   it("should render the paragraph", () => {
-    render(<Paragraph variant="medium">paragraph / medium</Paragraph>);
+    render(<Paragraph variant="primary">paragraph / medium</Paragraph>);
     expect(screen.getByText("paragraph / medium")).toBeInTheDocument();
     expect(screen.getByText("paragraph / medium")).toHaveTextContent(
       "paragraph / medium",
@@ -14,7 +14,7 @@ describe("<Paragraph/>", () => {
 
   it("should check the paragraph with children", () => {
     render(
-      <Paragraph variant="medium">
+      <Paragraph variant="primary">
         <span>paragraph / span </span>
       </Paragraph>,
     );

@@ -9,6 +9,7 @@ export { IconForm } from "./IconForm";
 export { IconHourglass } from "./IconHourglass";
 export { IconMenu } from "./IconMenu";
 export { IconMooseHorn } from "./IconMooseHorn";
+export { IconNetworkAvax } from "./IconNetworkAvax";
 export { IconNetworkBase } from "./IconNetworkBase";
 export { IconPlaceholder } from "./IconPlaceholder";
 export { IconSuccess } from "./IconSuccess";
