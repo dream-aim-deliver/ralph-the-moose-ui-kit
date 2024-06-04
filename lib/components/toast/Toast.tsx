@@ -10,7 +10,10 @@ export interface ToastProps {
    * Can be one of: "success", "error", or "warning".
    */
   status: "success" | "error" | "warning";
-
+  /**
+   * The id of the toast.
+   */
+  id: string;
   /**
    * The title of the toast.
    */

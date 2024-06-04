@@ -10,6 +10,7 @@ import {
   NavLink,
   TextButton,
   WalletCard,
+  useToast,
 } from "../../lib";
 import { NetworkSelector } from "@/components/network-selection";
 
@@ -107,13 +108,42 @@ const networkSelector = (
     }}
   />
 );
-
+const ToastTestButton = () => {
+  const toastModel = useToast();
+  return (
+    <Button
+      variant="primary"
+      label="Test Toast"
+      onClick={() => {
+        if (!toastModel) {
+          console.error("useToast returned null");
+          return;
+        }
+        toastModel.openToast(
+          {
+            status: "error",
+            id: "test-toast",
+            title: "Test Toast",
+            message: "This is a test toast",
+            isPermanent: false,
+          },
+          5000,
+        );
+      }}
+    />
+  );
+};
 export const Page: Story = {
   args: {
     menu: menu,
     networkSelector: networkSelector,
     footerContent:
       "Ralph's UI may take a few seconds to update balances due to relayer response delays (around 5-6 seconds). Rest assured, your funds are safe, just give it a moment to catch up. Thank you for your patience!",
-    children: <div className="w-full space-y-16">{walletCard}</div>,
+    children: (
+      <div className="w-full space-y-16 gap-4">
+        {walletCard}
+        <ToastTestButton />
+      </div>
+    ),
   },
 };
