@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IconError, IconSuccess, IconWarning, Card } from "..";
 
 /**
@@ -25,58 +25,14 @@ export interface ToastProps {
   message: string;
 
   /**
-   * Indicate whether the element auto hides or stays permanetly on screen.
-   */
-  isPermanent?: boolean;
-
-  /**
    * The children of the toast.
    */
   children?: React.ReactNode;
 }
 
-enum ToastViewStatus {
-  Show,
-  Hide,
-  Fading,
-}
-
-export const Toast = ({
-  status,
-  title,
-  message,
-  isPermanent = false,
-  children,
-}: ToastProps) => {
-  const [viewStatus, setViewStatus] = useState<ToastViewStatus>(
-    ToastViewStatus.Show,
-  );
-  useEffect(() => {
-    if (isPermanent) return;
-    setViewStatus(ToastViewStatus.Fading);
-  }, [isPermanent]);
-
-  useEffect(() => {
-    if (viewStatus === ToastViewStatus.Fading) {
-      setTimeout(() => {
-        setViewStatus(ToastViewStatus.Hide);
-      }, 3000);
-    }
-  }, [viewStatus]);
-
-  const classList = () => {
-    switch (viewStatus) {
-      case ToastViewStatus.Show:
-        return "opacity-100";
-      case ToastViewStatus.Fading:
-        return "opacity-100 animate-fadeout delay-[3000ms]";
-      case ToastViewStatus.Hide:
-        return "hidden";
-    }
-  };
-
+export const Toast = ({ status, title, message, children }: ToastProps) => {
   return (
-    <div className={`${classList()}`}>
+    <div className={``}>
       <Card>
         <div className="flex h-10 w-full flex-row items-center justify-start gap-4">
           <div>

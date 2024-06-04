@@ -3,7 +3,7 @@ import { ToastProps } from "../components";
 
 export const ToastContext = createContext<
   | {
-      openToast: (data: ToastProps, timeout?: number | undefined) => void;
+      openToast: (data: ToastProps, timeout: number | undefined) => void;
       closeToast: (id: string) => void;
     }
   | undefined

@@ -80,7 +80,6 @@ export const PageTemplate = ({
               status={toast.status}
               title={toast.title}
               message={toast.message}
-              isPermanent={toast.isPermanent}
             />
           ))}
         </div>

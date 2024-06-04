@@ -23,11 +23,6 @@ const meta = {
       control: "text",
       description: "The message to be displayed in the toast.",
     },
-    isPermanent: {
-      control: "boolean",
-      description:
-        "Indicate whether the element auto hides or stays permanetly on screen.",
-    },
   },
 } satisfies Meta<typeof Toast>;
 
@@ -43,9 +38,9 @@ const viewInExplorer = (
 );
 export const Temporary: Story = {
   args: {
+    id: "123",
     title: "8640 PR Bridged",
     message: "Tx: 0x1234567890",
-    isPermanent: false,
     status: "success",
     children: viewInExplorer,
   },
@@ -53,9 +48,9 @@ export const Temporary: Story = {
 
 export const Permanent: Story = {
   args: {
+    id: "1234",
     title: "Transaction Failed",
     message: "Tx: 0x1234567890",
-    isPermanent: true,
     status: "error",
   },
 };
