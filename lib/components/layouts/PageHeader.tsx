@@ -1,3 +1,4 @@
+"use client";
 import { twMerge } from "tailwind-merge";
 import { RalphLogo } from "../ralph-logo";
 import { IconClose, IconMenu } from "..";

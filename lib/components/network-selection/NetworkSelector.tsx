@@ -1,3 +1,4 @@
+"use client";
 import { TChainViewModelWithIcon } from "../../core";
 import { DropdownContent, DropdownItem } from "../dropdown";
 import { IconCaretUp, IconCaretDown } from "../icons";

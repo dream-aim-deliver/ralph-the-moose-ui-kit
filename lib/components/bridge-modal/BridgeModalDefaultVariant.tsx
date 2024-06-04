@@ -1,6 +1,7 @@
+"use client";
 import { Button } from "../button";
 import { Heading, HeadingVariant } from "../heading";
-import { InputAssetAmountWithLabel } from "../input-asset-amount-with-label";
+import { InputAssetAmountWithLabel } from "../input-asset-amount-with-label/InputAssetAmountWithLabel";
 import { TChainViewModel } from "../../core";
 import { IconButtonClose } from "../icon-button/IconButtonClose";
 import { Dropdown } from "../dropdown";

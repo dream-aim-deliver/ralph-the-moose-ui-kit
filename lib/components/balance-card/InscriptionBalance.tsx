@@ -1,5 +1,7 @@
-import { Tooltip, Label, Button } from "..";
+import { Button } from "../button/Button";
+import { Label } from "../label/Label";
 import { LightFrame } from "../layouts/LightFrame";
+import { Tooltip } from "../tooltip/Tooltip";
 
 /**
  * Renders a Inscription Balance section of Balance Card Primary Variant.

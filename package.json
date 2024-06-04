@@ -28,7 +28,7 @@
   },
   "scripts": {
     "app": "vite",
-    "build": "tsc --p ./tsconfig-build.json && vite build",
+    "build": "tsc --p ./tsconfig-build.json && vite build && python3 patch-directives.py",
     "build:watch": "tsc --p ./tsconfig-build.json && vite build --watch",
     "build:docs": "typedoc --out docs lib/index.ts",
     "build:storybook": "storybook build",

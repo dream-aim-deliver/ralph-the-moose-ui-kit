@@ -1,3 +1,4 @@
+"use client";
 import { DropdownContent } from "./DropdownContent";
 import { DropdownItem, DropdownItemProps } from "./DropdownItem";
 import { DropdownTrigger } from "./DropdownTrigger";

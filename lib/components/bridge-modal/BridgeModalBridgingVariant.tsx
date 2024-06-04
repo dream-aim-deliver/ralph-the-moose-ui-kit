@@ -1,8 +1,14 @@
-import { IconButtonClose, LightFrame, NavLink, Paragraph } from "..";
-import { TChainViewModel, TExecutedTransaction } from "../../core";
-import { Heading, HeadingVariant } from "../heading";
-import { IconSuccess, IconError, IconHourglass } from "../icons";
-import { Modal } from "../modal";
+"use client";
+import { TChainViewModel, TExecutedTransaction } from "../../core/entity";
+import { Heading, HeadingVariant } from "../heading/Heading";
+import { IconButtonClose } from "../icon-button/IconButtonClose";
+import { IconError } from "../icons/IconError";
+import { IconHourglass } from "../icons/IconHourglass";
+import { IconSuccess } from "../icons/IconSuccess";
+import { LightFrame } from "../layouts/LightFrame";
+import { Modal } from "../modal/Modal";
+import { NavLink } from "../nav-link/NavLink";
+import { Paragraph } from "../paragraph/Paragraph";
 
 export interface BridgeModalBridgingVariantSuccessProps {
   status: "success";
