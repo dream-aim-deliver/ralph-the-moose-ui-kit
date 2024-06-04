@@ -122,10 +122,9 @@ const ToastTestButton = () => {
         toastModel.openToast(
           {
             status: "error",
-            id: "test-toast",
+            id: "123",
             title: "Test Toast",
             message: "This is a test toast",
-            isPermanent: false,
           },
           5000,
         );
