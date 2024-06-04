@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { InputAssetAmountWithLabel } from "@/components/input-asset-amount-with-label";
 import { RalphLogo } from "@/components/ralph-logo";
-import { Signal } from "@preact/signals-react";
 
 const meta = {
   title: "Components/InputAssetAmountWithLabel",
@@ -25,15 +24,21 @@ export const Ralph: Story = {
     maxAmount: 100,
     errorMessage: "You ain't got enough tokens!",
     icon: ralphIcon,
-    initialAmount: 1000 as unknown as Signal<number>,
+    initialAmount: 1000,
     tokenShortName: "PR",
+    onChange: (value: number) => {
+      console.log(value);
+    }, // Add the onChange property here
   },
 };
 export const BurgerToken: Story = {
   args: {
     maxAmount: 100,
     icon: "🍔",
-    initialAmount: 100 as unknown as Signal<number>,
+    initialAmount: 100,
     tokenShortName: "PR",
+    onChange: (value: number) => {
+      console.log(value);
+    }, // Add the onChange property here
   },
 };

@@ -1,17 +1,27 @@
 import { twMerge } from "tailwind-merge";
 import { RalphLogo } from "../ralph-logo";
-import { DropdownTrigger, IconClose, IconMenu } from "..";
-import { Menu } from "./Menu";
-import { Signal } from "@preact/signals-react";
-import { TChainViewModelWithIcon } from "../../core";
+import { IconClose, IconMenu } from "..";
+import { useState } from "react";
 
 export interface PageHeaderProps {
-  networks: TChainViewModelWithIcon[];
-  activeNetwork: TChainViewModelWithIcon;
-  onNetworkChange: (network: TChainViewModelWithIcon) => void;
-  menuOpenSignal: Signal<boolean>;
+  menu: React.ReactNode;
+  networkSelector: React.ReactNode;
+  callbacks?: {
+    onMenuTrigger: (status: boolean) => void;
+  };
 }
 export const PageHeader = (props: PageHeaderProps) => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const openMenu = () => {
+    setMenuOpen(true);
+    props.callbacks?.onMenuTrigger(true);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+    props.callbacks?.onMenuTrigger(false);
+  };
   return (
     <div
       className={twMerge(
@@ -24,43 +34,44 @@ export const PageHeader = (props: PageHeaderProps) => {
     >
       <div
         id="header-content-sm"
-        className="flex w-full flex-row items-center justify-between gap-[16px] xl:hidden"
+        className="xl:hidden flex w-full flex-row items-center justify-between gap-[16px] "
       >
         <div className="flex flex-row items-center justify-start gap-[9px]">
           <RalphLogo variant="full-horizontal" />
         </div>
-        <div id="header-content-sm-network-menu" className="flex">
+        <div
+          id="header-content-sm-network-menu"
+          className={twMerge(
+            "flex flex-col items-center justify-between",
+            "bg-base-colors/neutral-600",
+          )}
+        >
           <div
             id="menu-small"
             className="flex flex-row items-start justify-start p-2"
           >
-            {!props.menuOpenSignal.value ? (
-              <div className="flex cursor-pointer flex-row gap-4">
-                <div onClick={() => props.onNetworkChange(props.activeNetwork)}>
-                  <DropdownTrigger
-                    title=""
-                    expanded={true}
-                    selectedOption={props.activeNetwork.name}
-                  />
-                </div>
+            {isMenuOpen ? (
+              <div className="flex cursor-pointer flex-row">
                 <div
                   className="cursor-pointer hover:text-text-primary"
                   onClick={() => {
-                    props.menuOpenSignal.value = true;
+                    closeMenu();
                   }}
                 >
-                  <IconMenu size={10} />
+                  <IconClose size={10} />
                 </div>
               </div>
             ) : (
-              <div>
+              <div className="flex flex-row gap-4">
+                {props.networkSelector}
+
                 <div
                   onClick={() => {
-                    props.menuOpenSignal.value = false;
+                    openMenu();
                   }}
                   className="cursor-pointer text-text-inverted hover:text-text-primary"
                 >
-                  <IconClose />
+                  <IconMenu size={10} />
                 </div>
               </div>
             )}
@@ -69,25 +80,13 @@ export const PageHeader = (props: PageHeaderProps) => {
       </div>
       <div
         id="header-content-xl"
-        className="hidden w-full flex-row items-start justify-between xl:flex"
+        className="hidden xl:flex w-full flex-row items-start justify-between "
       >
         <div className="flex flex-row items-center justify-start gap-[9px]">
           <RalphLogo variant="full-horizontal" />
         </div>
-        <div className="ml-40 mr-40 flex flex-row items-center justify-between text-base">
-          <Menu />
-        </div>
-        {/* TODO: Implement network change and dropdown content */}
-        <div
-          className="cursor-pointer"
-          onClick={() => props.onNetworkChange(props.activeNetwork)}
-        >
-          <DropdownTrigger
-            title=""
-            expanded={false}
-            selectedOption={props.activeNetwork.name}
-          />
-        </div>
+        <div className="ml-40 mr-40 text-base">{props.menu}</div>
+        <div className="cursor-pointer">{props.networkSelector}</div>
       </div>
     </div>
   );

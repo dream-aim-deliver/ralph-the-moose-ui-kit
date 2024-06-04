@@ -1,41 +1,24 @@
 import { twMerge } from "tailwind-merge";
-import { PageFooter } from "./PageFooter";
 import { PageHeader } from "./PageHeader";
-import { useSignal, useSignals } from "@preact/signals-react/runtime";
-import { type Signal } from "@preact/signals-react";
-import { TChainConfig } from "../../core/entity";
-import { Toast, ToastProps } from "../toast/Toast";
-import { Menu } from "./Menu";
+import { PageFooter } from "./PageFooter";
+import { useState } from "react";
+import { IconMooseHorn } from "../icons";
 export const PageTemplate = ({
+  menu,
+  networkSelector,
+  footerContent,
   children,
-  toasts,
-  activeNetwork,
-  supportedNetworks,
 }: {
+  menu: React.ReactNode;
+  networkSelector: React.ReactNode;
+  footerContent: string;
   children: React.ReactNode;
-  toasts: Signal<ToastProps[]>;
-  activeNetwork: Signal<TChainConfig>;
-  supportedNetworks: TChainConfig[];
 }) => {
-  useSignals();
-  const menuOpenSignal = useSignal<boolean>(false);
-  const handleNetworkChange = () => {
-    // const newChain = (SUPPORTED_CHAINS as TChainConfig[]).find((chain) => chain.chainId === network.chainId);
-    // if (newChain) {
-    //   activeNetwork.value = newChain;
-    // }
-    // TODO: Network change failed!
-    toasts.value.push({
-      status: "success",
-      title: `Use ${activeNetwork.value.name} Network`,
-      message: `Ralph's coming to more chains soon!`,
-      isPermanent: false,
-    });
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div
       className={twMerge(
-        "relative h-full min-h-screen w-screen",
+        "relative h-full min-h-screen min-w-screen w-screen",
         "flex w-full flex-col justify-between gap-12 self-stretch",
         "bg-base-colors/neutral-600",
         "box-border",
@@ -43,33 +26,38 @@ export const PageTemplate = ({
         "overflow-x-hidden",
       )}
     >
-      <PageHeader // TODO: Receive as a signal
-        networks={supportedNetworks.map((chain) => ({
-          name: chain.name,
-          chainId: chain.chainId,
-          icon: chain.icon,
-        }))}
-        activeNetwork={{
-          name: activeNetwork.value.name,
-          chainId: activeNetwork.value.chainId,
-          icon: activeNetwork.value.icon,
+      <PageHeader
+        menu={menu}
+        networkSelector={networkSelector}
+        callbacks={{
+          onMenuTrigger: (status: boolean) => {
+            setIsMenuOpen(status);
+          },
         }}
-        onNetworkChange={handleNetworkChange}
-        menuOpenSignal={menuOpenSignal}
       />
-
-      <div
-        id="content-container"
-        className="grid-col-3 xl:grid-col-2 grid items-center justify-center gap-[16px] xl:grid xl:divide-y"
-      >
-        {menuOpenSignal.value && <Menu />}
-        {children}
+      {!isMenuOpen && (
+        <div
+          id="content-container"
+          className="grid-col-3 xl:grid-col-2 grid items-center justify-center gap-[16px] xl:grid xl:divide-y"
+        >
+          {children}
+        </div>
+      )}
+      {isMenuOpen && <div className="h-full w-full">{menu}</div>}
+      <div className="flex flex-col items-center justify-between font-varela text-text-inverted text-sm gap-4">
+        {!isMenuOpen && <PageFooter content={footerContent} />}
+        <div>
+          <div className="flex flex-row items-start justify-start gap-[4px]">
+            <div className="relative leading-[14px]">{`Crafted with `}</div>
+            <div className="h-full self-stretch">
+              <IconMooseHorn size={4} />
+            </div>
+            <div className="relative leading-[14px]">by the Ralph team</div>
+          </div>
+        </div>
       </div>
-      <div className="flex flex-row items-center justify-center gap-[16px]">
-        <PageFooter menuOpenSignal={menuOpenSignal} />
-      </div>
 
-      <div className="fixed bottom-4 right-4 z-50 ml-4 flex flex-col gap-3">
+      {/* <div className="fixed bottom-4 right-4 z-50 ml-4 flex flex-col gap-3">
         {toasts.value.map((toast, index) => (
           <Toast
             key={index}
@@ -79,7 +67,7 @@ export const PageTemplate = ({
             isPermanent={toast.isPermanent}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

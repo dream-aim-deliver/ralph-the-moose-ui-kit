@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { InputAssetAmount } from "@/components/input-asset-amount";
 import { RalphLogo } from "@/components/ralph-logo";
-import { Signal } from "@preact/signals-react";
 
 const meta = {
   title: "Components/InputAssetAmount",
@@ -21,15 +20,21 @@ const ralphIcon = <RalphLogo variant="icon" />;
 export const Ralph: Story = {
   args: {
     icon: ralphIcon,
-    initialAmount: 100 as unknown as Signal<number>,
+    initialAmount: 100,
     tokenShortName: "PR",
+    onChange: (value: number) => {
+      console.log(value);
+    },
   },
 };
 
 export const BurgerToken: Story = {
   args: {
     icon: "🍔",
-    initialAmount: 100 as unknown as Signal<number>,
+    initialAmount: 100,
     tokenShortName: "BR",
+    onChange: (value: number) => {
+      console.log(value);
+    },
   },
 };
