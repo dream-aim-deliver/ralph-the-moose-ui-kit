@@ -33,6 +33,7 @@ export const LightFrame = ({
           "border-[1px]",
           "border-solid",
           "border-base-colors/neutral-200",
+          "overflow-auto",
           `${className}`,
         ].join(" "),
       )}

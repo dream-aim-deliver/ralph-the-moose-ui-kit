@@ -18,6 +18,12 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
+export const MintingRequest: Story = {
+  args: {
+    status: "request",
+    amount: 1000,
+  },
+};
 
 export const MintingSuccess: Story = {
   args: {
@@ -194,6 +200,22 @@ export const VerificationError: Story = {
         name: "Ethereum",
       },
     },
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    indexerBlockNumber: 123456,
+    initialIndexerBlockNumber: 123456,
+  },
+};
+
+export const UnknownError: Story = {
+  args: {
+    status: "error",
+    type: "unknown-error",
+    message:
+      "Failed to execute 'fetch' on 'Window': Failed to parse URL from http://162.244.82.115:8001balances/0x497asdaE230asdad968E8bf38579asdasd70",
+    amount: 1000,
     network: {
       chainId: 1,
       name: "Ethereum",

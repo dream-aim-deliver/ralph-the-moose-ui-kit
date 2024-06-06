@@ -16,6 +16,7 @@ export * from "./mint-card";
 export * from "./minting-modal";
 export * from "./modal";
 export * from "./nav-link";
+export * from "./network-selection";
 export * from "./layouts";
 export * from "./paragraph";
 export * from "./progress-bar";

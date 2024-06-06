@@ -16,10 +16,19 @@ export interface MintingSuccessViewModel {
   mintTransaction: TExecutedTransaction;
 }
 
+export interface MintingModalRequestViewModel {
+  status: "request";
+  amount: number;
+}
+
 export interface MintingErrorViewModel {
   status: "error";
   message: string;
-  type: "indexer-error" | "transaction-error" | "verification-error";
+  type:
+    | "indexer-error"
+    | "transaction-error"
+    | "verification-error"
+    | "unknown-error";
   network: TChainViewModel;
   transaction?: TExecutedTransaction;
   amount: number;
@@ -52,6 +61,7 @@ export const MintingModal = (
     | MintingTransactionGasViewModel
     | MintingErrorViewModel
     | MintingProgressViewModel
+    | MintingModalRequestViewModel
   ) & { onClose?: () => void },
 ) => {
   const formattedAmount = formatNumber(props.amount);
@@ -62,7 +72,11 @@ export const MintingModal = (
     if (props.status === "error") {
       return <IconError size={12} />;
     }
-    if (props.status === "in-progress" || props.status === "estimated-gas") {
+    if (
+      props.status === "in-progress" ||
+      props.status === "estimated-gas" ||
+      props.status === "request"
+    ) {
       return <IconHourglass size={12} />;
     }
   };
@@ -74,6 +88,9 @@ export const MintingModal = (
       return "Oh Snap!";
     }
     if (props.status === "in-progress" || props.status === "estimated-gas") {
+      return `Minting ${formattedAmount} PR`;
+    }
+    if (props.status === "request") {
       return `Minting ${formattedAmount} PR`;
     }
   };
@@ -97,6 +114,13 @@ export const MintingModal = (
         </div>
       );
     }
+    if (props.status === "request") {
+      return (
+        <div>
+          <Paragraph>Getting ready to mint!</Paragraph>
+        </div>
+      );
+    }
     if (props.status === "estimated-gas") {
       return (
         <div className="w-full">
@@ -115,6 +139,19 @@ export const MintingModal = (
     }
     if (props.status === "error") {
       switch (props.type) {
+        case "unknown-error":
+          return (
+            <div className="w-full flex flex-col items-center justify-between gap-4">
+              <Paragraph>
+                Something does not look right with the minting request of{" "}
+                {props.amount} PR on {props.network.name}. Here are some
+                details:
+              </Paragraph>
+              <LightFrame>
+                <Paragraph>{props.message}</Paragraph>
+              </LightFrame>
+            </div>
+          );
         case "indexer-error":
           return (
             <div className="w-full flex flex-col items-center justify-between gap-4">
@@ -187,7 +224,6 @@ export const MintingModal = (
           (100 * (props.indexerBlockNumber - props.initialIndexerBlockNumber)) /
           (props.transaction.blockNumber - props.initialIndexerBlockNumber);
       }
-      console.log(progress);
       switch (props.type) {
         case "awaiting-transaction":
           return (
