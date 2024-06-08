@@ -18,7 +18,7 @@ export const InscriptionBalance = ({
   const inscriptionBalanceString =
     Intl.NumberFormat(`en-US`).format(inscriptionBalance);
   return (
-    <LightFrame className="w-full flex flex-col items-center justify-center">
+    <LightFrame className="w-full flex flex-col items-center justify-center overflow-visible">
       <div className="w-full relative flex flex-col items-center justify-start gap-[8px]">
         <Tooltip
           title="Inscription"

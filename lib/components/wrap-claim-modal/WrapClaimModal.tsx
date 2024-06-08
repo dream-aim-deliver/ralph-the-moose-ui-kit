@@ -46,10 +46,10 @@ export const WrapClaimModal = (
   return (
     <Modal>
       {(props.variant === "wrap" || props.variant === "wrapping") && (
-        <WrapCardHeaderTab variant="wrap" />
+        <WrapCardHeaderTab variant="wrap" onClose={props.onClose} />
       )}
       {(props.variant === "claim" || props.variant === "claiming") && (
-        <WrapCardHeaderTab variant="claim" />
+        <WrapCardHeaderTab variant="claim" onClose={props.onClose} />
       )}
       {props.variant === "wrap" && (
         <WrapModalContentVariantWrap {...props} variant="wrap" />
