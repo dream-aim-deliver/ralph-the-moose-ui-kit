@@ -58,8 +58,27 @@ export const AwaitingContractCall: Story = {
       icon: <RalphLogo variant="icon" />,
     },
     status: {
-      type: "awaiting-transaction",
+      status: "awaiting-transaction",
       message: "Please confirm the transaction in your wallet.",
+    },
+  },
+};
+
+export const Verifying: Story = {
+  args: {
+    variant: "claiming",
+    claimableAmount: 1000,
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    token: {
+      shortName: "PR",
+      icon: <RalphLogo variant="icon" />,
+    },
+    status: {
+      status: "verifying",
+      attempt: 20,
     },
   },
 };
@@ -77,7 +96,7 @@ export const ClaimingSuccess: Story = {
       icon: <RalphLogo variant="icon" />,
     },
     status: {
-      type: "success",
+      status: "success",
     },
   },
 };
@@ -95,7 +114,7 @@ export const ClaimingError: Story = {
       icon: <RalphLogo variant="icon" />,
     },
     status: {
-      type: "error",
+      status: "error",
       message: "The reservoir was not able to release the kraken.",
     },
   },
