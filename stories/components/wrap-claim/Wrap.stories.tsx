@@ -44,10 +44,9 @@ export const Wrap: Story = {
   },
 };
 
-export const AwaitingTransaction: Story = {
+export const WrappingRequest: Story = {
   args: {
     variant: "wrapping",
-    amountToWrap: 10,
     fee: {
       amount: 0.00123,
       currency: "ETH",
@@ -61,16 +60,15 @@ export const AwaitingTransaction: Story = {
       icon: <RalphLogo variant="icon" />,
     },
     status: {
-      type: "awaiting-transaction",
-      message: "Please confirm the transaction in your wallet.",
+      status: "request",
+      message: "Preparing to wrap PR",
     },
   },
 };
 
-export const AwaitingIndexer: Story = {
+export const EstimatingGas: Story = {
   args: {
     variant: "wrapping",
-    amountToWrap: 10,
     fee: {
       amount: 0.00123,
       currency: "ETH",
@@ -84,12 +82,66 @@ export const AwaitingIndexer: Story = {
       icon: <RalphLogo variant="icon" />,
     },
     status: {
-      type: "awaiting-indexer",
-      message:
-        "Please be patient, the indexer and the relayer are doing their thing. If you close the modal, you'll still be able to claim your WPR as soon as the are available",
-      transactionBlockNumber: 2000,
-      indexerBlockNumber: 1200,
-      initialIndexerBlockNumber: 1000,
+      status: "estimating-gas",
+      amount: 10,
+      estimatedGas: 100,
+      gasLimit: 1000,
+    },
+  },
+};
+export const AwaitingTransaction: Story = {
+  args: {
+    variant: "wrapping",
+    fee: {
+      amount: 0.00123,
+      currency: "ETH",
+    },
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    token: {
+      shortName: "PR",
+      icon: <RalphLogo variant="icon" />,
+    },
+    status: {
+      status: "awaiting-transaction",
+      amount: 10,
+    },
+  },
+};
+
+export const Verifying: Story = {
+  args: {
+    variant: "wrapping",
+    fee: {
+      amount: 0.00123,
+      currency: "ETH",
+    },
+    network: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    token: {
+      shortName: "PR",
+      icon: <RalphLogo variant="icon" />,
+    },
+    status: {
+      status: "verifying",
+      amount: 10,
+      wrapTransaction: {
+        hash: "0x1234567890",
+        blockNumber: 123456,
+        status: "error",
+        timestamp: 1234567890,
+        from: "0x1234567890",
+        explorerUrl: "https://etherscan.io/tx/0x1234567890",
+        network: {
+          chainId: 1,
+          name: "Ethereum",
+        },
+      },
+      attempt: 100,
     },
   },
 };
@@ -97,7 +149,6 @@ export const AwaitingIndexer: Story = {
 export const WrappingSuccess: Story = {
   args: {
     variant: "wrapping",
-    amountToWrap: 10,
     fee: {
       amount: 0.00123,
       currency: "ETH",
@@ -111,7 +162,21 @@ export const WrappingSuccess: Story = {
       icon: <RalphLogo variant="icon" />,
     },
     status: {
-      type: "success",
+      status: "success",
+      amount: 10,
+      message: "Wrap transaction successful.",
+      wrapTransaction: {
+        hash: "0x1234567890",
+        blockNumber: 123456,
+        status: "success",
+        timestamp: 1234567890,
+        from: "0x1234567890",
+        explorerUrl: "https://etherscan.io/tx/0x1234567890",
+        network: {
+          chainId: 1,
+          name: "Ethereum",
+        },
+      },
     },
   },
 };
@@ -119,7 +184,6 @@ export const WrappingSuccess: Story = {
 export const WrappingError: Story = {
   args: {
     variant: "wrapping",
-    amountToWrap: 10,
     fee: {
       amount: 0.00123,
       currency: "ETH",
@@ -133,8 +197,9 @@ export const WrappingError: Story = {
       icon: <RalphLogo variant="icon" />,
     },
     status: {
-      type: "error",
+      status: "error",
       message: "Indexer found the wrap, but reported it to be invalid.",
+      amount: 10,
     },
   },
 };
