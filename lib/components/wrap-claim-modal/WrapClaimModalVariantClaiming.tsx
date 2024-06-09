@@ -12,10 +12,16 @@ export type WrapModalVariantClaimingProps = {
     shortName: string;
     icon: React.ReactNode;
   };
-  status: {
-    type: "success" | "error" | "awaiting-transaction" | "verifying";
-    message?: string;
-  };
+  status:
+    | {
+        status: "success" | "error" | "awaiting-transaction" | "verifying";
+        message?: string;
+        attempt?: number;
+      }
+    | {
+        status: "request";
+        message: string;
+      };
 };
 
 export const WrapModalContentVariantClaiming = (
@@ -24,27 +30,34 @@ export const WrapModalContentVariantClaiming = (
   const claimableAmount = `${formatNumber(props.claimableAmount)} W${props.token.shortName}`;
 
   const icon = () => {
-    if (props.status.type === "success") {
+    if (props.status.status === "success") {
       return <IconSuccess size={12} />;
     }
-    if (props.status.type === "error") {
+    if (props.status.status === "error") {
       return <IconError size={12} />;
     }
     return <IconHourglass size={12} />;
   };
 
   const title = () => {
-    if (props.status.type === "success") {
+    if (props.status.status === "success") {
       return "Claim successful!";
     }
-    if (props.status.type === "error") {
+    if (props.status.status === "error") {
       return "Oh Snap!";
     }
     return "Claiming WPR";
   };
 
   const message = () => {
-    if (props.status.type === "success") {
+    if (props.status.status === "request") {
+      return (
+        <Paragraph variant="secondary">
+          Getting ready to claim them wrapped tokens for ya!
+        </Paragraph>
+      );
+    }
+    if (props.status.status === "success") {
       if (props.status.message)
         return (
           <Paragraph variant="secondary"> {props.status.message}</Paragraph>
@@ -65,7 +78,7 @@ export const WrapModalContentVariantClaiming = (
         </div>
       );
     }
-    if (props.status.type === "error") {
+    if (props.status.status === "error") {
       const messages = [
         "Oh no, looks like claiming failed. Please try again or get in touch. We're here to help 🤝.",
       ];
@@ -77,7 +90,7 @@ export const WrapModalContentVariantClaiming = (
         </Paragraph>
       ));
     }
-    if (props.status.type === "awaiting-transaction") {
+    if (props.status.status === "awaiting-transaction") {
       const messages = [
         "The reservoir is prepping some freshly baked Ralphs onto that sweet wallet of yours.",
       ];
@@ -88,11 +101,13 @@ export const WrapModalContentVariantClaiming = (
         </Paragraph>
       ));
     }
-    if (props.status.type === "verifying") {
+    if (props.status.status === "verifying") {
       const messages = [
         `Verifying that ${claimableAmount} has been pumped to your wallet.`,
       ];
       if (props.status.message) messages.push(props.status.message);
+      if (props.status.attempt)
+        messages.push(`Attempt number ${props.status.attempt}`);
       return messages.map((message, index) => (
         <Paragraph key={index} variant="secondary">
           {message}
