@@ -25,7 +25,7 @@ export interface BridgeModalDefaultVariantProps {
     inscriptions: number;
   };
   callbacks: {
-    onBridge: (amount: number) => void;
+    onBridge: (destinationChainID: number, amount: number) => void;
     onClose: () => void;
   };
 }
@@ -101,17 +101,14 @@ export const BridgeModalDefaultVariant = (
           </div>
           <div className="flex flex-row items-baseline justify-between self-stretch">
             <div className="relative leading-[14px]">Destination chain</div>
-            <Label
-              label={`${formatNumber(amountToBridge)} ${props.token.shortName}`}
-              variant="medium"
-            />
+            <Label label={`${destinationChain.name}`} variant="medium" />
           </div>
         </LightFrame>
         <Button
           label="Bridge"
           variant="primary"
           onClick={() => {
-            props.callbacks.onBridge(amountToBridge);
+            props.callbacks.onBridge(destinationChain.chainId, amountToBridge);
           }}
         />
       </div>

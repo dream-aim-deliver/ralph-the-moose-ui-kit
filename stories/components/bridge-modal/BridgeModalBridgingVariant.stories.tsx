@@ -29,7 +29,6 @@ export const Success: Story = {
       name: "Ethereum",
     },
     amount: 1000,
-    wallet: "0x213123",
     onClose: () => {
       console.log("Close button clicked");
     },
@@ -54,7 +53,6 @@ export const NotEnoughBalance: Story = {
     type: "balance-error",
     message: "The requested amount exceeds your balance.",
     amount: 1000,
-    wallet: "0x213123",
     fromNetwork: {
       chainId: 1,
       name: "Ethereum",
@@ -70,7 +68,6 @@ export const ApprovalError: Story = {
     message:
       "Error approving reservoir for bridging your PR tokens. For nerds, here's some deets: Metamask transaction cancelled.",
     amount: 1000,
-    wallet: "0x213123",
     fromNetwork: {
       chainId: 1,
       name: "Ethereum",
@@ -85,7 +82,6 @@ export const TransactionError: Story = {
     type: "transaction-error",
     message: "Invalid parameters.",
     amount: 1000,
-    wallet: "0x213123",
     fromNetwork: {
       chainId: 1,
       name: "Ethereum",
@@ -112,7 +108,6 @@ export const VerificationError: Story = {
     type: "verification-error",
     message: "Invalid parameters.",
     amount: 1000,
-    wallet: "0x213123",
     fromNetwork: {
       chainId: 1,
       name: "Ethereum",
@@ -133,13 +128,24 @@ export const VerificationError: Story = {
   },
 };
 
+export const BridgingRequest: Story = {
+  args: {
+    status: "request",
+    message: "Please confirm you want to bridge 1000 PR tokens.",
+    amount: 1000,
+    fromNetwork: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    toNetwork: { chainId: 2, name: "Base" },
+  },
+};
 export const ProgressAwaitingApproval: Story = {
   args: {
     status: "in-progress",
     message: "Awaiting approval...",
     type: "awaiting-approval",
     amount: 1000,
-    wallet: "0x213123",
     fromNetwork: {
       chainId: 1,
       name: "Ethereum",
@@ -163,27 +169,10 @@ export const ProgressAwaitingApproval: Story = {
 export const ProgressEstimateGas: Story = {
   args: {
     status: "in-progress",
-    message: "Estimating gas...",
-    type: "awaiting-approval",
+    type: "estimated-gas",
     amount: 1000,
-    wallet: "0x213123",
-    fromNetwork: {
-      chainId: 1,
-      name: "Ethereum",
-    },
-    toNetwork: { chainId: 2, name: "Base" },
-    transaction: {
-      hash: "0x1234567890",
-      blockNumber: 123456,
-      status: "error",
-      timestamp: 1234567890,
-      from: "0x1234567890",
-      explorerUrl: "https://etherscan.io/tx/0x1234567890",
-      network: {
-        chainId: 1,
-        name: "Ethereum",
-      },
-    },
+    estimatedGas: 1000,
+    gasLimit: 1000,
   },
 };
 
@@ -193,7 +182,6 @@ export const ProgressSendTransaction: Story = {
     type: "sending-transaction",
     message: "Sending transaction...",
     amount: 1000,
-    wallet: "0x213123",
     fromNetwork: {
       chainId: 1,
       name: "Ethereum",
@@ -220,7 +208,6 @@ export const ProgressVerifyBridging: Story = {
     type: "awaiting-verification",
     message: "Verifying you have received the tokens...",
     amount: 1000,
-    wallet: "0x213123",
     fromNetwork: {
       chainId: 1,
       name: "Ethereum",
@@ -238,5 +225,19 @@ export const ProgressVerifyBridging: Story = {
         name: "Ethereum",
       },
     },
+  },
+};
+
+export const ProgressUpdate: Story = {
+  args: {
+    status: "in-progress",
+    type: "update",
+    message: "There is a progress update from the backend....",
+    amount: 1000,
+    fromNetwork: {
+      chainId: 1,
+      name: "Ethereum",
+    },
+    toNetwork: { chainId: 2, name: "Base" },
   },
 };

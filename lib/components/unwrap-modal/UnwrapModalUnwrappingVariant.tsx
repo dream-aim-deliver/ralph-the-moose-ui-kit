@@ -2,6 +2,7 @@ import { TExecutedTransaction } from "../../core";
 import { Heading, HeadingVariant } from "../heading";
 import { IconButtonClose } from "../icon-button/IconButtonClose";
 import { IconSuccess, IconError, IconHourglass } from "../icons";
+import { Label } from "../label";
 import { LightFrame } from "../layouts";
 import { Modal } from "../modal";
 import { NavLink } from "../nav-link";
@@ -10,19 +11,41 @@ import { Paragraph } from "../paragraph";
 export type UnwrappingSuccessViewModel = {
   status: "success";
   amount: number;
-  unwrapTransasction: TExecutedTransaction;
+  unwrapTransaction: TExecutedTransaction;
 };
 
 export type UnwrappingNonSuccessViewModel = {
   status: "error" | "in-progress";
+  message?: string;
+  amount: number;
+  unwrapTransaction?: TExecutedTransaction;
+  type:
+    | "approval-error"
+    | "verification-error"
+    | "progress"
+    | "unknown"
+    | "request";
+};
+export type UnwrappingRequestViewModel = {
+  status: "request";
   message: string;
   amount: number;
-  unwrapTransasction?: TExecutedTransaction;
-  type: "approval-error" | "verification-error" | "progress" | "unknown";
+};
+
+export type UnwrappingEstimatedGasViewModel = {
+  status: "estimated-gas";
+  amount: number;
+  estimatedGas: number;
+  gasLimit: number;
 };
 
 export const UnwrapModalUnwrappingVariant = (
-  props: (UnwrappingNonSuccessViewModel | UnwrappingSuccessViewModel) & {
+  props: (
+    | UnwrappingNonSuccessViewModel
+    | UnwrappingSuccessViewModel
+    | UnwrappingRequestViewModel
+    | UnwrappingEstimatedGasViewModel
+  ) & {
     onClose?: () => void;
   },
 ) => {
@@ -52,14 +75,14 @@ export const UnwrapModalUnwrappingVariant = (
         <div>
           <Paragraph>
             Wohoo! You have successfully unwrapped {props.amount} PR on{" "}
-            {props.unwrapTransasction.network.name}
+            {props.unwrapTransaction.network.name}
           </Paragraph>
           <div className="w-full flex flex-col items-end text-text-success">
-            {props.unwrapTransasction.explorerUrl && (
+            {props.unwrapTransaction.explorerUrl && (
               <NavLink
                 variant="small"
                 label="View in Explorer"
-                url={props.unwrapTransasction.explorerUrl}
+                url={props.unwrapTransaction.explorerUrl}
               />
             )}
           </div>
@@ -78,7 +101,7 @@ export const UnwrapModalUnwrappingVariant = (
       if (props.type === "verification-error") {
         const messages = [];
         messages.push(
-          `Looks like we could not verify that the Reservoir has release PR to your wallet. Please check the transaction on the ${props.unwrapTransasction?.network.name} network.`,
+          `Looks like we could not verify that the Reservoir has release PR to your wallet. Please check the transaction on the ${props.unwrapTransaction?.network.name} network.`,
         );
         if (props.message) {
           messages.push("The reason for the verification error was:");
@@ -91,18 +114,16 @@ export const UnwrapModalUnwrappingVariant = (
             {paragraphs}
             {props.message && (
               <LightFrame>
-                <div className="w-full flex flex-col items-center">
-                  <Paragraph>{props.message}</Paragraph>
-                </div>
+                <Paragraph>{props.message}</Paragraph>
               </LightFrame>
             )}
-            {props.unwrapTransasction && (
+            {props.unwrapTransaction && (
               <div className="w-full flex flex-col items-end text-text-success">
-                {props.unwrapTransasction.explorerUrl && (
+                {props.unwrapTransaction.explorerUrl && (
                   <NavLink
                     variant="small"
                     label="View in Explorer"
-                    url={props.unwrapTransasction.explorerUrl}
+                    url={props.unwrapTransaction.explorerUrl}
                   />
                 )}
               </div>
@@ -126,18 +147,16 @@ export const UnwrapModalUnwrappingVariant = (
           {paragraphs}
           {props.message && (
             <LightFrame>
-              <div className="w-full flex flex-col items-center">
-                <Paragraph>{props.message}</Paragraph>
-              </div>
+              <Paragraph>{props.message}</Paragraph>
             </LightFrame>
           )}
-          {props.unwrapTransasction && (
+          {props.unwrapTransaction && (
             <div className="w-full flex flex-col items-end text-text-success">
-              {props.unwrapTransasction.explorerUrl && (
+              {props.unwrapTransaction.explorerUrl && (
                 <NavLink
                   variant="small"
                   label="View in Explorer"
-                  url={props.unwrapTransasction.explorerUrl}
+                  url={props.unwrapTransaction.explorerUrl}
                 />
               )}
             </div>
@@ -161,11 +180,35 @@ export const UnwrapModalUnwrappingVariant = (
           ))}
           {props.message && (
             <LightFrame>
-              <div className="w-full flex flex-col items-center">
-                <Paragraph>{props.message}</Paragraph>
-              </div>
+              <Paragraph>{props.message}</Paragraph>
             </LightFrame>
           )}
+        </div>
+      );
+    }
+    if (props.status === "estimated-gas") {
+      return (
+        <div>
+          <Paragraph>
+            We are estimating the gas required to unwrap {props.amount} PR.
+          </Paragraph>
+          <LightFrame>
+            <div className="w-full flex flex-row items-center justify-between gap-4">
+              <Paragraph>Estimated gas: </Paragraph>
+              <Label label={`${props.estimatedGas}`} variant="medium" />
+            </div>
+            <div className="w-full flex flex-row items-center justify-between gap-4">
+              <Paragraph>Gas limit: </Paragraph>
+              <Label label={`${props.gasLimit}`} variant="medium" />
+            </div>
+          </LightFrame>
+        </div>
+      );
+    }
+    if (props.status === "request") {
+      return (
+        <div>
+          <Paragraph>Getting ready to unwrap your PR tokens</Paragraph>
         </div>
       );
     }

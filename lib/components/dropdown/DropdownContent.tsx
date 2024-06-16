@@ -24,7 +24,8 @@ export const DropdownContent = ({ children }: DropdownContentProps) => {
         "font-gluten",
         "border-[1px]",
         "border-solid",
-        "z-10",
+        "z-100", // TODO: does not do anything even though it should
+        "inset-0", // TODO: does not do anything even though it should
       ].join(" ")}
     >
       {children}
