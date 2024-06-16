@@ -1,4 +1,4 @@
-import { Card, Heading, HeadingVariant } from "..";
+import { Card, Heading, HeadingVariant, Spinner } from "..";
 import { InscriptionBalance } from "./InscriptionBalance";
 import { WrappedBalance } from "./WrappedBalance";
 
@@ -6,6 +6,10 @@ import { WrappedBalance } from "./WrappedBalance";
  * Props for the BalanceCard component.
  */
 export interface BalanceCardProps {
+  /**
+   * Indicates that the balance information is being loaded.
+   */
+  isLoading: boolean;
   /**
    * The balance of the inscription.
    */
@@ -37,6 +41,7 @@ export interface BalanceCardProps {
  * This is composed of the Inscription Balance and Wrapped Balance components.
  */
 export const BalanceCard = ({
+  isLoading,
   inscriptionBalance,
   wrappedBalance,
   tokenShortName,
@@ -46,37 +51,32 @@ export const BalanceCard = ({
 }: BalanceCardProps) => {
   return (
     <Card>
-      <div className="w-full flex flex-col items-start justify-center gap-4">
-        <Heading title="Balance" variant={HeadingVariant.H4} />
-
-        <div className="w-full grid grid-rows-2 items-center justify-between gap-4">
-          <div className="space-y-4">
-            <Heading
-              title="Inscriptions"
-              variant={HeadingVariant.H5}
-              className="text-text-secondary"
-            />
-            <InscriptionBalance
-              inscriptionBalance={inscriptionBalance}
-              tokenShortName={tokenShortName}
-              onClick={showWrapClaimVariant}
-            />
-          </div>
-
-          <div className="space-y-4">
-            <Heading
-              title="Wrapped"
-              variant={HeadingVariant.H5}
-              className="text-text-secondary"
-            />
-            <WrappedBalance
-              wrappedBalance={wrappedBalance}
-              tokenShortName={tokenShortName}
-              onWrap={showUnwrapVariant}
-              onBridge={showBridgeVariant}
-            />
-          </div>
+      <div className="flex flex-col items-left justify-center gap-4">
+        <div className="flex flex-row items-left justify-center">
+          <Heading title="Balance" variant={HeadingVariant.H4} />
+          {isLoading && <Spinner />}
         </div>
+        <Heading
+          title="Inscriptions"
+          variant={HeadingVariant.H5}
+          className="text-text-secondary"
+        />
+        <InscriptionBalance
+          inscriptionBalance={inscriptionBalance}
+          tokenShortName={tokenShortName}
+          onClick={showWrapClaimVariant}
+        />
+        <Heading
+          title="Wrapped"
+          variant={HeadingVariant.H5}
+          className="text-text-secondary"
+        />
+        <WrappedBalance
+          wrappedBalance={wrappedBalance}
+          tokenShortName={tokenShortName}
+          onWrap={showUnwrapVariant}
+          onBridge={showBridgeVariant}
+        />
       </div>
     </Card>
   );

@@ -22,7 +22,7 @@ export const Card = ({ children }: CardProps) => {
         "box-border",
         "p-6",
         "gap-[8px]",
-        "w-max[440px]",
+        "w-max[320px]",
         "shadow-lg",
       ].join(" ")}
     >
