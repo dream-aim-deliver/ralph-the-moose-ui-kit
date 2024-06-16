@@ -19,6 +19,23 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+export const Request: Story = {
+  args: {
+    status: "request",
+    message: "Unwrapping in progress",
+    amount: 1000,
+  },
+};
+
+export const EstimatedGas: Story = {
+  args: {
+    status: "estimated-gas",
+    amount: 1000,
+    estimatedGas: 1000,
+    gasLimit: 1000,
+  },
+};
+
 export const ApprovalError: Story = {
   args: {
     status: "error",
@@ -34,7 +51,7 @@ export const VerificationError: Story = {
     type: "verification-error",
     message: "Timeout occurred",
     amount: 1000,
-    unwrapTransasction: {
+    unwrapTransaction: {
       hash: "0x1234567890",
       blockNumber: 123456,
       status: "error",
@@ -55,7 +72,7 @@ export const GenericError: Story = {
     type: "unknown",
     message: "The transaction failed",
     amount: 1000,
-    unwrapTransasction: {
+    unwrapTransaction: {
       hash: "0x1234567890",
       blockNumber: 123456,
       status: "error",
@@ -74,7 +91,7 @@ export const Success: Story = {
   args: {
     status: "success",
     amount: 1000,
-    unwrapTransasction: {
+    unwrapTransaction: {
       hash: "0x1234567890",
       blockNumber: 123456,
       status: "success",
@@ -95,7 +112,7 @@ export const InProgress: Story = {
     type: "progress",
     message: "Unwrapping in progress",
     amount: 1000,
-    unwrapTransasction: {
+    unwrapTransaction: {
       hash: "0x1234567890",
       blockNumber: 123456,
       status: "partial",

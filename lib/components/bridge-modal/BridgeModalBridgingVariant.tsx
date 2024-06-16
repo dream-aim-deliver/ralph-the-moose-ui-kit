@@ -5,18 +5,25 @@ import { IconButtonClose } from "../icon-button/IconButtonClose";
 import { IconError } from "../icons/IconError";
 import { IconHourglass } from "../icons/IconHourglass";
 import { IconSuccess } from "../icons/IconSuccess";
+import { Label } from "../label";
 import { LightFrame } from "../layouts/LightFrame";
 import { Modal } from "../modal/Modal";
 import { NavLink } from "../nav-link/NavLink";
 import { Paragraph } from "../paragraph/Paragraph";
 
+export interface BridgeModalBridgingRequestViewModel {
+  status: "request";
+  message: string;
+  amount: number;
+  fromNetwork: TChainViewModel;
+  toNetwork: TChainViewModel;
+}
 export interface BridgeModalBridgingVariantSuccessProps {
   status: "success";
   transaction: TExecutedTransaction;
   amount: number;
   fromNetwork: TChainViewModel;
   toNetwork: TChainViewModel;
-  wallet: string;
 }
 
 export interface BridgeModalBridgingVariantErrorProps {
@@ -26,10 +33,10 @@ export interface BridgeModalBridgingVariantErrorProps {
     | "balance-error"
     | "approval-error"
     | "transaction-error"
-    | "verification-error";
+    | "verification-error"
+    | "generic-error";
   transaction?: TExecutedTransaction;
   amount: number;
-  wallet: string;
   fromNetwork: TChainViewModel;
   toNetwork: TChainViewModel;
 }
@@ -40,20 +47,29 @@ export interface BridgeModalBridgingVariantProgressProps {
     | "awaiting-verification"
     | "awaiting-approval"
     | "sending-transaction"
-    | "gas"
     | "update";
   transaction?: TExecutedTransaction;
   amount: number;
-  wallet: string;
   fromNetwork: TChainViewModel;
   toNetwork: TChainViewModel;
   message: string;
 }
+
+export interface BridgeModalBridgingVariantEstimatedGasProps {
+  status: "in-progress";
+  type: "estimated-gas";
+  amount: number;
+  estimatedGas: number;
+  gasLimit: number;
+}
+
 export const BridgeModalBridgingVariant = (
   props: (
+    | BridgeModalBridgingRequestViewModel
     | BridgeModalBridgingVariantSuccessProps
     | BridgeModalBridgingVariantErrorProps
     | BridgeModalBridgingVariantProgressProps
+    | BridgeModalBridgingVariantEstimatedGasProps
   ) & {
     onClose?: () => void;
   },
@@ -74,7 +90,10 @@ export const BridgeModalBridgingVariant = (
     if (props.status === "error") {
       return "Oh Snap!";
     }
-    return `Bridging ${props.amount} PR form ${props.fromNetwork.name} to ${props.toNetwork.name}`;
+    if (props.status === "in-progress" && props.type === "estimated-gas") {
+      return "Estimating gas";
+    }
+    return `Bridging ${props.amount} PR from ${props.fromNetwork.name} to ${props.toNetwork.name}`;
   };
 
   const message = () => {
@@ -152,6 +171,36 @@ export const BridgeModalBridgingVariant = (
               </div>
             </div>
           );
+        case "generic-error":
+          messages.push(
+            `Looks like something went wrong during the bridging of your WPRs.`,
+          );
+          if (props.message) {
+            messages.push("The reason for the error was:");
+          }
+          return (
+            <div className="w-full flex flex-col gap-2">
+              {messages.map((message, index) => (
+                <Paragraph key={index}>{message}</Paragraph>
+              ))}
+              {props.message && (
+                <LightFrame>
+                  <Paragraph>{props.message}</Paragraph>
+                </LightFrame>
+              )}
+              {props.transaction && (
+                <div className="w-full flex flex-col items-end text-text-success">
+                  {props.transaction.explorerUrl && (
+                    <NavLink
+                      variant="small"
+                      label="View in Explorer"
+                      url={props.transaction.explorerUrl}
+                    />
+                  )}
+                </div>
+              )}
+            </div>
+          );
       }
     }
     if (props.status === "in-progress") {
@@ -159,20 +208,72 @@ export const BridgeModalBridgingVariant = (
         case "awaiting-approval":
           return (
             <Paragraph>
-              Checking spending allowance for Ralph Reservoir on $
+              Checking spending allowance for Ralph Reservoir on{" "}
               {props.fromNetwork.name}. Ideally, this should be a one-time
               operation.
             </Paragraph>
           );
-        case "gas":
-          return <Paragraph>Estimated Gas.</Paragraph>;
+        case "estimated-gas":
+          return (
+            <div>
+              <Paragraph>
+                We are estimating the gas required to unwrap {props.amount} PR.
+              </Paragraph>
+              <LightFrame>
+                <div className="w-full flex flex-row items-center justify-between gap-4">
+                  <Paragraph>Estimated gas: </Paragraph>
+                  <Label label={`${props.estimatedGas}`} variant="medium" />
+                </div>
+                <div className="w-full flex flex-row items-center justify-between gap-4">
+                  <Paragraph>Gas limit: </Paragraph>
+                  <Label label={`${props.gasLimit}`} variant="medium" />
+                </div>
+              </LightFrame>
+            </div>
+          );
         case "sending-transaction":
-          return <Paragraph>{props.message}</Paragraph>;
+          return (
+            <div>
+              <Paragraph>{props.message}</Paragraph>
+            </div>
+          );
         case "awaiting-verification":
-          return <Paragraph>{props.message}</Paragraph>;
+          return (
+            <div>
+              <Paragraph>
+                We have successfully bridged {props.amount} PR to{" "}
+                {props.toNetwork.name}. Now we are waiting for the backend to
+                verify that your balance has been updated.
+              </Paragraph>
+              <div className="w-full flex flex-col items-end text-text-success">
+                {props.transaction?.explorerUrl && (
+                  <NavLink
+                    variant="small"
+                    label="View in Explorer"
+                    url={props.transaction.explorerUrl}
+                  />
+                )}
+              </div>
+            </div>
+          );
         case "update":
-          return <Paragraph>{props.message}</Paragraph>;
+          return (
+            <div>
+              <Paragraph>{props.message}</Paragraph>
+            </div>
+          );
       }
+    }
+    if (props.status === "request") {
+      return (
+        <div>
+          <Paragraph>
+            You are about to bridge {props.amount} PR from{" "}
+            {props.fromNetwork.name} to {props.toNetwork.name}.
+          </Paragraph>
+          <Paragraph>{props.message}</Paragraph>
+        </div>
+      );
     }
   };
   return (
