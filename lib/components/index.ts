@@ -21,6 +21,7 @@ export * from "./layouts";
 export * from "./paragraph";
 export * from "./progress-bar";
 export * from "./ralph-logo";
+export * from "./spinner";
 export * from "./tabs";
 export * from "./text-button";
 export * from "./toast";

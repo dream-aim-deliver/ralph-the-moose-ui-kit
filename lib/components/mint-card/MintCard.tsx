@@ -6,11 +6,13 @@ import {
   Card,
   LightFrame,
   IconSuccess,
+  Spinner,
 } from "..";
 import { TChainViewModel } from "../../core";
 import { formatNumber } from "../../utils/tokenUtils";
 
 export interface MintCardProps {
+  isLoading: boolean;
   stats: {
     totalSupply: number;
     totalMinted: number;
@@ -41,8 +43,11 @@ export const MintCard = (props: MintCardProps) => {
   };
   return (
     <Card>
-      <div className="w-full flex flex-col items-start justify-center gap-4 text-wrap">
-        <Heading title="Mint" variant={HeadingVariant.H4} />
+      <div className="w-full flex flex-col items-left justify-center gap-4 text-wrap">
+        <div className="flex flex-row items-left justify-center gap-4">
+          <Heading title="Mint" variant={HeadingVariant.H4} />
+          {props.isLoading && <Spinner />}
+        </div>
         <div className="w-full flex flex-col items-center justify-between gap-2 text-text-secondary font-varela text-base">
           <div className="w-full flex flex-row items-center justify-between text-left gap-4">
             <label>Minted%</label>

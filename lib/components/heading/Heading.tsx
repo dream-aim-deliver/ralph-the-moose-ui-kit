@@ -29,7 +29,6 @@ export interface HeadingProps {
  */
 export const Heading = ({ title, variant, className }: HeadingProps) => {
   const classes = [
-    // "w-[324.33px]",
     "w-full",
     "relative",
     "tracking-[-0.04em]",
