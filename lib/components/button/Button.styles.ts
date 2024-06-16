@@ -48,7 +48,4 @@ export const secondaryStyles = twMerge(
   "aria-disabled:text-opacity-40",
   "aria-disabled:border-opacity-40",
   "aria-disabled:pointer-events-none",
-  "text-center",
-  "items-center",
-  "justify-center",
 );

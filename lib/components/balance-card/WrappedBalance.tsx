@@ -19,8 +19,8 @@ export const WrappedBalance = ({
   const wrappedBalanceString =
     Intl.NumberFormat(`en-US`).format(wrappedBalance);
   return (
-    <LightFrame className="w-full overflow-visible">
-      <div className="w-full relative flex flex-col items-center justify-start gap-[8px]">
+    <LightFrame className="flex flex-col items-center justify-between gap-4">
+      <div className="w-full relative flex flex-col items-center justify-between">
         <Tooltip
           title="Wrapped"
           content={`The ${wrappedTokenName} you have in your wallet.`}
@@ -30,7 +30,7 @@ export const WrappedBalance = ({
           <Label label={wrappedTokenName} variant="medium" />
         </div>
       </div>
-      <div className="flex flex-row space-x-4 w-full">
+      <div className="flex flex-row">
         <Button label="Unwrap" onClick={onWrap} variant="secondary" />
         <Button label="Bridge" onClick={onBridge} variant="secondary" />
       </div>

@@ -81,10 +81,10 @@ WalletCard.Connected = ({
   disconnectButton: React.ReactNode;
 }) => {
   return (
-    <div className="flex flex-row items-center justify-between gap-[16px] self-stretch">
+    <div className="flex flex-row items-center justify-between gap-[16px]">
       {/** Wallet Addres div, pinned to the left of the parent */}
       <div className="flex flex-1 flex-col items-start justify-start gap-[8px]">
-        <div className="relative self-stretch font-varela text-sm leading-[14px] text-text-secondary">
+        <div className="relative font-varela text-sm leading-[14px] text-text-secondary">
           {walletName}
         </div>
         <Label variant="small" label={address} />
