@@ -19,6 +19,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    isLoading: true,
     stats: {
       mintedPercentage: 0.5,
       mintLimit: 100000,
@@ -45,6 +46,7 @@ export const Default: Story = {
 
 export const IsMinting: Story = {
   args: {
+    isLoading: false,
     stats: {
       mintedPercentage: 0.5,
       mintLimit: 100000,
@@ -71,6 +73,7 @@ export const IsMinting: Story = {
 
 export const Disabled: Story = {
   args: {
+    isLoading: true,
     stats: {
       mintedPercentage: 0.5,
       mintLimit: 100000,
