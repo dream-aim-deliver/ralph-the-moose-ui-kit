@@ -54,7 +54,7 @@ export const PageTemplate = ({
         {!isMenuOpen && (
           <div
             id="content-container"
-            className="grid-col-3 xl:grid-col-2 grid items-center justify-center gap-[16px] xl:grid xl:divide-y"
+            className="self-center w-full max-w-md"
           >
             {children}
           </div>

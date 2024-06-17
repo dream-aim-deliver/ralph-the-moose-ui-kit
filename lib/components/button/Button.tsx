@@ -14,6 +14,10 @@ export interface ButtonProps {
    */
   label: string;
   /**
+   * Optional: true if button width is 100%
+   */
+  fullWidth?: boolean;
+  /**
    * Optional click handler
    */
   onClick?: () => void;
@@ -28,6 +32,7 @@ export interface ButtonProps {
  */
 export const Button = ({
   variant = "primary",
+  fullWidth = false,
   label,
   disabled = false,
   onClick,
@@ -41,7 +46,10 @@ export const Button = ({
   if (variant === "secondary") {
     containerClasses = twMerge(secondaryStyles, "cursor-pointer");
     // Add padding to secondary buttons
-    buttonClasses = twMerge(buttonClasses, "px-12");
+    // buttonClasses = twMerge(buttonClasses, "px-12");
+  }
+  if (fullWidth) {
+    containerClasses = twMerge(secondaryStyles, "w-full");
   }
 
   return (
