@@ -25,14 +25,14 @@ export const WrappedBalance = ({
           title="Wrapped"
           content={`The ${wrappedTokenName} you have in your wallet.`}
         />
-        <div className="flex flex-row items-center space-x-2">
+        <div className="flex flex-row items-center justify-center space-x-2 w-full">
           <Label label={wrappedBalanceString} variant="medium" />
           <Label label={wrappedTokenName} variant="medium" />
         </div>
       </div>
-      <div className="flex flex-row">
-        <Button label="Unwrap" onClick={onWrap} variant="secondary" />
-        <Button label="Bridge" onClick={onBridge} variant="secondary" />
+      <div className="flex flex-row space-x-2 w-full">
+        <Button label="Unwrap" onClick={onWrap} variant="secondary" fullWidth={true} />
+        <Button label="Bridge" onClick={onBridge} variant="secondary" fullWidth />
       </div>
     </LightFrame>
   );

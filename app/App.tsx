@@ -1,5 +1,6 @@
 import {
   BalanceCard,
+  // BridgeModalDefaultVariant,
   Button,
   IconNetworkAvax,
   IconNetworkBase,
@@ -102,6 +103,18 @@ function App() {
           tokenShortName="PR"
           wrappedBalance={20000}
         />
+        {/* <BridgeModalDefaultVariant
+          activeChain={{
+            bridgingFee: 0.01,
+            chainId: 1,
+            name: "Base",
+            nativeCurrency: "PR",
+          }}
+          balance={{ inscriptions: 10000 }}
+          callbacks={{ onBridge: () => {}, onClose: () => {} }}
+          supportedChains={[]}
+          token={{ shortName: "PR", icon: <IconNetworkBase /> }}
+        /> */}
       </div>
     </PageTemplate>
   );

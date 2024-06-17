@@ -51,7 +51,7 @@ export const BalanceCard = ({
 }: BalanceCardProps) => {
   return (
     <Card>
-      <div className="flex flex-col items-left justify-center gap-4">
+      <div className="flex flex-col w-full items-left justify-center gap-4">
         <div className="flex flex-row items-left justify-center">
           <Heading title="Balance" variant={HeadingVariant.H4} />
           {isLoading && <Spinner />}
