@@ -54,7 +54,7 @@ export const PageTemplate = ({
         {!isMenuOpen && (
           <div
             id="content-container"
-            className="self-center w-full max-w-md"
+            className="flex flex-col self-center w-full max-w-md gap-4"
           >
             {children}
           </div>
