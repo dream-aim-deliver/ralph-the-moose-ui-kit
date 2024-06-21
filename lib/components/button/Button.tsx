@@ -39,14 +39,11 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   let containerClasses = "";
-  let buttonClasses = "";
   if (variant === "primary") {
     containerClasses = twMerge(primaryStyles, "cursor-pointer");
   }
   if (variant === "secondary") {
     containerClasses = twMerge(secondaryStyles, "cursor-pointer");
-    // Add padding to secondary buttons
-    // buttonClasses = twMerge(buttonClasses, "px-12");
   }
   if (fullWidth) {
     containerClasses = twMerge(secondaryStyles, "w-full");
@@ -58,12 +55,7 @@ export const Button = ({
       aria-disabled={disabled}
       onClick={disabled ? () => {} : onClick}
     >
-      <div
-        aria-disabled={disabled}
-        role="button"
-        className={buttonClasses}
-        {...props}
-      >
+      <div aria-disabled={disabled} role="button" {...props}>
         {label}
       </div>
     </div>
