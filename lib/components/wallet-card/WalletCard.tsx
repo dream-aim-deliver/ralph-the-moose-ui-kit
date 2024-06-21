@@ -19,6 +19,10 @@ export interface WalletCardProps {
    */
   walletName: string;
   /**
+   * The React node for the wallet icon.
+   */
+  walletIcon?: React.ReactNode;
+  /**
    * The React node for the connect button.
    */
   connectButton: React.ReactNode;
@@ -38,6 +42,7 @@ export const WalletCard = ({
   connectButton,
   disconnectButton,
   walletName: walletName,
+  walletIcon: walletIcon = null,
 }: WalletCardProps) => {
   return (
     <Card>
@@ -45,6 +50,7 @@ export const WalletCard = ({
         <WalletCard.Connected
           address={address}
           walletName={walletName}
+          walletIcon={walletIcon}
           disconnectButton={disconnectButton}
         />
       ) : (
@@ -74,21 +80,29 @@ WalletCard.Disconnected = ({
 WalletCard.Connected = ({
   address,
   walletName,
+  walletIcon = null,
   disconnectButton,
 }: {
   address: string;
   walletName: string;
+  walletIcon?: React.ReactNode;
   disconnectButton: React.ReactNode;
 }) => {
   return (
-    <div className="flex flex-row items-center w-full justify-between gap-[16px]">
-      {/** Wallet Addres div, pinned to the left of the parent */}
-      <div className="flex flex-1 flex-col items-start w-full justify-between gap-[8px]">
-        <div className="relative font-varela text-sm leading-[14px] text-text-secondary">
+    <div className="flex flex-row items-center gap-4">
+      {/* Wallet Icon the left of the Wallet Name */}
+      {walletIcon && (
+        <div className="flex items-center justify-center">{walletIcon}</div>
+      )}
+
+      {/* Wallet Name and Address with added right padding */}
+      <div className="flex flex-col pr-2">
+        <div className="relative font-varela text-sm leading-3 text-text-secondary">
           {walletName}
         </div>
         <Label variant="small" label={address} />
       </div>
+
       {/** Disconnect div, pinned to the right of parent */}
       <div className="">{disconnectButton}</div>
     </div>
