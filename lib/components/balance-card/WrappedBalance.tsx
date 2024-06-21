@@ -31,8 +31,18 @@ export const WrappedBalance = ({
         </div>
       </div>
       <div className="flex flex-row space-x-2 w-full">
-        <Button label="Unwrap" onClick={onWrap} variant="secondary" fullWidth={true} />
-        <Button label="Bridge" onClick={onBridge} variant="secondary" fullWidth />
+        <Button
+          label="Unwrap"
+          onClick={onWrap}
+          variant="secondary"
+          fullWidth={true}
+        />
+        <Button
+          label="Bridge"
+          onClick={onBridge}
+          variant="secondary"
+          fullWidth
+        />
       </div>
     </LightFrame>
   );
