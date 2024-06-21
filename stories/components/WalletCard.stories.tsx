@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { WalletCard as Component } from "@/components/wallet-card";
 import { Button, TextButton } from "../../lib";
+import { IconMetaMaskWallet } from "@/components/icons/IconMetaMaskWallet";
 
 const meta = {
   title: "Components/WalletCard",
@@ -37,6 +38,18 @@ export const WalletCard: Story = {
     status: "disconnected",
     address: "0x1234...5678",
     walletName: "My Wallet", // Added the missing walletName property
+    connectButton,
+    disconnectButton,
+  },
+};
+
+const icon = <IconMetaMaskWallet size={12} />;
+export const WalletCardWithIcon: Story = {
+  args: {
+    status: "disconnected",
+    address: "0x1234...5678",
+    walletName: "My Wallet", // Added the missing walletName property
+    walletIcon: icon,
     connectButton,
     disconnectButton,
   },
