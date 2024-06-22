@@ -10,7 +10,7 @@ export const IconWalletConnect = ({ size = 12 }: { size?: number }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_376_4634)">
+      <g clipPath="url(#clip0_376_4634)">
         <path
           d="M20.4 0H3.6C1.61177 0 0 1.61177 0 3.6V20.4C0 22.3882 1.61177 24 3.6 24H20.4C22.3882 24 24 22.3882 24 20.4V3.6C24 1.61177 22.3882 0 20.4 0Z"
           fill="#1C7DFC"
