@@ -17,6 +17,7 @@ export type WrapModalVariantClaimingProps = {
         status: "success" | "error" | "awaiting-transaction" | "verifying";
         message?: string;
         attempt?: number;
+        amount?: number;
       }
     | {
         status: "request";
@@ -103,7 +104,7 @@ export const WrapModalContentVariantClaiming = (
     }
     if (props.status.status === "verifying") {
       const messages = [
-        `Verifying that ${claimableAmount} has been pumped to your wallet.`,
+        `Verifying that ${props.status.amount} WPR have been pumped to your wallet.`,
       ];
       if (props.status.message) messages.push(props.status.message);
       if (props.status.attempt)

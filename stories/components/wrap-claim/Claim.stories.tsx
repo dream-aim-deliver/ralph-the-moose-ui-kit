@@ -79,6 +79,7 @@ export const Verifying: Story = {
     status: {
       status: "verifying",
       attempt: 20,
+      amount: 25,
     },
   },
 };
