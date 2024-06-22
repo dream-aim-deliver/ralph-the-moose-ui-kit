@@ -11,9 +11,6 @@ export interface NetworkSelectorProps {
 }
 
 export const NetworkSelector = (props: NetworkSelectorProps) => {
-  const [selectedOption, setSelectedOption] = useState<TChainViewModelWithIcon>(
-    props.activeNetwork,
-  );
   const [isOpen, setIsOpen] = useState(false);
   const networkSelectorRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -39,7 +36,6 @@ export const NetworkSelector = (props: NetworkSelectorProps) => {
     <div
       key={network.name}
       onClick={() => {
-        setSelectedOption(network);
         setIsOpen(false);
         props.onNetworkChange(network);
       }}
@@ -48,7 +44,7 @@ export const NetworkSelector = (props: NetworkSelectorProps) => {
       <DropdownItem
         title={network.name}
         icon={network.icon}
-        selected={network.name === selectedOption.name}
+        selected={network.name === props.activeNetwork.name}
       />
     </div>
   ));
@@ -95,10 +91,10 @@ export const NetworkSelector = (props: NetworkSelectorProps) => {
       >
         <div className="flex-1 flex flex-row items-center justify-start gap-[8px]">
           <div className="w-[25px] relative h-[25px] overflow-hidden shrink-0">
-            {selectedOption.icon}
+            {props.activeNetwork.icon}
           </div>
           <b className="relative tracking-[-0.04em] leading-[16px]">
-            {selectedOption.name}
+            {props.activeNetwork.name}
           </b>
         </div>
         <div className="flex flex-row w-3 h-relative ml-2 items-center">
