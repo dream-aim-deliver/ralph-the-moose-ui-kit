@@ -69,7 +69,7 @@ export const Dropdown = (props: DropdownProps) => {
           selectedOption={selectedOption.title}
         />
       </div>
-      <div className="w-full" ref={dropdownRef}>
+      <div className="w-auto absolute min-w-40" ref={dropdownRef}>
         {isOpen && <DropdownContent>{optionNodes}</DropdownContent>}
       </div>
     </div>

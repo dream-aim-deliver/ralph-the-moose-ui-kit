@@ -107,7 +107,7 @@ export const NetworkSelector = (props: NetworkSelectorProps) => {
   return (
     <div>
       <div className="w-full">{largeTrigger}</div>
-      <div className="w-full" ref={networkSelectorRef}>
+      <div className="w-auto absolute min-w-40" ref={networkSelectorRef}>
         {isOpen && <DropdownContent>{dropdownItems}</DropdownContent>}
       </div>
     </div>
