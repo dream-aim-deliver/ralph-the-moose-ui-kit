@@ -11,6 +11,7 @@ export { IconHourglass } from "./IconHourglass";
 export { IconMenu } from "./IconMenu";
 export { IconMetaMaskWallet } from "./IconMetaMaskWallet";
 export { IconMooseHorn } from "./IconMooseHorn";
+export { IconNetworkArthera } from "./IconNetworkArthera";
 export { IconNetworkAvax } from "./IconNetworkAvax";
 export { IconNetworkBase } from "./IconNetworkBase";
 export { IconPlaceholder } from "./IconPlaceholder";

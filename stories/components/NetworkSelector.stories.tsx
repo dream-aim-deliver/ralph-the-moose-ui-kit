@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { NetworkSelector } from "@/components/network-selection";
-import { IconElk, IconNetworkBase } from "../../lib";
+import { IconElk, IconNetworkArthera, IconNetworkBase } from "../../lib";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -35,11 +35,16 @@ export const Small: Story = {
         chainId: 1,
         icon: <IconElk size={16} />,
       },
+      {
+        name: "Arthera",
+        chainId: 56,
+        icon: <IconNetworkArthera />,
+      },
     ],
     activeNetwork: {
-      name: "Base",
-      chainId: 8453,
-      icon: <IconNetworkBase />,
+      name: "Arthera",
+      chainId: 56,
+      icon: <IconNetworkArthera />,
     },
     onNetworkChange: (network) => console.log(network),
   },
