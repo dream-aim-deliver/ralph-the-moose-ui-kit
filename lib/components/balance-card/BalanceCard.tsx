@@ -38,7 +38,7 @@ export interface BalanceCardProps {
    * Features available for the balance card.
    */
   features: {
-    wrap: boolean;
+    inscriptionBalanceSection: boolean;
     unwrap: boolean;
     bridge: boolean;
   };
@@ -65,21 +65,23 @@ export const BalanceCard = ({
           <Heading title="Balance" variant={HeadingVariant.H4} />
           {isLoading && <Spinner />}
         </div>
-        <div id="inscription-balance-card" className="">
-          <Heading
-            title="Inscriptions"
-            variant={HeadingVariant.H5}
-            className="text-text-secondary"
-          />
-          <InscriptionBalance
-            inscriptionBalance={inscriptionBalance}
-            tokenShortName={tokenShortName}
-            onClick={showWrapClaimVariant}
-            features={{
-              wrap: features.wrap,
-            }}
-          />
-        </div>
+        {features.inscriptionBalanceSection && (
+          <div id="inscription-balance-card" className="">
+            <Heading
+              title="Inscriptions"
+              variant={HeadingVariant.H5}
+              className="text-text-secondary"
+            />
+            <InscriptionBalance
+              inscriptionBalance={inscriptionBalance}
+              tokenShortName={tokenShortName}
+              onClick={showWrapClaimVariant}
+              features={{
+                wrap: features.inscriptionBalanceSection,
+              }}
+            />
+          </div>
+        )}
         <div id="wrapped-balance-card" className="">
           <Heading
             title="Wrapped"

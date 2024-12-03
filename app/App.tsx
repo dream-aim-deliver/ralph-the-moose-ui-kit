@@ -105,7 +105,7 @@ function App() {
           features={{
             bridge: true,
             unwrap: true,
-            wrap: true,
+            inscriptionBalanceSection: true,
           }}
         />
         {/* <BridgeModalDefaultVariant

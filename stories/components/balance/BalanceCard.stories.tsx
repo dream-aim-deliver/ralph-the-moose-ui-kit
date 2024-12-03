@@ -41,7 +41,7 @@ export const Default: Story = {
       console.log("Bridge Variant");
     },
     features: {
-      wrap: true,
+      inscriptionBalanceSection: true,
       unwrap: true,
       bridge: true,
     },
