@@ -32,6 +32,14 @@ const theme = {
       },
     },
     colors: {
+      "new-color-category": {
+        50: "#F9F7F6",
+        100: "#F3E9E3",
+        200: "#E1CFCB",
+        400: "#C3A59E",
+        600: "#A17D6F",
+        900: "#3D1F16",
+      },
       "base-colors/neutral": {
         50: "#FBF7F3",
         100: "#F6E6DC",

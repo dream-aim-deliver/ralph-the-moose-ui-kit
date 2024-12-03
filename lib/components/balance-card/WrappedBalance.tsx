@@ -9,12 +9,19 @@ export const WrappedBalance = ({
   tokenShortName,
   onWrap: onWrap,
   onBridge: onBridge,
+  features: { unwrap, bridge } = { unwrap: false, bridge: false },
 }: {
   wrappedBalance: number;
   tokenShortName: string;
+  features: {
+    unwrap: boolean;
+    bridge: boolean;
+  };
   onWrap: () => void;
   onBridge: () => void;
 }) => {
+  const unwrapEnabled = unwrap;
+  const bridgeEnabled = bridge;
   const wrappedTokenName = `W${tokenShortName.toUpperCase()}`;
   const wrappedBalanceString =
     Intl.NumberFormat(`en-US`).format(wrappedBalance);
@@ -36,12 +43,14 @@ export const WrappedBalance = ({
           onClick={onWrap}
           variant="secondary"
           fullWidth={true}
+          disabled={!unwrapEnabled}
         />
         <Button
           label="Bridge"
           onClick={onBridge}
           variant="secondary"
           fullWidth
+          disabled={!bridgeEnabled}
         />
       </div>
     </LightFrame>

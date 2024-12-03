@@ -102,6 +102,11 @@ function App() {
           showWrapClaimVariant={() => {}}
           tokenShortName="PR"
           wrappedBalance={20000}
+          features={{
+            bridge: true,
+            unwrap: true,
+            wrap: true,
+          }}
         />
         {/* <BridgeModalDefaultVariant
           activeChain={{

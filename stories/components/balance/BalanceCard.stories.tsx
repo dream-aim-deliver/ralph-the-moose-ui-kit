@@ -17,6 +17,7 @@ const meta = {
     inscriptionBalance: { control: "text", name: "Inscription Balance" },
     wrappedBalance: { control: "text", name: "Wrapped Balance" },
     tokenShortName: { control: "text", name: "Token Short Name" },
+    features: { control: "object", name: "Features" },
   },
 } satisfies Meta<typeof BalanceCard>;
 
@@ -38,6 +39,11 @@ export const Default: Story = {
     },
     showBridgeVariant: () => {
       console.log("Bridge Variant");
+    },
+    features: {
+      wrap: true,
+      unwrap: true,
+      bridge: true,
     },
   },
 };

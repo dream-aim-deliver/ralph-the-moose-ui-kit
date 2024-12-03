@@ -34,6 +34,14 @@ export interface BalanceCardProps {
    * Callback function when bridging is triggered. It should open the bridging modal.
    */
   showBridgeVariant: () => void;
+  /**
+   * Features available for the balance card.
+   */
+  features: {
+    wrap: boolean;
+    unwrap: boolean;
+    bridge: boolean;
+  };
 }
 
 /**
@@ -45,6 +53,7 @@ export const BalanceCard = ({
   inscriptionBalance,
   wrappedBalance,
   tokenShortName,
+  features,
   showWrapClaimVariant,
   showUnwrapVariant,
   showBridgeVariant,
@@ -56,27 +65,38 @@ export const BalanceCard = ({
           <Heading title="Balance" variant={HeadingVariant.H4} />
           {isLoading && <Spinner />}
         </div>
-        <Heading
-          title="Inscriptions"
-          variant={HeadingVariant.H5}
-          className="text-text-secondary"
-        />
-        <InscriptionBalance
-          inscriptionBalance={inscriptionBalance}
-          tokenShortName={tokenShortName}
-          onClick={showWrapClaimVariant}
-        />
-        <Heading
-          title="Wrapped"
-          variant={HeadingVariant.H5}
-          className="text-text-secondary"
-        />
-        <WrappedBalance
-          wrappedBalance={wrappedBalance}
-          tokenShortName={tokenShortName}
-          onWrap={showUnwrapVariant}
-          onBridge={showBridgeVariant}
-        />
+        <div id="inscription-balance-card" className="">
+          <Heading
+            title="Inscriptions"
+            variant={HeadingVariant.H5}
+            className="text-text-secondary"
+          />
+          <InscriptionBalance
+            inscriptionBalance={inscriptionBalance}
+            tokenShortName={tokenShortName}
+            onClick={showWrapClaimVariant}
+            features={{
+              wrap: features.wrap,
+            }}
+          />
+        </div>
+        <div id="wrapped-balance-card" className="">
+          <Heading
+            title="Wrapped"
+            variant={HeadingVariant.H5}
+            className="text-text-secondary"
+          />
+          <WrappedBalance
+            wrappedBalance={wrappedBalance}
+            tokenShortName={tokenShortName}
+            onWrap={showUnwrapVariant}
+            onBridge={showBridgeVariant}
+            features={{
+              unwrap: features.unwrap,
+              bridge: features.bridge,
+            }}
+          />
+        </div>
       </div>
     </Card>
   );
