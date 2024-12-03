@@ -13,7 +13,7 @@ export const primaryStyles = twMerge(
   "w-full",
   "relative",
   "rounded-[54px]",
-  "bg-base-colors/brand-600",
+  "bg-text-primary",
   "flex",
   "flex-row",
   "items-center",

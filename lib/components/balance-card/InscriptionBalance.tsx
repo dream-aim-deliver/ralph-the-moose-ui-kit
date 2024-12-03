@@ -9,12 +9,17 @@ import { Tooltip } from "../tooltip/Tooltip";
 export const InscriptionBalance = ({
   inscriptionBalance,
   tokenShortName,
+  features: { wrap } = { wrap: false },
   onClick,
 }: {
   inscriptionBalance: number;
   tokenShortName: string;
+  features: {
+    wrap: boolean;
+  };
   onClick: () => void;
 }) => {
+  const wrapEnabled = wrap;
   const inscriptionBalanceString =
     Intl.NumberFormat(`en-US`).format(inscriptionBalance);
   return (
@@ -30,7 +35,12 @@ export const InscriptionBalance = ({
         </div>
       </div>
       <div className="flex flex-row space-x-4">
-        <Button label="Wrap" variant="secondary" onClick={onClick} />
+        <Button
+          label="Wrap"
+          variant="secondary"
+          onClick={onClick}
+          disabled={!wrapEnabled}
+        />
         <Button label="Send" variant="secondary" disabled={true} />
       </div>
     </LightFrame>
