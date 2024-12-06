@@ -4,7 +4,7 @@ import { Heading, HeadingVariant } from "../heading";
 import { InputAssetAmountWithLabel } from "../input-asset-amount-with-label/InputAssetAmountWithLabel";
 import { TChainViewModel } from "../../core";
 import { IconButtonClose } from "../icon-button/IconButtonClose";
-import { Dropdown } from "../dropdown";
+import { Dropdown, DropdownItemProps } from "../dropdown";
 import { Modal } from "../modal";
 import { useState } from "react";
 import { LightFrame } from "../layouts";
@@ -68,6 +68,18 @@ export const BridgeModalDefaultVariant = (
                 setDestinationChain(chain);
               },
             }))}
+            onChange={(
+              oldItem: DropdownItemProps,
+              newItem: DropdownItemProps,
+            ) => {
+              const destinationChain = destinationChains.find(
+                (chain) => chain.name === newItem.title,
+              );
+              if (!destinationChain) {
+                return;
+              }
+              setDestinationChain(destinationChain);
+            }}
           />
         </div>
         <div id="bridge-card-amount-to-bridge"></div>
